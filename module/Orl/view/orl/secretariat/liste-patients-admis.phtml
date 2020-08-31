@@ -1,0 +1,263 @@
+<script>
+var base_url = window.location.toString();
+var tabUrl = base_url.split("public");
+//POUR LE MENU GAUCHE dans -elementgauche.phtml
+$('#plus_admission_orl').toggle(true);
+$("#admission_orl").replaceWith("<li id='admission_orl' style='background:#4a5765;'><a href=''><span style='margin-left:0px; color: #ffffff; font-weight:bold; font-size:20px; font-family:Times New Roman;'> <img style='display: inline;' src='"+tabUrl[0]+"public/images_icons/moin-green2.png' alt='Liste' /> Admission </span></a></li>");
+dep_admission_orl1();
+$('#liste_admission_style').css({'font-weight':'bold','color':'white','font-size':'22px'});
+</script>
+
+<!-- MES STYLES -->
+<?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/orl/styleListePatientAdmis.css');?>
+
+<!-- MES JS -->
+<?php echo $this->headScript()->appendFile($this->basePath().'/js/orl/jsListepatientAdmis.js');?>
+
+<?php use Orl\View\Helpers\DateHelper;
+$Control = new DateHelper();?>
+<style>
+/* STYLE POUR LA LISTE DE SELECTION DE LA TABLE*/
+#listeDataTable{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: -10px;
+}
+/*
+#contenuInterface{ visibility: hidden; }*/
+</style>
+
+<script>
+$(window).load(function () {
+
+	$('#wait').toggle(false);
+	$('#contenuInterface').fadeIn().css({'visibility':'visible'});
+	 
+});
+</script>
+
+
+<div id="titre" style='font-family: police2; text-decoration:none; color: green; font-size: 18px; font-weight: bold; padding-left: 20px;'><iS style='font-size: 25px;'>&curren;</iS> LISTE DES PATIENTS ADMIS</div>
+<div id="wait" style="color: gray; font-size: 20px; text-align: center; margin-top: 80px;" > <span> Chargement ... </span> </div>
+<div id="contenuInterface" >
+<div id="contenu" >
+
+        <!-- div id="liste_personnel" style="float:right; margin-right: 75px; height:5px; margin-top: 5px; width: 150px;">
+          <?php //echo $this->formRow($this->form->get('liste_service'));?>
+        </div-->
+
+		<table class="table table-bordered tab_list_mini" id="patientdeces">
+			<thead id="head" class="head_style">
+				<tr>
+				    <th id="nom_" style="width: 15%;"><input type="text" name="search_browser" value=" Num_Dossier" class="search_init" /></th>
+					<th id="nom_" style="width: 11%;"><input type="text" name="search_browser" value=" Nom" class="search_init" /></th>
+					<th id="prenom_" style="width: 14%;"><input type="text" name="search_browser" value=" Prenom" class="search_init" /></th>
+					<th id="date_" style="width: 10%;"><input type="text" name="search_browser" value=" Age" class="search_init" /></th>
+					<th id="sexe_" style="width: 12%;"><input type="text" name="search_browser" value=" Sexe" class="search_init" /></th>
+					<th id="adresse_" style="width: 25%;"><input type="text" name="search_browser" value=" Adresse" class="search_init" /></th>
+					<th id="nationalite_" style="width: 13%;"><input type="text" name="search_browser" value=" Nationalite" class="search_init" /></th>
+					<th id="effectuer" align="center">Options</th>
+
+				</tr>
+			</thead>
+
+			<tbody id="donnees" class="liste_patient">
+
+	            <!-- ************ On affiche les patients en une liste ordonn�e************ -->			
+			
+				<?php foreach($this->listePatientsAdmis as $donnees){?>
+
+				 
+				<?php  
+
+				 $age = $donnees['Age'];
+                 $age = gestionAges($age, $donnees[ 'Datenaissance' ]);
+
+                 //var_dump($age);exit();
+				 
+				 
+	   		     ?> 
+				<tr id="<?php echo $this->escapeHtml($donnees['Id_admission']);?>">
+                    <td><?php echo $this->escapeHtml($donnees['Num_Dossier']);?></td>
+				    <td style='text-transform : uppercase;'><?php echo $this->escapeHtml($donnees['Nom']);?></td>
+				    <td><?php echo $this->escapeHtml($donnees['Prenom']);?></td>
+					<td><?php echo $this->escapeHtml($age);?></td>
+					<td><?php echo $this->escapeHtml($donnees['Sexe']);?></td>
+					<td><?php echo $this->escapeHtml($donnees['Adresse']);?></td>
+					<td><?php echo $this->escapeHtml($donnees['Nationalite']);?></td>
+					<td>
+					    <?php $id = $this->escapeHtml($donnees['Id']);?>
+					    <a style='margin-left: 5%; margin-right: 6%;' href="javascript:affichervue('<?php echo $id ?>','<?php echo $this->escapeHtml($donnees['Id_admission']);?>')">
+					       <img  src='<?php echo $this->basePath().'/images_icons/voir2.png'?>' title="details" />
+					    </a>&nbsp;&nbsp;
+
+					    <a id='<?php echo 'Service'.$id ?>'>
+					    <?php echo $this->escapeHtml($donnees['Nomservice']);?>
+					    </a>
+
+					</td>
+				</tr>
+
+			    <script>
+				$("<?php echo '#Service'.$id ?>").toggle(false);
+				
+				$('#donnees tr').contextmenu({
+					target: '#context-menu',
+					onItem: function (context, e) {
+						
+						if($(e.target).text() == 'Visualiser' || $(e.target).is('#visualiserCTX')){
+							affichervue('<?php echo $id; ?>','<?php echo $this->escapeHtml($donnees['Id_admission']);?>');
+						}
+					}
+
+				})
+				</script>
+
+				<?php } ?>
+
+			</tbody>
+
+
+		</table>
+
+</div>
+
+<!-- POP UP pour Confirmation Suppression -->
+                            <div id="confirmation" title="Confirmation de l'annulation" style="display:none;">
+                              <p style="font-size: 19px;">
+                                 <span style="float:left; margin:0 0px 20px 0; ">
+                                 <img src="<?php echo $this->basePath().'/images_icons/warning_16.png';?>" />
+                                 Etes-vous s&ucirc;r de vouloir annuler la consultation ?</span>
+
+                              </p>
+                            </div>
+
+
+<!-- LES BOUTONS "TERMINER" ou "VALIDER" -->
+
+<div id="vue_patient">
+
+</div>
+
+</div>
+
+
+<div id="context-menu">
+    <ul class="dropdown-menu" >
+         <li><a style="cursor: pointer;" ><img id="visualiserCTX" style='margin-right: 10px; width: 19px; height: 16px;' src='/simens/public/images_icons/voir2.png'>Visualiser</a></li>
+         <li class="divider"></li>
+         <li><a id="quitterCTX"  style="cursor: pointer;">Quitter</a></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+$(function(){
+	initialisation();
+});
+$("#vue_patient").toggle(false);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			    <?php 
+			    	
+			    	
+			    function nbJours($debut, $fin) {
+			    	//60 secondes X 60 minutes X 24 heures dans une journee
+			    	$nbSecondes = 60*60*24;
+			    		
+			    	$debut_ts = strtotime($debut);
+			    	$fin_ts = strtotime($fin);
+			    	$diff = $fin_ts - $debut_ts;
+			    	return ($diff / $nbSecondes);
+			    }
+			    
+			    function gestionAges($age, $date_naissance) { //var_dump('eeee'); exit();
+			    	//Gestion des AGE
+			    	if($age && !$date_naissance){
+			    		return $age." ans";
+			    	}else{
+			    
+			    		
+			    		$aujourdhui = (new \DateTime() ) ->format('Y-m-d');
+			    		$age_jours = (int)nbJours($date_naissance, $aujourdhui);
+			    			
+			    		$age_annees = (int)($age_jours/365);
+			    			
+			    		if($age_annees == 0){
+			    				
+			    			if($age_jours < 31){
+			    				return $age_jours." jours";
+			    			}else if($age_jours >= 31) {
+			    					
+			    				$nb_mois = (int)($age_jours/31);
+			    				$nb_jours = $age_jours - ($nb_mois*31);
+			    				if($nb_jours == 0){
+			    					return $nb_mois."m";
+			    				}else{
+			    					return $nb_mois."m ".$nb_jours."j";
+			    				}
+			    					
+			    			}
+			    				
+			    		}else{
+			    			$age_jours = $age_jours - ($age_annees*365);
+			    				
+			    			if($age_jours < 31){
+			    					
+			    				if($age_annees == 1){
+			    					if($age_jours == 0){
+			    						return $age_annees."an";
+			    					}else{
+			    						return $age_annees."an ".$age_jours."j";
+			    					}
+			    				}else{
+			    					if($age_jours == 0){
+			    						return $age_annees."ans";
+			    					}else{
+			    						return $age_annees."ans ".$age_jours."j";
+			    					}
+			    				}
+			    					
+			    			}else if($age_jours >= 31) {
+			    					
+			    				$nb_mois = (int)($age_jours/31);
+			    				$nb_jours = $age_jours - ($nb_mois*31);
+			    					
+			    				if($age_annees == 1){
+			    					if($nb_jours == 0){
+			    						return $age_annees."an ".$nb_mois."m";
+			    					}else{
+			    						return $age_annees."an ".$nb_mois."m ";
+			    					}
+			    						
+			    				}else{
+			    					if($nb_jours == 0){
+			    						return $age_annees."ans ".$nb_mois."m";
+			    					}else{
+			    						return $age_annees."ans ".$nb_mois."m";
+			    					}
+			    				}
+			    					
+			    			}
+			    				
+			    		}
+			    			
+			    	}
+			    }
+			    
+			    
+			    
+			    
+			    ?>
