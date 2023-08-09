@@ -28,13 +28,14 @@ class PfpParotideTable {
 		
 		$donnees = array(
 				'id_cons' => $id_cons,
-				'pfp' => $data->pfp,
+				//'pfp' => $data->pfp,
+				'paires_cranienne' => $data->paires_cranienne,
 				'date_enregistrement' => $date_enregistrement,
 				'id_employe_e' => $id_employe_e,
 		);
-		
+		//var_dump($donnees); exit();
 		$this->tableGateway->insert( $donnees );
-		//var_dump($donnees); exit();	
+			
 	}
 	public function deletePfpParotide($id){
 		$this->tableGateway->delete(array('id_cons'=>$id));

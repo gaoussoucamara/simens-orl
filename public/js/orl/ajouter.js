@@ -1,4 +1,6 @@
-function creerLaliste ($listeDesElements) {
+function creerLaliste ($listeDesElements, jcmptListe) {
+	//alert($listeDesElements[1][1]);
+	//return false;
     	var index = $("hassim").length;
 			        $liste = "<div id='Element_"+(index+1)+"'>"+
 				             "<hassim>"+
@@ -12,9 +14,9 @@ function creerLaliste ($listeDesElements) {
                              "<th id='SelectElement_"+(index+1)+"' style='width: 28%;'>"+
                              "<select style='width: 100%; margin-top: 3px; margin-bottom: 0px; font-size: 13px;' class='validate[required]' name='element_name_"+(index+1)+"' id='element_name_"+(index+1)+"'>"+
 			                 "<option value=''> -- S&eacute;l&eacute;ctionner un examen -- </option>";
-                             for(var i = 1 ; i < $listeDesElements.length ; i++){
+                             for(var i = 1 ; i <= jcmptListe; i++){
                             	 if($listeDesElements[i]){
-                    $liste +="<option value='"+i+"'>"+$listeDesElements[i]+"</option>";
+                    $liste +="<option value='"+$listeDesElements[i][0]+"'>"+$listeDesElements[i][1]+"</option>";
                             	 }
                              }   
                     $liste +="</select>"+                           
@@ -55,7 +57,7 @@ function creerLaliste ($listeDesElements) {
                     $("#Element_0").html("<input type='hidden' id='nbElement' value='"+(index+1)+"'>");
                     
                     //CACHER L'ICONE AJOUT QUAND ON A CINQ LISTES
-                    if((index+1) == 5){
+                    if((index+1) == 6){
                     	$("#ajouter_element").toggle(false);
                     }
                     
@@ -72,7 +74,7 @@ function nbListe () {
 
 //SUPPRIMER LE DERNIER ELEMENT
 $(function () {
-	//Au début on cache la suppression
+	//Au dï¿½but on cache la suppression
 	$("#supprimer_element").click(function(){
 		//ON PEUT SUPPRIMER QUAND C'EST PLUS DE DEUX LISTE
 		if(nbListe () >  1){$("#Element_"+nbListe ()).remove();}
@@ -86,18 +88,19 @@ $(function () {
 			);
 		}
 		//Afficher L'ICONE AJOUT QUAND ON A CINQ LIGNES
-		if((nbListe()+1) == 5){
+		if((nbListe()+1) == 6){
 			$("#ajouter_element").toggle(true);
 		}    
 		Event.stopPropagation();
 	});
 });
 
-//FONCTION INITIALISATION (Par défaut)
-function partDefaut (Liste, n) {
+//FONCTION INITIALISATION (Par dï¿½faut)
+function partDefaut (Liste, n, jcmptListe) {
+	console.log(Liste);
 	var i = 0;
 	for( i ; i < n ; i++){
-		creerLaliste(Liste);
+		creerLaliste(Liste, jcmptListe);
 	}
 	if(n == 1){
 		$(".supprimer" ).replaceWith(
@@ -105,7 +108,7 @@ function partDefaut (Liste, n) {
 			);
 	}
 	$('#ajouter_element').click(function(){ 
-		creerLaliste(Liste);
+		creerLaliste(Liste, jcmptListe);
 		if(nbListe() == 2){
 		$(".supprimer" ).replaceWith(
 				"<img class='supprimer' style='margin-left: 5px; margin-top: 10px; cursor: pointer;' src='../images/images/sup.png' title='Supprimer' />"
@@ -143,7 +146,7 @@ function supprimer_element_selectionne(id) {
 	if(nbListe() == 1) {
 		$("#supprimer_element").toggle(false);
 	}
-	if((nbListe()+1) == 5){
+	if((nbListe()+1) == 6){
 		$("#ajouter_element").toggle(true);
 	}
    
@@ -173,6 +176,7 @@ var tabUrl = base_url.split("public");
 //********************* EXAMEN MORPHOLOGIQUE *****************************
 function ValiderDemande(){
 $(function(){
+
 	//Au debut on affiche pas le bouton modifier
 	$("#bouton_morpho_modifier_demande").toggle(false);
 	//Au debut on affiche le bouton valider
@@ -196,6 +200,17 @@ $(function(){
 				j++;
 			}
 		}
+
+
+		// alert(nbListe());
+		// alert(examens);
+
+		// console.log(examens);
+		// stopPropagation();
+		// return false;
+
+
+
 		
 		$.ajax({
 	        type: 'POST',
@@ -218,6 +233,7 @@ $(function(){
 	        		if(examens[k] == 10){ $('.imageIRM').toggle(true); $('.bouton_valider_examen_morpho').toggle(true);} 
 	        		if(examens[k] == 11){ $('.imageScanner').toggle(true); $('.bouton_valider_examen_morpho').toggle(true);} 
 	        		if(examens[k] == 12){ $('.imageFibroscopie').toggle(true); $('.bouton_valider_examen_morpho').toggle(true);} 
+					if(examens[k] == 19){ $('.imageFibroscopie').toggle(true); $('.bouton_valider_examen_morpho').toggle(true);}
 	        	}
 	        	
 	        	

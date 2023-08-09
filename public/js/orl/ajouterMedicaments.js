@@ -44,11 +44,8 @@ function creerLalisteMedicament ($listeDesElements, $ListeForme, $ListeBoite, $L
                              "</th >"+
                              
                              "<th id='noteMedicament2_"+(index+1)+"' style='width: 29%;'  >"+
-                             "<input type='text' id='nb_medicament_"+(index+1)+"' name='nb_medicament_"+(index+1)+"' style=' float: left; width: 13%; margin-top: 3px; height: 30px; margin-bottom: 0px; font-size: 15px; padding-left: 5px;' >"+
-                             "<div id='increm_decrem' style='float: left; height: 30px; width: 7%;'> " +
-                             "<img id='incrementer_"+(index+1)+"' style='cursor:pointer; position:absolute; height: 16px; width: 16px; margin-top: 1px; margin-bottom: 0px; font-size: 15px;' src='../images_icons/increment2.png'/> " +
-                             "<img id='decrementer_"+(index+1)+"' style='cursor:pointer; position:absolute; height: 16px; width: 16px; margin-top: 19px; margin-bottom: 0px; font-size: 15px; padding-left: 1px;' src='../images_icons/decrement2.png'/> " +
-                             "</div>"+
+                             "<input type='number' id='nb_medicament_"+(index+1)+"' name='nb_medicament_"+(index+1)+"' style=' float: left; width: 13%; margin-top: 3px; height: 30px; margin-bottom: 0px; font-size: 15px; padding-left: 5px;' >"+
+                             
                              "<khassQuantite><input type='text' id='quantite_"+(index+1)+"' name='quantite_"+(index+1)+"' style='float: left; width: 80%; margin-top: 3px; height: 30px; margin-bottom: 0px; font-size: 15px; padding-left: 10px;' > </khassQuantite>" +
                              "</th >"+
                              
@@ -114,7 +111,7 @@ function nbListeMedicaments () {
 
 //SUPPRIMER LE DERNIER ELEMENT
 $(function () {
-	//Au début on cache la suppression
+	//Au dï¿½but on cache la suppression
 	$("#supprimer_medicament").click(function(){
 		//ON PEUT SUPPRIMER QUAND C'EST PLUS DE DEUX LISTE
 		if(nbListeMedicaments () >  1){$("#Medicament_"+nbListeMedicaments ()).remove();}
@@ -134,7 +131,7 @@ $(function () {
 });
 
 
-//FONCTION INITIALISATION (Par défaut)
+//FONCTION INITIALISATION (Par dï¿½faut)
 function partDefautMedicament (Liste, ListeForme, ListeBoite, ListeQuantite, n) { 
 	var i = 0;
 	for( i ; i < n ; i++){

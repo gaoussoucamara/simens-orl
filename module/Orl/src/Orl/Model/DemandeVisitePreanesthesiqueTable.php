@@ -69,12 +69,14 @@ class DemandeVisitePreanesthesiqueTable{
 						'INTERVENTION_PREVUE' => $infoDemande['intervention_prevue'],
 						'NUMERO_VPA' => $infoDemande['numero_vpa'],
 						'TYPE_ANESTHESIE' => $infoDemande['type_anesthesie'],
-						'DATE_INTERVENU' => $infoDemande['date_intervenu'],
-						'DATE_SORTIE' => $infoDemande['date_sortie'],
+						'DATE_INTERVENU' => ($infoDemande['date_intervenu'])?$infoDemande['date_intervenu']:null,
+						'DATE_SORTIE' => ($infoDemande['date_sortie'])?$infoDemande['date_sortie']:null,
 						'AIDES' => $infoDemande['aides'],
 						'DATE_ENREGISTREMENT' => $dateAujourdhui
 				);
+				
 				$this->tableGateway->insert($donneesVPA);
+				//var_dump($donneesVPA); exit();
 			}
 		}
 	}

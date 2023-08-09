@@ -518,14 +518,16 @@ function sousDossier() {
 		i=1;
 	}
 }
-    
-function getLibre(val){
+$('.labelLibre').toggle(false);  
+function getLabelLibre(val){
 	if(val==1){
-		$("#libre span span").html("<img src='../images_icons/tick-icon2.png' >");
+		$("#labelLibre span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
-		$("#libre span span").html("");
+		$("#labelLibre span span").html("");
 	}	
 }
+getLabelLibre($('#libre').val());
+
 $('.labelAtteinte').toggle(false);
 function getLabelAtteinte(val){ //alert(val);
 	if(val==1){
@@ -573,6 +575,7 @@ function getTumefaction(val){
 		$("#tumefaction span span").html("");
 	}	
 }
+getTumefaction($('#tumefaction_cervical_anterieur').val());
 function getSignesThyroxicose(val){
 	if(val==1){
 		$("#signesThyroxicose span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -580,6 +583,7 @@ function getSignesThyroxicose(val){
 		$("#signesThyroxicose span span").html("");
 	}	
 }
+getSignesThyroxicose($('#signes_thyroxicose').val());
 
 $('.SigneCompression').toggle(false);
 function getSigneCompression(val){ 
@@ -591,7 +595,7 @@ function getSigneCompression(val){
 		$('.SigneCompression').fadeOut();
 	}	
 }
-getSigneCompression($('#signe_compression').val());//pour pouvoir visualiser les champs cachés aprè avoir choisi oui
+getSigneCompression($('#signe_compression').val());//pour pouvoir visualiser les champs cachï¿½s aprï¿½ avoir choisi oui
 function getDysphagie(val){
 	if(val==1){
 		$("#dysphagie span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -620,6 +624,7 @@ function getDepigmentation(val){
 		$("#depigmentation span span").html("");
 	}	
 }
+getDepigmentation($('#depigmentation_artificielle').val());
 function getCicatrices(val){
 	if(val==1){
 		$("#cicatrices span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -627,6 +632,7 @@ function getCicatrices(val){
 		$("#cicatrices span span").html("");
 	}	
 }
+getCicatrices($('#cicatrices_taches_fistules').val());
 function getHypertrophieGlobale(val){
 	if(val==1){
 		$("#globale span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -635,12 +641,13 @@ function getHypertrophieGlobale(val){
 	}	
 }
 function getHypertrophieLocalise(val){
-	if(val==1){
+	if(val==1 || val==2 || val==3 || val==4){
 		$("#localise span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
 		$("#localise span span").html("");
 	}	
 }
+getHypertrophieLocalise($('#hypertrophie_localise').val());
 function getHypertrophieNodulaire(val){
 	if(val==1){
 		$("#nodulaire span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -648,6 +655,7 @@ function getHypertrophieNodulaire(val){
 		$("#nodulaire span span").html("");
 	}	
 }
+getHypertrophieNodulaire($('#hypertrophie_nodulaire').val());
 function getHypertrophieSensibilite(val){
 	if(val==1){
 		$("#sensibilite span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -655,13 +663,15 @@ function getHypertrophieSensibilite(val){
 		$("#sensibilite span span").html("");
 	}	
 }
+getHypertrophieSensibilite($('#hypertrophie_sensibilite').val());
 function getConsistance(val){
-	if(val==1){
-		$("#consistance span span").html("<img src='../images_icons/tick-icon2.png' >");
+	if(val==1 || val==2 || val==3 || val==4){
+		$("#consistanceee span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
-		$("#consistance span span").html("");
+		$("#consistanceee span span").html("");
 	}	
 }
+getConsistance($('#consistance').val());
 function getMobiliteTransversale(val){
 	if(val==1){
 		$("#mobilite span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -669,6 +679,7 @@ function getMobiliteTransversale(val){
 		$("#mobilite span span").html("");
 	}	
 }
+getMobiliteTransversale($('#mobilite_transversale').val());
 function getGesteSurNerf(val){
 	if(val==1){
 		$("#gesteNerf span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -676,20 +687,25 @@ function getGesteSurNerf(val){
 		$("#gesteNerf span span").html("");
 	}	
 }
+getGesteSurNerf($('#geste_sur_nerf').val());
+
 function getLoboithmectomie(val){
-	if(val==1){
-		$("#loboithmectomie span span").html("<img src='../images_icons/tick-icon2.png' >");
+	if(val==1 || val==2 || val==3 || val==4 ){
+		$("#labelLoboithmectomie span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
-		$("#loboithmectomie span span").html("");
+		$("#labelLoboithmectomie span span").html("");
 	}	
 }
+getLoboithmectomie($('#loboithmectomie').val());
+$('.labelIthmectomie').toggle(false);
 function getIthmectomie(val){
 	if(val==1){
-		$("#ithmectomie span span").html("<img src='../images_icons/tick-icon2.png' >");
+		$("#labelIthmectomie span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
-		$("#ithmectomie span span").html("");
+		$("#labelIthmectomie span span").html("");
 	}	
 }
+getIthmectomie($('#ithmectomie').val());
 function getThyroidectomieSubtotale(val){
 	if(val==1){
 		$("#thyroidectomieSubtotale span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -697,6 +713,7 @@ function getThyroidectomieSubtotale(val){
 		$("#thyroidectomieSubtotale span span").html("");
 	}	
 }
+getThyroidectomieSubtotale($('#thyroidectomie_subtotale').val());
 function getThyroidectomieTotale(val){
 	if(val==1){
 		$("#thyroidectomieTotal span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -704,6 +721,8 @@ function getThyroidectomieTotale(val){
 		$("#thyroidectomieTotal span span").html("");
 	}	
 }
+getThyroidectomieTotale($('#thyroidectomie_totale').val());
+
 function getGlandeParathyroide(val){
 	if(val==1){
 		$("#glandeParathyroides span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -711,13 +730,16 @@ function getGlandeParathyroide(val){
 		$("#glandeParathyroides span span").html("");
 	}	
 }
+getGlandeParathyroide($('#glande_parathyroide').val());
+$('.labelIncidentAnesthesique').toggle(false);
 function getIncidentAnesthesique(val){
 	if(val==1){
-		$("#incidentAnesthesique span span").html("<img src='../images_icons/tick-icon2.png' >");
+		$("#labelIncidentAnesthesique span span").html("<img src='../images_icons/tick-icon2.png' >");
 	}else{
-		$("#incidentAnesthesique span span").html("");
+		$("#labelIincidentAnesthesique span span").html("");
 	}	
 }
+getIncidentAnesthesique($('#incident_anesthesique').val());
 function getIncidentHemoragique(val){
 	if(val==1){
 		$("#incidentHemoragique span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -742,9 +764,9 @@ function getIncidentChirurgicaux(val){
 		$('.incidentChirurgicaux').fadeOut();
 	}	
 }
-getIncidentChirurgicaux($('#incident_chirurgicaux').val()); //récupération de la valeur oui pour pouvoir afficher les 2 champs(nerveux..)
+getIncidentChirurgicaux($('#incident_chirurgicaux').val()); //rï¿½cupï¿½ration de la valeur oui pour pouvoir afficher les 2 champs(nerveux..)
 
-
+$('.incidentGlandulaire ').toggle(false);
 function getIncidentGlandulaire(val){
 	if(val==1){
 		$("#incidentGlandulaire span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -752,6 +774,8 @@ function getIncidentGlandulaire(val){
 		$("#incidentGlandulaire span span").html("");
 	}	
 }
+getIncidentGlandulaire($('#incident_glandulaire').val());
+$('.incidentTracheotomie').toggle(false);
 function getIncidentracheotomie(val){
 	if(val==1){
 		$("#incidentTracheotomie span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -759,6 +783,7 @@ function getIncidentracheotomie(val){
 		$("#incidentTracheotomie span span").html("");
 	}	
 }
+getIncidentracheotomie($('#incident_tracheotomie').val());
 function getAccidentHemoragie(val){
 	if(val==1){
 		$("#accidentHemoragie span span").html("<img src='../images_icons/tick-icon2.png' >");
@@ -789,7 +814,7 @@ function getSuitesCompliquees(val){
 		$('.SuitesCompliquees').fadeOut();
 	}	
 }
-getSuitesCompliquees($('#suites_compliquees').val());//pour pouvoir visualiser les champs cachés aprè avoir choisi oui
+getSuitesCompliquees($('#suites_compliquees').val());//pour pouvoir visualiser les champs cachï¿½s aprï¿½ avoir choisi oui
 
 
 $('.SuiteCompliqueesce').toggle(false);

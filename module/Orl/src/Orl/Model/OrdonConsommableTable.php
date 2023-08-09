@@ -40,7 +40,7 @@ class OrdonConsommableTable{
 
 	/**
 	 * 
-	 * @param $tab : Tableau des médicaments
+	 * @param $tab : Tableau des mï¿½dicaments
 	 * @param $donnees : Duree traitement et id_cons
 	 */
 	public function updateOrdonConsommable($tab, $idOrdonnance){
@@ -88,7 +88,7 @@ class OrdonConsommableTable{
 	
 	
 	/**
-	 * Ajouter des medicaments dans la base de données
+	 * Ajouter des medicaments dans la base de donnï¿½es
 	 */
 	public function addMedicaments($medicament){
 		$db = $this->tableGateway->getAdapter();

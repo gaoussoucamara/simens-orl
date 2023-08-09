@@ -1,16 +1,14 @@
-
-
 <!-- MES STYLES -->
-<?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/orl/styleOrl.css');?>
-<?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/messtyles.css');?>
+<?php echo $this->headLink()->appendStylesheet($this->basePath() . '/css/orl/styleUrgence.css'); ?>
+<?php echo $this->headLink()->appendStylesheet($this->basePath() . '/css/messtyles.css'); ?>
 
 <!-- MES JS -->
-<?php 
-echo $this->headScript()->appendFile($this->basePath().'/js/orl/jsOrl.js');
-echo $this->headScript()->appendFile($this->basePath().'/js/mesjs/bloquerDate.js'); //Pour bloquer certaines dates
+<?php
+echo $this->headScript()->appendFile($this->basePath() . '/js/orl/jsOrl.js');
+echo $this->headScript()->appendFile($this->basePath() . '/js/mesjs/bloquerDate.js'); //Pour bloquer certaines dates
 ?>
 
-<?php $Control = new \Orl\View\Helpers\DateHelper();?>
+<?php $Control = new \Orl\View\Helpers\DateHelper(); ?>
 
 
 
@@ -26,303 +24,359 @@ $AnneeActuelle =  $today->format('Y');
 $leMois1 = $today->format('m'); //C'est le mois actuel l'heure du calendrier
 $Dimanche1 = $Control->lePremierDimancheDuMois();
 /*****Mois 2 *****(Sauf pour le douzieme mois)*/
-$leMois2 = $leMois1 +1;
-if($leMois2 == 13){ $leMois2 = 1; $AnneeActuelle = $AnneeActuelle + 1;}
+$leMois2 = $leMois1 + 1;
+if ($leMois2 == 13) {
+	$leMois2 = 1;
+	$AnneeActuelle = $AnneeActuelle + 1;
+}
 $Dimanche2 = $Control->lePremierDimancheDuMoisByDate($leMois2, $AnneeActuelle);
 /*****Mois 3 *****/
-$leMois3 = $leMois2 +1;
-if($leMois3 == 13){ $leMois3 = 1; $AnneeActuelle = $AnneeActuelle + 1;}
+$leMois3 = $leMois2 + 1;
+if ($leMois3 == 13) {
+	$leMois3 = 1;
+	$AnneeActuelle = $AnneeActuelle + 1;
+}
 $Dimanche3 = $Control->lePremierDimancheDuMoisByDate($leMois3, $AnneeActuelle);
 /*****Mois 4 *****/
-$leMois4 = $leMois3 +1;
-if($leMois4 == 13){ $leMois4 = 1; $AnneeActuelle = $AnneeActuelle + 1;}
+$leMois4 = $leMois3 + 1;
+if ($leMois4 == 13) {
+	$leMois4 = 1;
+	$AnneeActuelle = $AnneeActuelle + 1;
+}
 $Dimanche4 = $Control->lePremierDimancheDuMoisByDate($leMois4, $AnneeActuelle);
 
 ?>
 
 <script>
-//Bloquer les 90 jours non consultable a patir du jour, du mois actuel
-/*****Mois 1*****/
-mois1 = '<?php echo $leMois1?>';
-dimanche1 = <?php echo $Dimanche1?>;
-/*****Mois 2 *****/
-if(<?php echo $leMois2?> > 9){mois2 = <?php echo $leMois2?>;}else{mois2 = '0'+'<?php echo $leMois2?>';}
-dimanche2 = <?php echo $Dimanche2?>;
-/*****Mois 3 *****/
-if(<?php echo $leMois3?> > 9){mois3 = <?php echo $leMois3?>;}else{mois3 = '0'+'<?php echo $leMois3?>';}
-dimanche3 = <?php echo $Dimanche3?>;
-/*****Mois 4 *****/
-if(<?php echo $leMois4?> > 9){mois4 = <?php echo $leMois4?>;}else{mois4 = '0'+'<?php echo $leMois4?>';}
-dimanche4 = <?php echo $Dimanche4?>;
+	//Bloquer les 90 jours non consultable a patir du jour, du mois actuel
+	/*****Mois 1*****/
+	mois1 = '<?php echo $leMois1 ?>';
+	dimanche1 = <?php echo $Dimanche1 ?>;
+	/*****Mois 2 *****/
+	if (<?php echo $leMois2 ?> > 9) {
+		mois2 = <?php echo $leMois2 ?>;
+	} else {
+		mois2 = '0' + '<?php echo $leMois2 ?>';
+	}
+	dimanche2 = <?php echo $Dimanche2 ?>;
+	/*****Mois 3 *****/
+	if (<?php echo $leMois3 ?> > 9) {
+		mois3 = <?php echo $leMois3 ?>;
+	} else {
+		mois3 = '0' + '<?php echo $leMois3 ?>';
+	}
+	dimanche3 = <?php echo $Dimanche3 ?>;
+	/*****Mois 4 *****/
+	if (<?php echo $leMois4 ?> > 9) {
+		mois4 = <?php echo $leMois4 ?>;
+	} else {
+		mois4 = '0' + '<?php echo $leMois4 ?>';
+	}
+	dimanche4 = <?php echo $Dimanche4 ?>;
 
-/***ANNEE EN COURS***/
-annee = '<?php echo $AnneeActuelle?>';
+	/***ANNEE EN COURS***/
+	annee = '<?php echo $AnneeActuelle ?>';
 
-/**************************
- ==========================
- **************************/
-        bloquerDate();
-/**************************
- *=========================
- **************************/
+	/**************************
+	 ==========================
+	 **************************/
+	//bloquerDate();
+	/**************************
+	 *=========================
+	 **************************/
 
-/*<!--************************************************************************************************************-->
-  <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
-  <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
-  <!--************************************************************************************************************--*/
-
+	/*<!--************************************************************************************************************-->
+	  <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
+	  <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
+	  <!--************************************************************************************************************--*/
 </script>
 
 <style>
+	/*-----D�but style-----*/
 
-/*-----D�but style-----*/
+	tr:hover
 
-tr:hover /* Apparence au survol des lignes */
-{
-   /*text-decoration: underline;*/
-   background-color: white;
+	/* Apparence au survol des lignes */
+		{
+		/*text-decoration: underline;*/
+		background-color: white;
 
-}
+	}
 
-#aa:hover 
-{
-   /*text-decoration: underline;*/
-    color: black;
-	font-size: 17px;
-	cursor: pointer;
-}
+	#aa:hover {
+		/*text-decoration: underline;*/
+		color: black;
+		font-size: 17px;
+		cursor: pointer;
+	}
 
-#aa a:hover
-{
-	color: #0f9f3e;
-}
+	#aa a:hover {
+		color: #0f9f3e;
+	}
 
-#aa
-{
-	color: green;
-}
+	#aa {
+		color: green;
+	}
 
-#aa a
-{
-	color: black;
-}
+	#aa a {
+		color: black;
+	}
 
-#barre
-{
-  /*background-color: #a8a8a8;*/
-  padding-bottom:20px; /*Pour s�parer le contenu de la bordure du bas du bloc*/
-  magin-bottom:15px; /*Pour s�parer la bordure du prochain �l�ment*/
-  border-bottom: 3px solid gray;/*Pour faire un trait gris horizontal*/
-  margin-left: 165px;
-}
+	#barre {
+		/*background-color: #a8a8a8;*/
+		padding-bottom: 20px;
+		/*Pour s�parer le contenu de la bordure du bas du bloc*/
+		magin-bottom: 15px;
+		/*Pour s�parer la bordure du prochain �l�ment*/
+		border-bottom: 3px solid gray;
+		/*Pour faire un trait gris horizontal*/
+		margin-left: 165px;
+	}
 
-#numero
-{
-	/*background-color: #a8a8a8;*/
-	width: 480px;
-	margin-left: 140px;
-	font-family: police4;
-	font-size: 19px;
-	color: green;
-}
+	#numero {
+		/*background-color: #a8a8a8;*/
+		width: 480px;
+		margin-left: 140px;
+		font-family: police4;
+		font-size: 19px;
+		color: green;
+	}
 
-table td 
-{
-	vertical-align: top;
-}
+	#contenu table td {
+		vertical-align: top;
+	}
 
-table td p
-{
-	margin-right: 15px;
-	max-height: 44px;
-	max-width: 90%;
-	overflow: auto;
-}
+	#contenu table td p {
+		margin-right: 15px;
+		max-height: 44px;
+		max-width: 90%;
+		overflow: auto;
+	}
 
-#etat_civil{
-	width: 70%;
-}
+	#contenu {
+		visibility: hidden
+	}
 
-#etat_civil tr{
-	width: 70%;
-}
-
-#contenu{ visibility: hidden };
-/*----fin style--------*/
-
+	;
+	/*----fin style--------*/
 </style>
 
 <script type="text/javascript">
-$(window).load(function () {
-	$('#wait').toggle(false);
-	$('#contenu').fadeIn().css({'visibility':'visible'});
-});
+	$(window).load(function() {
+		$('#wait').toggle(false);
+		$('#contenu').fadeIn().css({
+			'visibility': 'visible'
+		});
+
+		$('.accordion-menu, .profil-secretariat-menu').toggle(true);
+		$('#profil-secretariat-menu-rubrique-rendez-vous  .submenuItems #liste-rendez-vous-select, #profil-secretariat-menu-rubrique-rendez-vous .submenuItems #liste-rendez-vous-select > i').css({
+			'font-weight': 'bold',
+			'color': 'black'
+		});
+
+		$('#profil-secretariat-menu-rubrique-rendez-vous div').trigger('dblclick');
+	});
 </script>
 
-<div id="titre" style='font-family: police2; text-decoration:none; color: green; font-size: 20px; font-weight: bold; padding-left: 20px;'><iS style='font-size: 25px;'>&curren;</iS>  MODIFIER LE RENDEZ-VOUS</div>
-<div id="wait" style="color: gray; font-size: 20px; text-align: center; margin-top: 80px;" > <span> Chargement ... </span> </div>
-<div id="contenu" style='min-height:530px;'>
-  <div style='width: 100%;'>
-
-    <img id="photo" src='<?php echo $this->basePath().'/img/photos_patients/'.$this->image;?>' style='float:left; margin-right:40px; width:105px; height:105px;'/>
-
-    <div style=' left: 70px; top: 235px; font-family: time new romans; position: absolute; '> Age: <span style='font-size:19px; font-family: time new romans; color: green; font-weight: bold;'> <?php 
-    $age = $this->lesdetails['AGE'];
-    $age = gestionAges($age, $this->lesdetails[ 'DATE_NAISSANCE' ]);
-    echo $age; ?>  </span></div>
-    
-       <p style='color: white; opacity: 0.09;'>
-         <img id="photo" src='<?php echo $this->basePath().'/img/photos_patients/'.$this->image;?>' style='float:right; margin-right:15px; width:95px; height:95px;'/>
-       </p>
-         <table id="etat_civil">
-             <tr>
-			   	<td style='width:27%; font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Numero dossier</a><br><p style='font-weight: bold;font-size: 17px;'><?php echo $this->lesdetails['NUMERO_DOSSIER'];?> </p></div>
-			   	</td>
-
-			   	<td style='width: 27%; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   	
-			   		<div id="aa"><a style="text-decoration: underline; ">Date de naissance</a><br>
-			   		  <p style='font-weight: bold;font-size: 19px;'>
-			   		    <?php 
-			   		    $date_naissance = $this->lesdetails['DATE_NAISSANCE'];
-			   		    if($date_naissance){ echo $Control->convertDate($this->lesdetails['DATE_NAISSANCE']); }else{ echo "";}
-			   		    ?> 
-			   		  </p>
-			   		</div>
-			   		
-			   	</td>
-
-			    <td style='width:38%; font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">T&eacute;l&eacute;phone</a><br><p style='font-weight: bold;font-size: 17px;'><?php echo $this->lesdetails['TELEPHONE'];?></p></div>
-			   	</td>
-
-			 </tr>
-
-			 <tr>
-			    <td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Pr&eacute;nom</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['PRENOM'];?></p></div>
-			   	</td>
-
-			   	<td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Lieu de naissance</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['LIEU_NAISSANCE'];?></p></div>
-			   	</td>
-
-			   	<td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Email</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['EMAIL'];?></p></div>
-			   	</td>
-
-			 </tr>
-
-			 <tr>
-			    <td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Nom</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['NOM'];?></p></div>
-			   	</td>
-
-			    <td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Nationalit&eacute; origine</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['NATIONALITE_ORIGINE'];?></p></div>
-			   	</td>
-
-			   	<td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Profession</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['PROFESSION'];?></p></div>
-			   	</td>
-
-			 </tr>
-
-			  <tr>
-			   <td style=' font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Sexe</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['SEXE'];?></p></div>
-			   	</td>
-
-			    <td style='width: 195px; font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Nationalit&eacute; actuelle</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['NATIONALITE_ACTUELLE'];?></p></div>
-			   	</td>
-			   	<td style='width: 195px; font-family: police1;font-size: 12px;'>
-			   		<div id="aa"><a style="text-decoration: underline;">Adresse</a><br><p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['ADRESSE'];?></p></div>
-			   	</td>
-			  </tr>
-			  	 <tr>
-
-			  	 </tr>
-         </table>
-
-           <div id="barre"></div>
-
-           
-	      
- <?php 
-    $form = $this->form;
-    $form->setName('AVIS');
-    $form->setAttribute('action', $this->url('secretariat', array('action'=>'modifier-infos-patient-rv')));
-    $form->setAttribute('method', 'post');
-    $form->prepare();
-    echo $this->form()->openTag($form); ?>
-                     
-                     <?php 
-                       echo $this->formHidden($form->get('id_rv'));
-                      ?>
-                                          
-                   
-                  </div>
-                         
-                  <div style='width: 85%; float: right; '>
-                         <div style="min-height: 400px;">
-
-                                  <table id="rendezvous" style="width: 100%;">
-                                        <tr class="form-rendezvous" style="width: 100%;">
-                                            <th style="width: 46%;"> <?php echo $this->formRow($form->get('motif_rv'));?> </th>
-                                            <th class="form-rendezvous2" style="width: 27%;"> <?php echo $this->formRow($form->get('date_rv')); ?> </th>
-                                            <th class="form-rendezvous2" style="width: 17%;"> <?php echo $this->formRow($form->get('heure_rv'));?> </th>
-                                            <th class="form-rendezvous2" style="width: 17%;"> <?php echo $this->formRow($form->get('delai_rv'));?> </th>
-                                            <th style="width: 10%;"><th>
-                                        </tr>
-                                        <tr class="form-rendezvous" style="width: 100%;">
-                                                
-                                            <th colspan='1' >
-                                                 <div class='block' id='thoughtbot' style=' vertical-align: bottom; float: right; padding-left:10%; padding-top: 35px; font-size: 18px; font-weight: bold;'> <button id='annuler' >Annuler</button></div>
-                                            </th>
-                                            <th colspan='4'>
-                                                 <div class='block' id='thoughtbot' style=' vertical-align: bottom; float: left; padding-left:5%; padding-top: 35px; font-size: 18px; font-weight: bold;'><button id='terminer' >Terminer</button></div>
-                                            </th>
-                                        
-                                        </tr>
-                                  </table>
-
-                             </div>
-
-                    </div>
-                    
+<div id="titre" style='font-family: police2; text-decoration: none; color: rgb(24, 153, 121); font-size: 20px; font-weight: bold; padding-left:20px;'>
+	<i class="icon-list-alt" style="padding-top: 3px;"></i> &nbsp;
+	<span>MODIFIER LE RENDEZ-VOUS</span>
 </div>
-<?php echo $this->form()->closeTag();?>
+<div id="wait" style="color: gray; font-size: 20px; text-align: center; margin-top: 80px;"> <span> Chargement ... </span> </div>
+<div id="contenu" style='min-height:600px;'>
+	<div style='width: 100%;'>
+
+		<div style="width: 25%; height: 100px; float: left; display: flex; ">
+			<img id="photo-patient" class="photo-patient" src="<?php echo $this->basePath() . '/img/photos_patients/' . $this->image; ?>" style="width:125px; height:125px; margin: auto;" />
+
+			<div style='width: 20%; height: 20px; position: absolute; margin-top: 150px; text-align: center; color: rgb(24, 153, 121); font-weight: bold; font-size:22px; font-family: time new romans;'>
+				<?php echo $this->lesdetails['PRENOM'] . ' ' . $this->lesdetails['NOM']; ?><br>
+				<span style='font-size:22px; font-weight: normal;'> <?php
+																	$age = $this->lesdetails['AGE'];
+																	$age = gestionAges($age, $this->lesdetails['DATE_NAISSANCE']);
+																	echo $age; ?> </span>
+			</div>
+
+		</div>
+		<div style="width: 75%; background: yello; height: 250px; float: left;">
+
+			<p style='color: white; opacity: 0.09; position: absolute; right: 30;'>
+				<img id="photo" src='<?php echo $this->basePath() . '/img/photos_patients/' . $this->image; ?>' style=' width:95px; height:95px;' />
+			</p>
+			<table style="width: 90%;">
+				<tr style="width: 100%;">
+					<td style='width:27%; font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">T&eacute;l&eacute;phone</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['TELEPHONE']; ?> </p>
+						</div>
+					</td>
+
+					<td style='width:35%; font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Lieu de naissance</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['LIEU_NAISSANCE']; ?> </p>
+						</div>
+					</td>
+
+					<td style='width:38%; font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">@-mail</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['EMAIL']; ?> </p>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Date de naissance</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'>
+								<?php
+								$date_naissance = $this->lesdetails['DATE_NAISSANCE'];
+								if ($date_naissance) {
+									echo $Control->convertDate($this->lesdetails['DATE_NAISSANCE']);
+								} else {
+									echo "";
+								}
+								?>
+							</p>
+						</div>
+					</td>
+
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Nationalit&eacute; origine</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['NATIONALITE_ORIGINE']; ?> </p>
+						</div>
+					</td>
+
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div id="aa"><a style="text-decoration: none; font-size:16px; font-family: cursive; color: gray;">Email</a><br>
+							<p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['EMAIL']; ?></p>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Sexe</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['SEXE']; ?> </p>
+						</div>
+					</td>
+
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Nationalit&eacute; actuelle</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['NATIONALITE_ACTUELLE']; ?> </p>
+						</div>
+					</td>
+
+					<td style=' font-family: police1;font-size: 12px;'>
+						<div id="aa"><a style="text-decoration: none; font-size:16px; font-family: cursive; color: gray;">Profession</a><br>
+							<p style='font-weight: bold;font-size: 19px;'><?php echo $this->lesdetails['PROFESSION']; ?></p>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" style='width: 27%; font-family: police1;font-size: 12px; vertical-align: top;'>
+						<div><a style="text-decoration:none; font-size:16px; font-family: cursive; color: gray;">Adresse</a><br>
+							<p style='font-weight:bold; font-size:21px; color: rgb(24, 153, 121);'><?php echo $this->lesdetails['ADRESSE']; ?> </p>
+						</div>
+					</td>
+
+					<td style='width: 195px; font-family: police1;font-size: 12px;'>
+					</td>
+				</tr>
+
+			</table>
+
+		</div>
+
+		<table style="margin-left: 25%; padding-top: 5px; width: 80%;">
+			<tr>
+				<td style="width: 10%;  font-size:16px; font-family: cursive; color: gray; "> Num&eacute;ro dossier : </td>
+				<td style="font-weight: bold; width: 13%;  font-family: police1; font-weight:bold; font-size:21px; color: rgb(24, 153, 121);"> <?php echo $this->lesdetails['NUMERO_DOSSIER']; ?></td>
+				<td style="font-weight: bold; width: 2%; ">|</td>
+				<td style="width: 13%; font-size:16px; font-family: cursive; color: gray;"> Date d'enregistrement : </td>
+				<td style="width: 35%; font-weight:bold; font-family: police1; font-size:21px; color: rgb(24, 153, 121);"> <?php echo $Control->convertDateTime($this->date_enregistrement); ?></td>
+			</tr>
+		</table>
+
+		<div id="barre"></div>
+
+
+
+		<?php
+		$form = $this->form;
+		$form->setName('AVIS');
+		$form->setAttribute('action', $this->url('secretariat', array('action' => 'modifier-infos-patient-rv')));
+		$form->setAttribute('method', 'post');
+		$form->prepare();
+		echo $this->form()->openTag($form); ?>
+
+		<?php
+		echo $this->formHidden($form->get('id_rv'));
+		?>
+
+
+	</div>
+
+	<div style='width: 85%; float: right; '>
+		<div style="min-height: 400px;">
+
+			<table id="rendezvous" style="width: 100%;">
+				<tr class="form-rendezvous" style="width: 100%;">
+					<th style="width: 46%;"> <?php echo $this->formRow($form->get('motif_rv')); ?> </th>
+					<th class="form-rendezvous2" style="width: 27%;"> <?php echo $this->formRow($form->get('date_rv')); ?> </th>
+					<th class="form-rendezvous2" style="width: 17%;"> <?php echo $this->formRow($form->get('heure_rv')); ?> </th>
+					<th class="form-rendezvous2" style="width: 17%;"> <?php echo $this->formRow($form->get('delai_rv')); ?> </th>
+					<th style="width: 10%;">
+					<th>
+				</tr>
+				<tr class="form-rendezvous" style="width: 100%;">
+
+					<th colspan='1'>
+						<div class='block' id='thoughtbot' style=' vertical-align: bottom; float: right; padding-left:10%; padding-top: 35px; font-size: 18px; font-weight: bold;'> <button id='annuler'>Annuler</button></div>
+					</th>
+					<th colspan='4'>
+						<div class='block' id='thoughtbot' style=' vertical-align: bottom; float: left; padding-left:5%; padding-top: 35px; font-size: 18px; font-weight: bold;'><button id='terminer'>Terminer</button></div>
+					</th>
+
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+
+</div>
+<?php echo $this->form()->closeTag(); ?>
 <script type="text/javascript">
-var base_url = window.location.toString();
-var tabUrl = base_url.split("public");
+	var base_url = window.location.toString();
+	var tabUrl = base_url.split("public");
 
 
 
-//POUR LE MENU GAUCHE dans -elementgauche.phtml
-$('#plus_rendez_vous_orl').toggle(true);
-$("#rendez_vous_orl").replaceWith("<li id='rendez_vous_orl' style='background:#4a5765;'><a href=''><span style='margin-left:0px; color: #ffffff; font-weight:bold; font-size:20px; font-family:Times New Roman;'> <img style='display: inline;' src='"+tabUrl[0]+"public/images_icons/moin-green2.png' alt='Liste' /> Rendez-vous </span></a></li>");
-dep_rendez_vous_orl1();
-$('#liste_rendez_vous_style').css({'font-weight':'bold','color':'white','font-size':'18px'});
-
+	//POUR LE MENU GAUCHE dans -elementgauche.phtml
+	$('#plus_rendez_vous_orl').toggle(true);
+	$("#rendez_vous_orl").replaceWith("<li id='rendez_vous_orl' style='background:#4a5765;'><a href=''><span style='margin-left:0px; color: #ffffff; font-weight:bold; font-size:20px; font-family:Times New Roman;'> <img style='display: inline;' src='" + tabUrl[0] + "public/images_icons/moin-green2.png' alt='Liste' /> Rendez-vous </span></a></li>");
+	//dep_rendez_vous_orl1();
+	$('#liste_rendez_vous_style').css({
+		'font-weight': 'bold',
+		'color': 'white',
+		'font-size': '18px'
+	});
 </script>
 
 
 
 
-<script> 
-
-
-    $(document).keypress(function(e){
-	if(e.keyCode == 13){
-		e.preventDefault();
-	}
-    });
-    $('#annuler').click(function(){ 
-		 vart=tabUrl[0]+'public/secretariat/liste-rendez-vous';
-	     $(location).attr("href",vart);
-	     return false;
+<script>
+	$(document).keypress(function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+		}
+	});
+	$('#annuler').click(function() {
+		vart = tabUrl[0] + 'public/secretariat/liste-rendez-vous';
+		$(location).attr("href", vart);
+		return false;
 	});
 </script>
 
@@ -330,99 +384,89 @@ $('#liste_rendez_vous_style').css({'font-weight':'bold','color':'white','font-si
 
 
 
-			    <?php 
-			    	
-			    	
-			    function nbJours($debut, $fin) {
-			    	//60 secondes X 60 minutes X 24 heures dans une journee
-			    	$nbSecondes = 60*60*24;
-			    		
-			    	$debut_ts = strtotime($debut);
-			    	$fin_ts = strtotime($fin);
-			    	$diff = $fin_ts - $debut_ts;
-			    	return ($diff / $nbSecondes);
-			    }
-			    
-			    function gestionAges($age, $date_naissance) { //var_dump('eeee'); exit();
-			    	//Gestion des AGE
-			    	if($age && !$date_naissance){
-			    		return $age." ans";
-			    	}else{
-			    
-			    		
-			    		$aujourdhui = (new \DateTime() ) ->format('Y-m-d');
-			    		$age_jours = (int)nbJours($date_naissance, $aujourdhui);
-			    			
-			    		$age_annees = (int)($age_jours/365);
-			    			
-			    		if($age_annees == 0){
-			    				
-			    			if($age_jours < 31){
-			    				return $age_jours." jours";
-			    			}else if($age_jours >= 31) {
-			    					
-			    				$nb_mois = (int)($age_jours/31);
-			    				$nb_jours = $age_jours - ($nb_mois*31);
-			    				if($nb_jours == 0){
-			    					return $nb_mois."m";
-			    				}else{
-			    					return $nb_mois."m ".$nb_jours."j";
-			    				}
-			    					
-			    			}
-			    				
-			    		}else{
-			    			$age_jours = $age_jours - ($age_annees*365);
-			    				
-			    			if($age_jours < 31){
-			    					
-			    				if($age_annees == 1){
-			    					if($age_jours == 0){
-			    						return $age_annees."an";
-			    					}else{
-			    						return $age_annees."an ".$age_jours."j";
-			    					}
-			    				}else{
-			    					if($age_jours == 0){
-			    						return $age_annees."ans";
-			    					}else{
-			    						return $age_annees."ans ".$age_jours."j";
-			    					}
-			    				}
-			    					
-			    			}else if($age_jours >= 31) {
-			    					
-			    				$nb_mois = (int)($age_jours/31);
-			    				$nb_jours = $age_jours - ($nb_mois*31);
-			    					
-			    				if($age_annees == 1){
-			    					if($nb_jours == 0){
-			    						return $age_annees."an ".$nb_mois."m";
-			    					}else{
-			    						return $age_annees."an ".$nb_mois."m ";
-			    					}
-			    						
-			    				}else{
-			    					if($nb_jours == 0){
-			    						return $age_annees."ans ".$nb_mois."m";
-			    					}else{
-			    						return $age_annees."ans ".$nb_mois."m";
-			    					}
-			    				}
-			    					
-			    			}
-			    				
-			    		}
-			    			
-			    	}
-			    }
-			    
-			    
-			    
-			    
-			    ?>
+<?php
+
+
+function nbJours($debut, $fin)
+{
+	//60 secondes X 60 minutes X 24 heures dans une journee
+	$nbSecondes = 60 * 60 * 24;
+
+	$debut_ts = strtotime($debut);
+	$fin_ts = strtotime($fin);
+	$diff = $fin_ts - $debut_ts;
+	return ($diff / $nbSecondes);
+}
+
+function gestionAges($age, $date_naissance)
+{ //var_dump('eeee'); exit();
+	//Gestion des AGE
+	if ($age && !$date_naissance) {
+		return $age . " ans";
+	} else {
+
+
+		$aujourdhui = (new \DateTime())->format('Y-m-d');
+		$age_jours = (int)nbJours($date_naissance, $aujourdhui);
+
+		$age_annees = (int)($age_jours / 365);
+
+		if ($age_annees == 0) {
+
+			if ($age_jours < 31) {
+				return $age_jours . " jours";
+			} else if ($age_jours >= 31) {
+
+				$nb_mois = (int)($age_jours / 31);
+				$nb_jours = $age_jours - ($nb_mois * 31);
+				if ($nb_jours == 0) {
+					return $nb_mois . "m";
+				} else {
+					return $nb_mois . "m " . $nb_jours . "j";
+				}
+			}
+		} else {
+			$age_jours = $age_jours - ($age_annees * 365);
+
+			if ($age_jours < 31) {
+
+				if ($age_annees == 1) {
+					if ($age_jours == 0) {
+						return $age_annees . "an";
+					} else {
+						return $age_annees . "an " . $age_jours . "j";
+					}
+				} else {
+					if ($age_jours == 0) {
+						return $age_annees . "ans";
+					} else {
+						return $age_annees . "ans " . $age_jours . "j";
+					}
+				}
+			} else if ($age_jours >= 31) {
+
+				$nb_mois = (int)($age_jours / 31);
+				$nb_jours = $age_jours - ($nb_mois * 31);
+
+				if ($age_annees == 1) {
+					if ($nb_jours == 0) {
+						return $age_annees . "an " . $nb_mois . "m";
+					} else {
+						return $age_annees . "an " . $nb_mois . "m ";
+					}
+				} else {
+					if ($nb_jours == 0) {
+						return $age_annees . "ans " . $nb_mois . "m";
+					} else {
+						return $age_annees . "ans " . $nb_mois . "m";
+					}
+				}
+			}
+		}
+	}
+}
 
 
 
 
-
+?>

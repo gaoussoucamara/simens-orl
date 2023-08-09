@@ -105,7 +105,7 @@ class SecretariatController extends AbstractActionController {
 		
 	
 		$user = $this->layout()->user;
-		$id_employe = $user['id_personne']; //L'utilisateur connecté
+		$id_employe = $user['id_personne']; //L'utilisateur connectï¿½
 	
 		// CHARGEMENT DE LA PHOTO ET ENREGISTREMENT DES DONNEES
 		if (isset ( $_POST ['terminer'] ))  // si formulaire soumis
@@ -377,7 +377,7 @@ class SecretariatController extends AbstractActionController {
 	public function enregistrementModificationAction() {
 	
 		$user = $this->layout()->user;
-		$id_employe = $user['id_personne']; //L'utilisateur connecté
+		$id_employe = $user['id_personne']; //L'utilisateur connectï¿½
 	
 		if (isset ( $_POST ['terminer'] ))
 		{
@@ -697,7 +697,7 @@ class SecretariatController extends AbstractActionController {
 		$user = $this->layout()->user;
 		$id_employe = $user['id_personne'];
 		$id_service = $user['id_service'];
-		//var_dump($id_service);exit();
+		
 		
 		$today = new \DateTime ( "now" );
 		$date_admis = $today->format ( 'Y-m-d' );
@@ -716,9 +716,9 @@ class SecretariatController extends AbstractActionController {
 				'id_employe' => $id_employe,
 		);
 		
-
+		
 		$this->getAdmissionTable ()->addAdmission ( $donnees );
-			
+		//var_dump($donnees);exit();	
 			
 		
 		//NOUVEAU CODE AJOUTER POUR QUE LE MEDECIN PUISSE AJOUTER DIRECTEMENT LES CONSTANTES DU PATIENT SANS LE PASSAGE DE CELUI CI AU NIVEAU DU SURVEILLANT DE SERVICE

@@ -80,6 +80,7 @@ $(function(){
 	var fibrocospie = $("#fibrocospie");
 	var scanner = $("#scanner");
 	var irm = $("#irm");
+	var rochers = $("#rochers");
 	
 	//Au debut on affiche pas le bouton modifier
 	$("#bouton_morpho_modifier").toggle(false);
@@ -92,6 +93,7 @@ $(function(){
 	fibrocospie.attr( 'readonly', false);
 	scanner.attr( 'readonly', false);
 	irm.attr( 'readonly', false);
+	rochers.attr( 'readonly', false);
 	
 	$("#bouton_morpho_valider").click(function(){
 		radio.attr( 'readonly', true).css({'background':'#f8f8f8'});
@@ -99,6 +101,7 @@ $(function(){
 		fibrocospie.attr( 'readonly', true).css({'background':'#f8f8f8'});
 		scanner.attr( 'readonly', true).css({'background':'#f8f8f8'});
 		irm.attr( 'readonly', true).css({'background':'#f8f8f8'});
+		rochers.attr( 'readonly', true).css({'background':'#f8f8f8'});
 		
 		$("#bouton_morpho_modifier").toggle(true);
 		$("#bouton_morpho_valider").toggle(false);
@@ -111,6 +114,7 @@ $(function(){
 		fibrocospie.attr( 'readonly', false).css({'background':'#fff'});
 		scanner.attr( 'readonly', false).css({'background':'#fff'});
 		irm.attr( 'readonly', false).css({'background':'#fff'});
+		rochers.attr( 'readonly', false).css({'background':'#fff'});
 		
 		$("#bouton_morpho_modifier").toggle(false);
 		$("#bouton_morpho_valider").toggle(true);
@@ -725,7 +729,7 @@ $(function(){
 	    donnees['fosses_nasalesFo'] = $("#fosses_nasalesFo").val();
 	    donnees['liFo'] = $("#liFo").val();
 	    donnees['cat_fo'] = $("#cat_fo").val();
-	    donnees['tdm_rochers'] = $("#tdm_rochers").val();
+	    //donnees['tdm_rochers'] = $("#tdm_rochers").val();
 	    
 	    
 		 // **********-- Nouvelle note medicale --*******
@@ -751,6 +755,8 @@ $(function(){
 	    donnees['fibroscopie_']  = $("#fibrocospie").val();
 	    donnees['scanner_']      = $("#scanner").val();
 	    donnees['irm_']          = $("#irm").val();
+		//donnees['irm_']          = $("#irm").val();
+		donnees['rochers_']      = $("#rochers").val();
 	    //*********** DIAGNOSTICS ************
 	    //*********** DIAGNOSTICS ************
 	    donnees['diagnostic1'] = $("#diagnostic1").val();
@@ -1063,11 +1069,11 @@ $(function(){
 		donnees['anesthesie'] = $("#anesthesie").val();
 		donnees['incision'] = $("#incision").val();
 		donnees['exploitation'] = $("#exploitation").val();
-		donnees['geste_sur_nerf'] = $("#geste_sur_nerf").val();
+		donnees['geste'] = $("#geste").val();
 		donnees['loboithmectomie'] = $("#loboithmectomie").val();
 		donnees['ithmectomie'] = $("#ithmectomie").val();
 		donnees['thyroidectomie_subtotale'] = $("#thyroidectomie_subtotale").val();
-		donnees['thyroidectomie_totale'] = $("#thyroidectomie_totale").val();
+		//donnees['thyroidectomie_totale'] = $("#thyroidectomie_totale").val();
 		donnees['glande_parathyroide'] = $("#glande_parathyroide").val();
 		donnees['fermeture'] = $("#fermeture").val();
 		donnees['description_piece'] = $("#description_piece").val();
@@ -1137,6 +1143,10 @@ $(function(){
 		// **=== Operation tumeur parotidienne
 		donnees['incidents_paro'] = $("#incidents_paro").val();
 		donnees['cro_paro'] = $("#cro_paro").val();
+		donnees['abords_paro'] = $("#abords_paro").val();
+		donnees['decouvertes_paro'] = $("#decouvertes_paro").val();
+		donnees['gestes_paro'] = $("#gestes_paro").val();
+		donnees['fermeture_paro'] = $("#fermeture_paro").val();
 		donnees['date_sortie'] = $("#date_sortie").val();
 		donnees['suites_simples'] = $("#suites_simples").val();
 		donnees['suites_compliquees'] = $("#suites_compliquees").val();
@@ -1152,9 +1162,9 @@ $(function(){
 		// **=== Examen Clinique Corps Etranger
 		donnees['duree_sejour'] = $("#duree_sejour").val();
 		donnees['oreille'] = $("#oreille").val();
-		donnees['fosse_nasale'] = $("#fosse_nasale").val();
-		donnees['pharynx_corps'] = $("#pharynx_corps").val();
-		donnees['vri_corps'] = $("#vri_corps").val();
+		//donnees['fosse_nasale'] = $("#fosse_nasale").val();
+		//donnees['pharynx_corps'] = $("#pharynx_corps").val();
+		//donnees['vri_corps'] = $("#vri_corps").val();
 		donnees['autre_localisation'] = $("#autre_localisation").val();
 		donnees['type_corps_etranger'] = $("#type_corps_etranger").val();
 		donnees['nature_corps_etranger'] = $("#nature_corps_etranger").val();
@@ -1199,6 +1209,8 @@ $(function(){
 		donnees['superficiel_serpigineux'] = $("#superficiel_serpigineux:checked").val(); if(!donnees['superficiel_serpigineux']){ donnees['superficiel_serpigineux'] = 0;}
 		donnees['bien_limite'] = $("#bien_limite:checked").val(); if(!donnees['bien_limite']){ donnees['bien_limite'] = 0;}
 		donnees['keratosique'] = $("#keratosique:checked").val(); if(!donnees['keratosique']){ donnees['keratosique'] = 0;}
+		donnees['cavumlso'] = $("#cavumlso:checked").val(); if(!donnees['cavumlso']){ donnees['cavumlso'] = 0;}
+		donnees['oesophage_cervical'] = $("#oesophage_cervical:checked").val(); if(!donnees['oesophage_cervical']){ donnees['oesophage_cervical'] = 0;}
 		donnees['aires_ganglionnaires_cancer'] = $("#aires_ganglionnaires_cancer").val();
 		donnees['tdm_rocherslso'] = $("#tdm_rocherslso").val();
 

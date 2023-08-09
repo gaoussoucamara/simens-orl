@@ -40,6 +40,8 @@ class MotifHospitalisationOrlTable {
 				'id_employe_e' => $id_employe_e,
 		);
 		
+//		var_dump($donnees); exit();
+
 		$this->tableGateway->insert( $donnees );
 		
 	}
@@ -153,7 +155,7 @@ class MotifHospitalisationOrlTable {
 // 	}
 	
 // 	/**
-// 	 * Ajouter et mettre à jour les antécédents personnels des patients
+// 	 * Ajouter et mettre ï¿½ jour les antï¿½cï¿½dents personnels des patients
 // 	 */
 // 	public function addAntecedentsPersonnels($donneesDesAntecedents, $id_personne, $id_medecin){
 // 		$this->tableGateway->getAdapter()->getDriver()->getConnection()->beginTransaction();

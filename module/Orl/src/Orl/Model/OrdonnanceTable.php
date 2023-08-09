@@ -67,14 +67,14 @@ class OrdonnanceTable{
 
 	/**
 	 * 
-	 * @param $tab : Tableau des médicaments
+	 * @param $tab : Tableau des mï¿½dicaments
 	 * @param $donnees : Duree traitement et id_cons
 	 */
 	public function updateOrdonnance($tab, $donnees){
 		$today = new \DateTime();
 		$date = $today->format ( 'Y-m-d H:i:s' );
 		/**
-		 * On vérifie s'il y a des médicaments et si oui on procède a la modification sinon on ne fait rien
+		 * On vï¿½rifie s'il y a des mï¿½dicaments et si oui on procï¿½de a la modification sinon on ne fait rien
 		 * car l'ordonnance doit etre supprimer 
 		 */
 		if($tab) {
@@ -84,7 +84,7 @@ class OrdonnanceTable{
 			);
 			$result = $this->tableGateway->update($donneesOrdonnance, array("ID_CONS" =>$donnees['id_cons']));
 			/**
-			 * S'il y a des médicaments alors qu'il n'y avait pas d'ordonnance on la crée
+			 * S'il y a des mï¿½dicaments alors qu'il n'y avait pas d'ordonnance on la crï¿½e
 			 */
 			if($result == 0){
 				$donneesOrdonnance	= array(
@@ -92,11 +92,12 @@ class OrdonnanceTable{
 						'DUREE_TRAITEMENT' => $donnees['duree_traitement'],
 						'ID_CONS' => $donnees['id_cons']
 				);
+				//var_dump($donneesOrdonnance);exit();
 				$this->tableGateway->insert($donneesOrdonnance);
 			}
 		}
 		/**
-		 * Envoi de l'id de l'ordonnance pour sa suppression ou pour la mise à jour des médicaments de l'ordonnance
+		 * Envoi de l'id de l'ordonnance pour sa suppression ou pour la mise ï¿½ jour des mï¿½dicaments de l'ordonnance
 		 */
 		$ordonnance = $this->getOrdonnance($donnees['id_cons']);
 		$idOrdonnance = null;
@@ -112,14 +113,14 @@ class OrdonnanceTable{
 	
 	/**
 	 *
-	 * @param $tab : Tableau des médicaments
+	 * @param $tab : Tableau des mï¿½dicaments
 	 * @param $donnees : Duree traitement et id_cons
 	 */
 	public function updateOrdonnanceForHospi($tab, $donnees){
 		$today = new \DateTime();
 		$date = $today->format ( 'Y-m-d H:i:s' );
 		/**
-		 * On vérifie s'il y a des médicaments et si oui on procède a la modification sinon on ne fait rien
+		 * On vï¿½rifie s'il y a des mï¿½dicaments et si oui on procï¿½de a la modification sinon on ne fait rien
 		 * car l'ordonnance doit etre supprimer
 		*/
 		if($tab) {
@@ -128,22 +129,23 @@ class OrdonnanceTable{
 					'DUREE_TRAITEMENT' => $donnees['duree_traitement'],
 					'HOSP' => 1,
 			);
+			//var_dump($donnees); exit();
 			$result = $this->tableGateway->update($donneesOrdonnance, array("ID_CONS" =>$donnees['id_cons']));
 			/**
-			 * S'il y a des médicaments alors qu'il n'y avait pas d'ordonnance on la crée
+			 * S'il y a des mï¿½dicaments alors qu'il n'y avait pas d'ordonnance on la crï¿½e
 			*/
 			if($result == 0){
 				$donneesOrdonnance	= array(
 						'DATE_PRESCRIPTION' => $date,
 						'DUREE_TRAITEMENT' => $donnees['duree_traitement'],
 						'ID_CONS' => $donnees['id_cons'],
-						'HOSP' => 1,
+						//'HOSP' => 1,
 				);
 				$this->tableGateway->insert($donneesOrdonnance);
 			}
 		}
 		/**
-		 * Envoi de l'id de l'ordonnance pour sa suppression ou pour la mise à jour des médicaments de l'ordonnance
+		 * Envoi de l'id de l'ordonnance pour sa suppression ou pour la mise ï¿½ jour des mï¿½dicaments de l'ordonnance
 		 */
 		$ordonnance = $this->getOrdonnance($donnees['id_cons']);
 		$idOrdonnance = null;

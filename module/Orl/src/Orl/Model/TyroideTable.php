@@ -30,22 +30,22 @@ class TyroideTable {
 		
 		$donnees = array(
 				'id_cons' => $id_cons,
-				'hypertrophie_globale' => $data->hypertrophie_globale,
+				//'hypertrophie_globale' => $data->hypertrophie_globale,
 				'hypertrophie_localise' => $data->hypertrophie_localise,
 				'hypertrophie_nodulaire' => $data->hypertrophie_nodulaire,
 				'hypertrophie_sensibilite' => $data->hypertrophie_sensibilite,
 				'consistance' => $data->consistance,
 				'mobilite_transversale' => $data->mobilite_transversale,
-				 'taille_tyroide' => $data->taille_tyroide,
-				'aires_ganglionnaires' => $data->aires_ganglionnaires,
+				'taille_tyroide' => $data->taille_tyroide,
+				//'aires_ganglionnaires' => $data->aires_ganglionnaires,
 				'laryngoscopie_indirecte' => $data->laryngoscopie_indirecte,	
 				'examens_autres_appareils' => $data->examens_autres_appareils,
 				'date_enregistrement' => $date_enregistrement,
 				'id_employe_e' => $id_employe_e,
 		);
-		
+		//var_dump($donnees); exit();
 		$this->tableGateway->insert( $donnees );
-		//var_dump($donnees); exit();	
+			
 	}
 	public function deleteTyroide($id){
 		$this->tableGateway->delete(array('id_cons'=>$id));

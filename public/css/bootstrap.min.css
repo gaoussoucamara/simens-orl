@@ -844,9 +844,9 @@ select, input[type="file"] {
 	line-height: 30px
 }
 
-// Select pour le nombre d\'élément à afficher
+/*Select pour le nombre d\'ï¿½lï¿½ment ï¿½ afficher*/
 select {
-	width: 50px;
+	/* width: 50px; */
 	background-color: #fff;
 	border: 4px solid #ccc
 }
@@ -2691,6 +2691,30 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .btn-mini .caret, .btn-small .caret {
 	margin-top: 8px
 }
+
+/* ajouter pour les boutons icons des listes */
+.btn-sm{
+	padding: 1px 3px 1px 3px;
+	border-radius: 3px;
+	margin-right: 11px;
+	box-shadow: 2px 2px 2px #999;
+}
+
+.btn-sm i{
+	font-size: 15px;
+}
+
+.btn-sm-last-icon{
+	margin-right: 0px;
+}
+
+
+
+
+
+
+
+
 .dropup .btn-large .caret {
 	border-bottom-width: 5px
 }

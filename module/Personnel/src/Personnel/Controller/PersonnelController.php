@@ -1,4 +1,5 @@
 <?php
+
 namespace Personnel\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -12,7 +13,7 @@ use Personnel\Form\TransfertPersonnelForm;
 use Zend\File\Transfer\Transfer;
 use Personnel\Model\Transfert;
 use Personnel\Model\Transfert1;
-use Zend\XmlRpc\Value\String;
+//use Zend\XmlRpc\Value\String;
 use Zend\Form\View\Helper\FormRow;
 use Zend\Form\View\Helper\FormText;
 use Zend\Form\View\Helper\FormSelect;
@@ -22,11 +23,12 @@ use Personnel\Form\InterventionPersonnelForm;
 use Personnel\Model\Intervention;
 use Personnel\Model\Intervention1;
 
-class PersonnelController extends AbstractActionController {
-	
+class PersonnelController extends AbstractActionController
+{
+
 	protected $formPersonnel;
 	protected $dateHelper;
-	
+
 	protected $patientTable;
 	protected $personnelTable;
 	protected $medecinTable;
@@ -39,84 +41,95 @@ class PersonnelController extends AbstractActionController {
 	protected $hopitalserviceTable;
 	protected $interventionTable;
 
-	public function getPatientTable() {
-		if (! $this->patientTable) {
-			$sm = $this->getServiceLocator ();
-			$this->patientTable = $sm->get ( 'Facturation\Model\PatientTable' );
+	public function getPatientTable()
+	{
+		if (!$this->patientTable) {
+			$sm = $this->getServiceLocator();
+			$this->patientTable = $sm->get('Facturation\Model\PatientTable');
 		}
 		return $this->patientTable;
 	}
-	public function getPersonnelTable() {
-		if (! $this->personnelTable) {
-			$sm = $this->getServiceLocator ();
-			$this->personnelTable = $sm->get ( 'Personnel\Model\PersonnelTable' );
+	public function getPersonnelTable()
+	{
+		if (!$this->personnelTable) {
+			$sm = $this->getServiceLocator();
+			$this->personnelTable = $sm->get('Personnel\Model\PersonnelTable');
 		}
 		return $this->personnelTable;
 	}
-	public function getMedecinTable() {
-		if (! $this->medecinTable) {
-			$sm = $this->getServiceLocator ();
-			$this->medecinTable = $sm->get ( 'Personnel\Model\MedecinTable' );
+	public function getMedecinTable()
+	{
+		if (!$this->medecinTable) {
+			$sm = $this->getServiceLocator();
+			$this->medecinTable = $sm->get('Personnel\Model\MedecinTable');
 		}
 		return $this->medecinTable;
 	}
-	public function getMedicoTechniqueTable() {
-		if (! $this->medicotechniqueTable) {
-			$sm = $this->getServiceLocator ();
-			$this->medicotechniqueTable = $sm->get ( 'Personnel\Model\MedicotechniqueTable' );
+	public function getMedicoTechniqueTable()
+	{
+		if (!$this->medicotechniqueTable) {
+			$sm = $this->getServiceLocator();
+			$this->medicotechniqueTable = $sm->get('Personnel\Model\MedicotechniqueTable');
 		}
 		return $this->medicotechniqueTable;
 	}
-	public function getLogistiqueTable() {
-		if (! $this->logistiqueTable) {
-			$sm = $this->getServiceLocator ();
-			$this->logistiqueTable = $sm->get ( 'Personnel\Model\LogistiqueTable' );
+	public function getLogistiqueTable()
+	{
+		if (!$this->logistiqueTable) {
+			$sm = $this->getServiceLocator();
+			$this->logistiqueTable = $sm->get('Personnel\Model\LogistiqueTable');
 		}
 		return $this->logistiqueTable;
 	}
-	public function getAffectationTable() {
-		if (! $this->affectationTable) {
-			$sm = $this->getServiceLocator ();
-			$this->affectationTable = $sm->get ( 'Personnel\Model\AffectationTable' );
+	public function getAffectationTable()
+	{
+		if (!$this->affectationTable) {
+			$sm = $this->getServiceLocator();
+			$this->affectationTable = $sm->get('Personnel\Model\AffectationTable');
 		}
 		return $this->affectationTable;
 	}
-	public function getTypePersonnelTable() {
-		if (! $this->typePersonnelTable) {
-			$sm = $this->getServiceLocator ();
-			$this->typePersonnelTable = $sm->get ( 'Personnel\Model\TypepersonnelTable' );
+	public function getTypePersonnelTable()
+	{
+		if (!$this->typePersonnelTable) {
+			$sm = $this->getServiceLocator();
+			$this->typePersonnelTable = $sm->get('Personnel\Model\TypepersonnelTable');
 		}
 		return $this->typePersonnelTable;
 	}
-	public function getServiceTable() {
-		if (! $this->serviceTable) {
-			$sm = $this->getServiceLocator ();
-			$this->serviceTable = $sm->get ( 'Personnel\Model\ServiceTable' );
+	public function getServiceTable()
+	{
+		if (!$this->serviceTable) {
+			$sm = $this->getServiceLocator();
+			$this->serviceTable = $sm->get('Personnel\Model\ServiceTable');
 		}
 		return $this->serviceTable;
 	}
-	public function getTransfertTable() {
-		if (! $this->transfertTable) {
-			$sm = $this->getServiceLocator ();
-			$this->transfertTable = $sm->get ( 'Personnel\Model\TransfertTable' );
+	public function getTransfertTable()
+	{
+		if (!$this->transfertTable) {
+			$sm = $this->getServiceLocator();
+			$this->transfertTable = $sm->get('Personnel\Model\TransfertTable');
 		}
 		return $this->transfertTable;
 	}
-	public function getHopitalServiceTable() {
-		if (! $this->hopitalserviceTable) {
-			$sm = $this->getServiceLocator ();
-			$this->hopitalserviceTable = $sm->get ( 'Personnel\Model\HopitalServiceTable' );
+	public function getHopitalServiceTable()
+	{
+		if (!$this->hopitalserviceTable) {
+			$sm = $this->getServiceLocator();
+			$this->hopitalserviceTable = $sm->get('Personnel\Model\HopitalServiceTable');
 		}
 		return $this->hopitalserviceTable;
 	}
-	public function getInterventionTable() {
-		if (! $this->interventionTable) {
-			$sm = $this->getServiceLocator ();
-			$this->interventionTable = $sm->get ( 'Personnel\Model\InterventionTable' );
+	public function getInterventionTable()
+	{
+		if (!$this->interventionTable) {
+			$sm = $this->getServiceLocator();
+			$this->interventionTable = $sm->get('Personnel\Model\InterventionTable');
 		}
 		return $this->interventionTable;
 	}
-	
+
 	/**
 	 ***************************************************************************
 	 *
@@ -124,215 +137,225 @@ class PersonnelController extends AbstractActionController {
 	 *
 	 * *************************************************************************
 	 */
-	Public function getDateHelper(){
+	public function getDateHelper()
+	{
 		$this->dateHelper = new DateHelper();
 	}
-	
-	public function baseUrl(){
+
+	public function baseUrl()
+	{
 		$baseUrl = $_SERVER['REQUEST_URI'];
 		$tabURI  = explode('public', $baseUrl);
 		return $tabURI[0];
 	}
-	
-	public function getFormPersonnel() {
-		if (! $this->formPersonnel) {
+
+	public function getFormPersonnel()
+	{
+		if (!$this->formPersonnel) {
 			$this->formPersonnel = new PersonnelForm();
 		}
 		return $this->formPersonnel;
 	}
-	
-	public function  indexAction(){
+
+	public function  indexAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
 		$view = new ViewModel();
 		return $view;
 	}
-	
-	public function dossierPersonnelAction(){
+
+	public function dossierPersonnelAction()
+	{
 		$user = $this->layout()->user;
 		$id_employe = $user['id_personne'];
-		
+
 		$this->layout()->setTemplate('layout/personnel');
 		$this->getFormPersonnel();
 		$formPersonnel = $this->formPersonnel;
-		
+
 		$formPersonnel->get('nationalite')->setvalueOptions($this->getPatientTable()->listeDeTousLesPays());
 		$data = array('nationalite' => 'Sénégal');
 		$formPersonnel->get('service_accueil')->setValueOptions($this->getPatientTable()->listeServices());
 		$formPersonnel->get('type_personnel')->setValueOptions($this->getPatientTable()->getTypePersonnel());
 
 		$formPersonnel->populateValues($data);
-		
+
 		$request = $this->getRequest();
- 		if ($request->isPost()) {
- 			$personnel =  new Personnel();
- 			$formPersonnel->setInputFilter($personnel->getInputFilter());
- 			$formPersonnel->setData($request->getPost());
- 			if ($formPersonnel->isValid()) {
- 				$personnel->exchangeArray($formPersonnel->getData());
+		if ($request->isPost()) {
+			$personnel =  new Personnel();
+			$formPersonnel->setInputFilter($personnel->getInputFilter());
+			$formPersonnel->setData($request->getPost());
+			if ($formPersonnel->isValid()) {
+				$personnel->exchangeArray($formPersonnel->getData());
 				//**************************************************************
-			
-			    //============ ENREGISTREMENT DE L'ETAT CIVIL ==================
-			
-			    //**************************************************************
-				$today = new \DateTime ( 'now' );
-				$nomPhoto = $today->format ( 'dmy_His' );
-				$fileBase64 = $this->params ()->fromPost ('fichier_tmp');
+
+				//============ ENREGISTREMENT DE L'ETAT CIVIL ==================
+
+				//**************************************************************
+				$today = new \DateTime('now');
+				$nomPhoto = $today->format('dmy_His');
+				$fileBase64 = $this->params()->fromPost('fichier_tmp');
 				$fileBase64 = substr($fileBase64, 23);
-				
-				if($fileBase64){
+
+				if ($fileBase64) {
 					$img = imagecreatefromstring(base64_decode($fileBase64));
 				} else {
 					$img = false;
 				}
-				
-			    if ($img != false) {
-			    	imagejpeg ( $img, 'C:\wamp\www\simens\public\img\photos_personnel\\' . $nomPhoto . '.jpg' );
 
-			    	//ON ENREGISTRE AVEC LA PHOTO
-			    	$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel,$nomPhoto);
-			    	
-			    } else {
-			    	//ON ENREGISTRE SANS LA PHOTO
-			    	$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel);
-			    	
-			    }
-			    
-			    //***************************************************************
-			    	
-			    //============ ENREGISTREMENT DES DONNEES DES COMPLEMENTS =======
-			    	
-			    //***************************************************************
-			    
-			    if($personnel->type_personnel == 1) {
-			    	$this->getMedecinTable()->saveMedecin($personnel, $id_personnel, $id_employe);
-			    }else
-			    if($personnel->type_personnel == 2){
-			    	$this->getMedicoTechniqueTable()->saveMedicoTechnique($personnel, $id_personnel, $id_employe);
-			    }else
-			    if($personnel->type_personnel == 3){
-			    	$this->getLogistiqueTable()->saveLogistique($personnel, $id_personnel, $id_employe);
-			    }
-			   		    	
- 			    //***************************************************************
-			    	    
- 			    //========== ENREGISTREMENT DES DONNEES SUR L'AFFECTATION =======
-			    	    
- 			    //***************************************************************
-			    
- 			    $this->getAffectationTable()->saveAffectation($personnel, $id_personnel, $id_employe);
-			    	
- 			    
- 			    return $this->redirect ()->toRoute ( 'personnel', array ('action' => 'liste-personnel'));
- 			} 
- 			//Quelque soit alpha le formulaire doit etre valide avant d'enregistrer les donnees. Donc pas besoin de ELSE
- 		}
-		
-		return array (
-				'form' =>$formPersonnel,
+				if ($img != false) {
+					imagejpeg($img, 'C:\wamp\www\simens\public\img\photos_personnel\\' . $nomPhoto . '.jpg');
+
+					//ON ENREGISTRE AVEC LA PHOTO
+					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel, $nomPhoto);
+				} else {
+					//ON ENREGISTRE SANS LA PHOTO
+					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel);
+				}
+
+				//***************************************************************
+
+				//============ ENREGISTREMENT DES DONNEES DES COMPLEMENTS =======
+
+				//***************************************************************
+
+				if ($personnel->type_personnel == 1) {
+					$this->getMedecinTable()->saveMedecin($personnel, $id_personnel, $id_employe);
+				} else
+			    if ($personnel->type_personnel == 2) {
+					$this->getMedicoTechniqueTable()->saveMedicoTechnique($personnel, $id_personnel, $id_employe);
+				} else
+			    if ($personnel->type_personnel == 3) {
+					$this->getLogistiqueTable()->saveLogistique($personnel, $id_personnel, $id_employe);
+				}
+
+				//***************************************************************
+
+				//========== ENREGISTREMENT DES DONNEES SUR L'AFFECTATION =======
+
+				//***************************************************************
+
+				$this->getAffectationTable()->saveAffectation($personnel, $id_personnel, $id_employe);
+
+
+				return $this->redirect()->toRoute('personnel', array('action' => 'liste-personnel'));
+			}
+			//Quelque soit alpha le formulaire doit etre valide avant d'enregistrer les donnees. Donc pas besoin de ELSE
+		}
+
+		return array(
+			'form' => $formPersonnel,
 		);
 	}
-	
-	public function listePersonnelAjaxAction() {
+
+	public function listePersonnelAjaxAction()
+	{
 		$output = $this->getPersonnelTable()->getListePersonnel();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
+		return $this->getResponse()->setContent(Json::encode($output, array(
+			'enableJsonExprFinder' => true
+		)));
 	}
-	
-	public function listePersonnelAction(){
+
+	public function listePersonnelAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
-		
+
 		$formTypePersonnel = new TypePersonnelForm();
 		$formTypePersonnel->get('type_personnel')->setvalueOptions($this->getTypePersonnelTable()->listeTypePersonnel());
-		
+
 		return array(
 			'form' => $formTypePersonnel,
 		);
 	}
-	
-	public function supprimerAction() {
-		$id_personne = (int) $this->params() ->fromPost('id');
+
+	public function supprimerAction()
+	{
+		$id_personne = (int) $this->params()->fromPost('id');
 		$agent = $this->getPersonnelTable()->getPersonne($id_personne);
 
-		if($agent->type_personnel == 'Logistique'){
+		if ($agent->type_personnel == 'Logistique') {
 			$donneesComplement = $this->getLogistiqueTable()->deleteLogistique($id_personne);
-		}else
-		if($agent->type_personnel == 'Médico-technique'){
+		} else
+		if ($agent->type_personnel == 'Médico-technique') {
 			$donneesComplement = $this->getMedicoTechniqueTable()->deleteMedicoTechnique($id_personne);
-		}else
-		if($agent->type_personnel == 'Médecin'){
+		} else
+		if ($agent->type_personnel == 'Médecin') {
 			$donneesComplement = $this->getMedecinTable()->deleteMedecin($id_personne);
 		}
-		
+
 		$this->getAffectationTable()->deleteAffectation($id_personne);
 		$this->getPersonnelTable()->deletePersonne($id_personne);
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode (  ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode());
 	}
-	
-	public function infoPersonnelAction() {
-		
+
+	public function infoPersonnelAction()
+	{
+
 		//$identif = (int) $this->params() ->fromPost('identif', 0);
-		
-		$id_personne = (int) $this->params() ->fromPost('id');
+
+		$id_personne = (int) $this->params()->fromPost('id');
 		$this->getDateHelper();
-		
+
 		$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
 		$photoAgent = $this->getPersonnelTable()->getPhoto($id_personne);
-		
+
 		/****************************************************************
 		 * ======= COMPLEMENTS DES INFORMATIONS SUR L'AGENT==============
 		 * **************************************************************
 		 * **************************************************************/
- 		$donneesComplement = "";
- 		if($unAgent['id_type_employe'] == 3){
- 			$donneesComplement = $this->getLogistiqueTable()->getLogistique($id_personne);
- 		}
- 		else
-		if($unAgent['id_type_employe']  == 2){
+		$donneesComplement = "";
+		if ($unAgent['id_type_employe'] == 3) {
+			$donneesComplement = $this->getLogistiqueTable()->getLogistique($id_personne);
+		} else
+		if ($unAgent['id_type_employe']  == 2) {
 			$donneesComplement = $this->getMedicoTechniqueTable()->getMedicoTechnique($id_personne);
-		}else
-		if($unAgent['id_type_employe']  == 1){
+		} else
+		if ($unAgent['id_type_employe']  == 1) {
 			$donneesComplement = $this->getMedecinTable()->getMedecin($id_personne);
 		}
-		
+
 		/****************************************************************
 		 * = COMPLEMENTS DES INFORMATIONS SUR L'AFFECTATION DE L'AGENT ==
 		 * **************************************************************
 		 * **************************************************************/
-		 $donneesAffectation = $this->getAffectationTable()->getAffectation($id_personne);
-		 if($donneesAffectation){
-		 	$leService = $this->getServiceTable()->getServiceAffectation($donneesAffectation->service_accueil);
-		 }
-		
+		$donneesAffectation = $this->getAffectationTable()->getAffectation($id_personne);
+		if ($donneesAffectation) {
+			$leService = $this->getServiceTable()->getServiceAffectation($donneesAffectation->service_accueil);
+		}
+
 		/****************************************************************
 		 * ========= AFFICHAGE DES INFORMATION SUR LA VUE ===============
 		 * **************************************************************
 		 * **************************************************************/
-		 
-		 $date_naissance = $unAgent['DATE_NAISSANCE'];
-		 if($date_naissance){ $date_naissance = $this->dateHelper->convertDate($date_naissance); } else { $date_naissance = ""; } 
-		$html ="<div style='width: 100%;'>
+
+		$date_naissance = $unAgent['DATE_NAISSANCE'];
+		if ($date_naissance) {
+			$date_naissance = $this->dateHelper->convertDate($date_naissance);
+		} else {
+			$date_naissance = "";
+		}
+		$html = "<div style='width: 100%;'>
 		
-		       <img id='photo' src='".$this->baseUrl()."public/img/photos_personnel/" . $photoAgent . "'  style='float:left; margin-left:20px; margin-right:40px; width:105px; height:105px;'/>
+		       <img id='photo' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photoAgent . "'  style='float:left; margin-left:20px; margin-right:40px; width:105px; height:105px;'/>
 		
 		       <p style='color: white; opacity: 0.09;'>
-		         <img id='photo' src='".$this->baseUrl()."public/img/photos_personnel/" . $photoAgent . "'   style='float:right; margin-right:15px; width:95px; height:95px;'/>
+		         <img id='photo' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photoAgent . "'   style='float:right; margin-right:15px; width:95px; height:95px;'/>
 		       </p>
 		         		
 		       <table>
                  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Pr&eacute;nom</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['PRENOM']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Pr&eacute;nom</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['PRENOM'] . "</p></div>
 			   	   </td>
 
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Date de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>".$date_naissance."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Date de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>" . $date_naissance . "</p></div>
 			   	   </td>
 
 			       <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>T&eacute;l&eacute;phone</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['TELEPHONE']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>T&eacute;l&eacute;phone</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['TELEPHONE'] . "</p></div>
 			   	   </td>
 			   		   		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
@@ -342,34 +365,34 @@ class PersonnelController extends AbstractActionController {
 			   		   		
 			   	  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Nom</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['NOM']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Nom</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['NOM'] . "</p></div>
 			   	   </td>
 
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Lieu de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['LIEU_NAISSANCE']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Lieu de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['LIEU_NAISSANCE'] . "</p></div>
 			   	   </td>
 
 			       <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Nationalit&eacute;</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['NATIONALITE_ACTUELLE']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Nationalit&eacute;</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['NATIONALITE_ACTUELLE'] . "</p></div>
 			   	   </td>
 			   		   		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; padding-left: 15px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>@-Email</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['EMAIL']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>@-Email</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['EMAIL'] . "</p></div>
 			   	   </td>
 			   		   		
 			      </tr>
 			   		   		
 			   	  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Sexe</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['SEXE']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Sexe</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['SEXE'] . "</p></div>
 			   	   </td>
 
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Profession</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['PROFESSION']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Profession</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['PROFESSION'] . "</p></div>
 			   	   </td>
 
 			       <td style='width:180px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Adresse</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent['ADRESSE']."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Adresse</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent['ADRESSE'] . "</p></div>
 			   	   </td>
 			   		   		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
@@ -379,71 +402,71 @@ class PersonnelController extends AbstractActionController {
 			   		   		
 		        </table>
 
-			    <div id='titre_info_deces'>Compl&eacute;ments informations (Personnel ".$unAgent['NOM_TYPE'].") </div>
+			    <div id='titre_info_deces'>Compl&eacute;ments informations (Personnel " . $unAgent['NOM_TYPE'] . ") </div>
 			    <div id='barre'></div>";
-		   		   		
-		if($unAgent['id_type_employe'] == 3 && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:17%;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule_logistique."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade_logistique."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->domaine_logistique."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'></a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'></div></td>";
-			$html .="</tr>";
-			$html .="</table>";
-		}else
-		if($unAgent['id_type_employe'] == 2 && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:185px;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule_medico."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade_medico."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->domaine_medico."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->autres."</div></td>";
-			$html .="</tr>";
-			$html .="</table>";
-		}else
-		if($unAgent['id_type_employe'] == 1 && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:185px;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Specialit&eacute;:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->specialite."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->fonction."</div></td>";
-			$html .="</tr>";
-			$html .="</table>";
+
+		if ($unAgent['id_type_employe'] == 3 && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:17%;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule_logistique . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade_logistique . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->domaine_logistique . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'></a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'></div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
+		} else
+		if ($unAgent['id_type_employe'] == 2 && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:185px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule_medico . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade_medico . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->domaine_medico . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->autres . "</div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
+		} else
+		if ($unAgent['id_type_employe'] == 1 && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:185px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Specialit&eacute;:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->specialite . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->fonction . "</div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
 		}
 
-		
-		$html .="<div id='titre_info_deces' style='margin-top: 25px;' >Affectation</div>";
-		$html .="<div id='barre'></div>";
-		if($donneesAffectation){
+
+		$html .= "<div id='titre_info_deces' style='margin-top: 25px;' >Affectation</div>";
+		$html .= "<div id='barre'></div>";
+		if ($donneesAffectation) {
 			$dateAffectDeb = $donneesAffectation->date_debut;
 			$dateAffectFin = $donneesAffectation->date_fin;
-			
-		$html .="<table style='margin-top:10px; margin-left:185px; margin-bottom: 30px;'>";
-		$html .="<tr>";
-		$html .="<td style='width:310px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Service:</a><div id='inform' style='float:left; font-weight:bold; font-size:15px;'>".$leService->nom."</div></td>";
 
-		if($dateAffectDeb){ 
-			$dateAffectDeb = $this->dateHelper->convertDate($donneesAffectation->date_debut); 
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Date d&eacute;but:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$dateAffectDeb."</div></td>";
-		} 
-		
-		if($dateAffectFin){ 
-			$dateAffectFin = $this->dateHelper->convertDate($donneesAffectation->date_fin); 
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Date fin:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$dateAffectFin."</div></td>";
-		} 
+			$html .= "<table style='margin-top:10px; margin-left:185px; margin-bottom: 30px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:310px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Service:</a><div id='inform' style='float:left; font-weight:bold; font-size:15px;'>" . $leService->nom . "</div></td>";
+
+			if ($dateAffectDeb) {
+				$dateAffectDeb = $this->dateHelper->convertDate($donneesAffectation->date_debut);
+				$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Date d&eacute;but:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $dateAffectDeb . "</div></td>";
+			}
+
+			if ($dateAffectFin) {
+				$dateAffectFin = $this->dateHelper->convertDate($donneesAffectation->date_fin);
+				$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Date fin:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $dateAffectFin . "</div></td>";
+			}
 
 
-		if($donneesAffectation->numero_os){
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Num&eacute;ro OS:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesAffectation->numero_os."</div></td>";
+			if ($donneesAffectation->numero_os) {
+				$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Num&eacute;ro OS:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesAffectation->numero_os . "</div></td>";
+			}
+
+			$html .= "</tr>";
+			$html .= "</table>";
 		}
 
-		$html .="</tr>";
-		$html .="</table>";
-		}
-		
-/*
+		/*
 		//APPLIQUER UNIQUEMENT SUR L'INTERFACE DE VISUALISATION SUR LA LISTE DES AGENTS TRANSFERES
 		
 		if($identif == 1){
@@ -499,35 +522,36 @@ class PersonnelController extends AbstractActionController {
 				}
 			}
 		}*/
-		
-	    $html .="<div style='width: 100%; height: 100px;'>
+
+		$html .= "<div style='width: 100%; height: 100px;'>
 	    		 <div style='color: white; opacity: 1; width:95px; height:40px; padding-right:15px; float:right;'>
-                    <img  src='".$this->baseUrl()."public/images_icons/fleur1.jpg' />
+                    <img  src='" . $this->baseUrl() . "public/images_icons/fleur1.jpg' />
                  </div>
                 
 			     <div class='block' id='thoughtbot' style='vertical-align: bottom; padding-left:60%; margin-bottom: 40px; padding-top: 35px; font-size: 18px; font-weight: bold;'><button type='submit' id='terminer'>Terminer</button></div>
                  </div>";
 
-		$html .="</div>";
-		        
-	    $html .="<script>listepatient();</script>";
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+		$html .= "</div>";
+
+		$html .= "<script>listepatient();</script>";
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function modifierDossierAction() {
+
+	public function modifierDossierAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
 		$this->getDateHelper();
-		
+
 		$user = $this->layout()->user;
 		$id_employe = $user['id_personne'];
-		
+
 		$id_personne = (int) $this->params()->fromRoute('val', 0);
-		
+
 		if (!$id_personne) {
 			return $this->redirect()->toRoute('personnel', array(
-					'action' => 'dossier-personnel'
+				'action' => 'dossier-personnel'
 			));
 		}
 
@@ -535,25 +559,25 @@ class PersonnelController extends AbstractActionController {
 		 * ============== INITIALISATION DU FORMULAIRE ==================
 		 * **************************************************************
 		 * **************************************************************/
-		
+
 		$this->getFormPersonnel();
 		$formPersonnel = $this->formPersonnel;
 		$formPersonnel->get('nationalite')->setvalueOptions($this->getPatientTable()->listeDeTousLesPays());
 		$formPersonnel->get('type_personnel')->setValueOptions($this->getPatientTable()->getTypePersonnel());
 		$formPersonnel->get('service_accueil')->setValueOptions($this->getPatientTable()->listeServices());
-		
+
 		/****************************************************************
 		 * ============= ENREGISTREMENT DES MODIFICATIONS ===============
 		 * **************************************************************
 		 * **************************************************************/
 		$request = $this->getRequest();
-		
+
 		if ($request->isPost()) {
 			$personnel =  new Personnel();
 			$formPersonnel->setInputFilter($personnel->getInputFilter());
-			
+
 			$formPersonnel->setData($request->getPost());
-			
+
 			if ($formPersonnel->isValid()) {
 				$personnel->exchangeArray($formPersonnel->getData());
 
@@ -561,63 +585,63 @@ class PersonnelController extends AbstractActionController {
 				 ============ ENREGISTREMENT DE L'ETAT CIVIL =================
 				 *************************************************************
 				 *************************************************************/
-				$today = new \DateTime ( 'now' );
-				$nomPhoto = $today->format ( 'dmy_His' );
-				$fileBase64 = $this->params ()->fromPost ('fichier_tmp');
+				$today = new \DateTime('now');
+				$nomPhoto = $today->format('dmy_His');
+				$fileBase64 = $this->params()->fromPost('fichier_tmp');
 				$fileBase64 = substr($fileBase64, 23);
-				
-				if($fileBase64){
+
+				if ($fileBase64) {
 					$img = imagecreatefromstring(base64_decode($fileBase64));
 				} else {
 					$img = false;
 				}
 				$anciennePhoto = $this->getPersonnelTable()->getPersonne($id_personne)['PHOTO'];
-				
+
 				if ($img != false) {
-					if($anciennePhoto){ //SI LA PHOTO EXISTE BIEN ELLE EST SUPPRIMER DU DOSSIER POUR ETRE REMPLACER PAR LA NOUVELLE
-						unlink('C:\wamp\www\simens\public\img\photos_personnel\\'.$anciennePhoto.'.jpg');
+					if ($anciennePhoto) { //SI LA PHOTO EXISTE BIEN ELLE EST SUPPRIMER DU DOSSIER POUR ETRE REMPLACER PAR LA NOUVELLE
+						unlink('C:\wamp\www\simens\public\img\photos_personnel\\' . $anciennePhoto . '.jpg');
 					}
-					imagejpeg ( $img, 'C:\wamp\www\simens\public\img\photos_personnel\\' . $nomPhoto . '.jpg' );
-				
+					imagejpeg($img, 'C:\wamp\www\simens\public\img\photos_personnel\\' . $nomPhoto . '.jpg');
+
 					//ON ENREGISTRE AVEC LA NOUVELLE PHOTO
-					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel,$nomPhoto);
+					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel, $nomPhoto);
 				} else {
 					//PAS DE NOUVELLE PHOTO
-					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel,$anciennePhoto);
+					$id_personnel = $this->getPersonnelTable()->savePersonnel($personnel, $anciennePhoto);
 				}
-				 
+
 				/***************************************************************
 				 ============ ENREGISTREMENT DES DONNEES DES COMPLEMENTS =======
 				 ***************************************************************
 				 ***************************************************************/
-				if($personnel->type_personnel == 1) { 
+				if ($personnel->type_personnel == 1) {
 					$this->getMedicoTechniqueTable()->deleteMedicoTechnique($id_personne);
 					$this->getLogistiqueTable()->deleteLogistique($id_personne);
 					$this->getMedecinTable()->saveMedecin($personnel, $id_personne, $id_employe);
-				}else
-				if($personnel->type_personnel == 2){
+				} else
+				if ($personnel->type_personnel == 2) {
 					$this->getMedecinTable()->deleteMedecin($id_personne);
 					$this->getLogistiqueTable()->deleteLogistique($id_personne);
 					$this->getMedicoTechniqueTable()->saveMedicoTechnique($personnel, $id_personne, $id_employe);
-				}else
-				if($personnel->type_personnel == 3){
+				} else
+				if ($personnel->type_personnel == 3) {
 					$this->getMedecinTable()->deleteMedecin($id_personne);
 					$this->getMedicoTechniqueTable()->deleteMedicoTechnique($id_personne);
 					$this->getLogistiqueTable()->saveLogistique($personnel, $id_personne, $id_employe);
 				}
-				
+
 				/***************************************************************
 				 ============ ENREGISTREMENT DES DONNEES SUR L'AFFECTATION =====
 				 ***************************************************************
 				 ***************************************************************/
-				 
+
 				$this->getAffectationTable()->saveAffectation($personnel, $id_personne, $id_employe);
-				
+
 				// Redirection a la liste du personnel
-				return $this->redirect()->toRoute('personnel', array('action' =>'liste-personnel') );
+				return $this->redirect()->toRoute('personnel', array('action' => 'liste-personnel'));
 			}
 		}
-		
+
 		/****************************************************************
 		 * ====== AFFICHAGE DES DONNEES POUR LES MODIFICATIONS ==========
 		 * **************************************************************
@@ -626,105 +650,127 @@ class PersonnelController extends AbstractActionController {
 			$laPersonne = $this->getPersonnelTable()->getPersonne($id_personne);
 			$donneesPersonnel = new Personnel();
 
-			if($laPersonne){
-				$donneesPersonnel ->sexe = $laPersonne['SEXE'];
-				$donneesPersonnel ->prenom = $laPersonne['PRENOM'];
-				$donneesPersonnel ->nom = $laPersonne['NOM'];
-				$donneesPersonnel ->date_naissance = $laPersonne['DATE_NAISSANCE'];
-				$donneesPersonnel ->lieu_naissance = $laPersonne['LIEU_NAISSANCE'];
-				$donneesPersonnel ->nationalite = $laPersonne['NATIONALITE_ACTUELLE'];
-				$donneesPersonnel ->situation_matrimoniale = $laPersonne['SITUATION_MATRIMONIALE'];
-				$donneesPersonnel ->adresse = $laPersonne['ADRESSE'];
-				$donneesPersonnel ->telephone = $laPersonne['TELEPHONE'];
-				$donneesPersonnel ->email = $laPersonne['EMAIL'];
-				$donneesPersonnel ->profession = $laPersonne['PROFESSION'];
-				$donneesPersonnel ->id_personne = $laPersonne['ID_PERSONNE'];
+			if ($laPersonne) {
+				$donneesPersonnel->sexe = $laPersonne['SEXE'];
+				$donneesPersonnel->prenom = $laPersonne['PRENOM'];
+				$donneesPersonnel->nom = $laPersonne['NOM'];
+				$donneesPersonnel->date_naissance = $laPersonne['DATE_NAISSANCE'];
+				$donneesPersonnel->lieu_naissance = $laPersonne['LIEU_NAISSANCE'];
+				$donneesPersonnel->nationalite = $laPersonne['NATIONALITE_ACTUELLE'];
+				$donneesPersonnel->situation_matrimoniale = $laPersonne['SITUATION_MATRIMONIALE'];
+				$donneesPersonnel->adresse = $laPersonne['ADRESSE'];
+				$donneesPersonnel->telephone = $laPersonne['TELEPHONE'];
+				$donneesPersonnel->email = $laPersonne['EMAIL'];
+				$donneesPersonnel->profession = $laPersonne['PROFESSION'];
+				$donneesPersonnel->id_personne = $laPersonne['ID_PERSONNE'];
 			}
 			$type_personnel = $laPersonne['id_type_employe'];
-			$donneesComplement= "";
-			
-			if($type_personnel == 1){
+			$donneesComplement = "";
+
+			if ($type_personnel == 1) {
 				$donneesComplement = $this->getMedecinTable()->getMedecin($id_personne);
-			}
-			else
-			if($type_personnel == 2){
+			} else
+			if ($type_personnel == 2) {
 				$donneesComplement = $this->getMedicoTechniqueTable()->getMedicoTechnique($id_personne);
-			}
-			else
-			if($type_personnel == 3){
+			} else
+			if ($type_personnel == 3) {
 				$donneesComplement = $this->getLogistiqueTable()->getLogistique($id_personne);
 			}
-			
+
 			$donneesAffectation = $this->getAffectationTable()->getAffectation($id_personne);
-			
-		}
-		catch (\Exception $ex) {
+		} catch (\Exception $ex) {
 			return $this->redirect()->toRoute('personnel', array(
-					'action' => 'liste-personnel'
+				'action' => 'liste-personnel'
 			));
 		}
-		
-		$data = array();
-		if($laPersonne){
-			if($laPersonne['DATE_NAISSANCE']){ $data['date_naissance'] = $this->dateHelper->convertDate($laPersonne['DATE_NAISSANCE']); } else { $data['date_naissance'] = ""; }
-		}
-		if($donneesAffectation){
-			if($donneesAffectation->date_debut){ $data['date_debut'] = $this->dateHelper->convertDate($donneesAffectation->date_debut); } else { $data['date_debut'] = ""; }
-			if($donneesAffectation->date_fin){ $data['date_fin'] = $this->dateHelper->convertDate($donneesAffectation->date_fin); } else { $data['date_fin'] = ""; }
-		}
-		
- 		$laPhoto = $laPersonne['PHOTO'];
- 		if(!$laPhoto){ $laPhoto = 'identite'; }
- 		
- 		if($donneesPersonnel){ $formPersonnel->bind($donneesPersonnel); }
- 		if($donneesComplement){ $formPersonnel->bind($donneesComplement); }
- 		if($donneesAffectation){ $formPersonnel->bind($donneesAffectation); }
- 		
- 		
- 		$formPersonnel->populateValues($data);
- 		
- 		//var_dump($donneesPersonnel); exit();
 
-		return array (
-				'photo' => $laPhoto,
-				'type_personnel' => $type_personnel,
-				'id_personne' => $id_personne,
-				'form' => $formPersonnel,
+		$data = array();
+		if ($laPersonne) {
+			if ($laPersonne['DATE_NAISSANCE']) {
+				$data['date_naissance'] = $this->dateHelper->convertDate($laPersonne['DATE_NAISSANCE']);
+			} else {
+				$data['date_naissance'] = "";
+			}
+		}
+		if ($donneesAffectation) {
+			if ($donneesAffectation->date_debut) {
+				$data['date_debut'] = $this->dateHelper->convertDate($donneesAffectation->date_debut);
+			} else {
+				$data['date_debut'] = "";
+			}
+			if ($donneesAffectation->date_fin) {
+				$data['date_fin'] = $this->dateHelper->convertDate($donneesAffectation->date_fin);
+			} else {
+				$data['date_fin'] = "";
+			}
+		}
+
+		$laPhoto = $laPersonne['PHOTO'];
+		if (!$laPhoto) {
+			$laPhoto = 'identite';
+		}
+
+		if ($donneesPersonnel) {
+			$formPersonnel->bind($donneesPersonnel);
+		}
+		if ($donneesComplement) {
+			$formPersonnel->bind($donneesComplement);
+		}
+		if ($donneesAffectation) {
+			$formPersonnel->bind($donneesAffectation);
+		}
+
+
+		$formPersonnel->populateValues($data);
+
+		//var_dump($donneesPersonnel); exit();
+
+		return array(
+			'photo' => $laPhoto,
+			'type_personnel' => $type_personnel,
+			'id_personne' => $id_personne,
+			'form' => $formPersonnel,
 		);
 	}
-	
-	public function listePersonnelTransfertAjaxAction() {
+
+	public function listePersonnelTransfertAjaxAction()
+	{
 		$personnel = $this->getPersonnelTable();
 		$output = $personnel->getListeRechercheTransfertPersonnel();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
+		return $this->getResponse()->setContent(Json::encode($output, array(
+			'enableJsonExprFinder' => true
+		)));
 	}
-	
+
 	/**
 	 * Pour avoir une vue sur l'agent
 	 */
-	public function vueAgentPersonnelAction(){
-		
-		$id_personne = ( int ) $this->params ()->fromPost ( 'id', 0 );
-		
-		$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
- 		$photo = $this->getPersonnelTable()->getPhoto($id_personne);
-		
+	public function vueAgentPersonnelAction()
+	{
 
- 		$affectation = $this->getAffectationTable()->getServiceAgentAffecter($id_personne);
- 		$service = $this->getServiceTable()->getServiceAffectation($affectation);
- 		if($service){ $nomService = $service->nom;} else {$nomService = null;}
- 		
+		$id_personne = (int) $this->params()->fromPost('id', 0);
+
+		$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
+		$photo = $this->getPersonnelTable()->getPhoto($id_personne);
+
+
+		$affectation = $this->getAffectationTable()->getServiceAgentAffecter($id_personne);
+		$service = $this->getServiceTable()->getServiceAffectation($affectation);
+		if ($service) {
+			$nomService = $service->nom;
+		} else {
+			$nomService = null;
+		}
+
 		$this->getDateHelper();
-		$date = $this->dateHelper->convertDate( $unAgent->date_naissance );
-		
+		$date = $this->dateHelper->convertDate($unAgent->date_naissance);
+
 		$html  = "<div style='width:100%;'>";
-			
+
 		$html .= "<div style='width: 18%; height: 180px; float:left;'>";
-		$html .= "<div id='photo' style='float:left; margin-left:40px; margin-top:10px; margin-right:30px;'> <img style='width:105px; height:105px;' src='".$this->baseUrl()."public/img/photos_personnel/" . $photo . "' ></div>";
+		$html .= "<div id='photo' style='float:left; margin-left:40px; margin-top:10px; margin-right:30px;'> <img style='width:105px; height:105px;' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photo . "' ></div>";
 		$html .= "</div>";
-			
+
 		$html .= "<div style='width: 65%; height: 180px; float:left;'>";
 		$html .= "<table style='margin-top:10px; float:left; width: 100%;'>";
 		$html .= "<tr style='width: 100%;'>";
@@ -744,23 +790,23 @@ class PersonnelController extends AbstractActionController {
 		$html .= "<td style='width: 30%; height: 50px;'></td>";
 		$html .= "</tr>";
 		$html .= "</table>";
-		$html .="</div>";
-			
+		$html .= "</div>";
+
 		$html .= "<div style='width: 17%; height: 180px; float:left;'>";
-		$html .= "<div id='' style='color: white; opacity: 0.09; float:left; margin-right:20px; margin-left:25px; margin-top:5px;'> <img style='width:105px; height:105px;' src='".$this->baseUrl()."public/img/photos_personnel/" . $photo . "'></div>";
+		$html .= "<div id='' style='color: white; opacity: 0.09; float:left; margin-right:20px; margin-left:25px; margin-top:5px;'> <img style='width:105px; height:105px;' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photo . "'></div>";
 		$html .= "</div>";
-			
+
 		$html .= "</div>";
-		
+
 		//UNIQUEMENT POUR L'INTERFACE DE MODIFICATION
-		$identif = ( int ) $this->params ()->fromPost ( 'identif', 0 );
-		if($identif == 1){
+		$identif = (int) $this->params()->fromPost('identif', 0);
+		if ($identif == 1) {
 			$html .= $this->modificationTransfert($id_personne, $affectation);
 		}
 		//SCRIPT UTILISER UNIQUEMENT DANS L'INTERFACE TRANSFERT ET INTERVENTION D'UN AGENT
-		$html .="<script> 
+		$html .= "<script> 
 				  //TRANSFERT INTERNE
-				    $('#service_origine').val('".$nomService."');
+				    $('#service_origine').val('" . $nomService . "');
 				    $('#service_origine').css({'background':'#eee','border-bottom-width':'0px','border-top-width':'0px','border-left-width':'0px','border-right-width':'0px','font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'17px'});
 					$('#service_origine').attr('readonly',true);
 
@@ -769,7 +815,7 @@ class PersonnelController extends AbstractActionController {
 				    $('#note, #note_externe').css({'font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'15px'});
 				    
 				  //TRANSFERT EXTERNE
-				    $('#service_origine_externe').val('".$nomService."');
+				    $('#service_origine_externe').val('" . $nomService . "');
 				    $('#service_origine_externe').css({'background':'#eee','border-bottom-width':'0px','border-top-width':'0px','border-left-width':'0px','border-right-width':'0px','font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'17px'});
 					$('#service_origine_externe').attr('readonly',true);
 
@@ -779,60 +825,61 @@ class PersonnelController extends AbstractActionController {
 				 
 				    $('#date_debut, #date_fin, #date_debut_externe, #date_fin_externe').css({'font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'16px'});
 				 </script>";
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
+
 	/**
 	 * Pour la visualisation de quelques d�tails sur l'agent
 	 */
-	public function popupAgentPersonnelAction() {
-		
-			$id_personne = (int)$this->params()->fromPost('id');
-			$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
-			$photo = $this->getPersonnelTable()->getPhoto($id_personne);
-		
-			$this->getDateHelper();
-			$date = $this->dateHelper->convertDate($unAgent->date_naissance);
-		
-			$html ="<div id='photo' style='float:left; margin-right:20px;' > <img  style='width:105px; height:105px;' src='/simens/public/img/photos_personnel/".$photo."'></div>";
-		
-			$html .="<table>";
-		
-			$html .="<tr>";
-			$html .="<td><a style='text-decoration:underline; font-size:12px;'>Nom:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>".$unAgent->nom."</p></td>";
-			$html .="</tr><tr>";
-			$html .="<td><a style='text-decoration:underline; font-size:12px;'>Pr&eacute;nom:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>".$unAgent->prenom."</p></td>";
-			$html .="</tr><tr>";
-			$html .="<td><a style='text-decoration:underline; font-size:12px;'>Date de naissance:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>".$date."</p></td>";
-			$html .="</tr>";
-		
-			$html .="<tr>";
-			$html .="<td><a style='text-decoration:underline; font-size:12px;'>Adresse:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>".$unAgent->adresse."</p></td>";
-			$html .="</tr><tr>";
-			$html .="<td><a style='text-decoration:underline; font-size:12px;'>T&eacute;l&eacute;phone:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>".$unAgent->telephone."</p></td>";
-			$html .= "</tr>";
-		
-			$html .="</table>";
-		
-			$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		    return $this->getResponse ()->setContent ( Json::encode ( $html ) );
-		    
+	public function popupAgentPersonnelAction()
+	{
+
+		$id_personne = (int)$this->params()->fromPost('id');
+		$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
+		$photo = $this->getPersonnelTable()->getPhoto($id_personne);
+
+		$this->getDateHelper();
+		$date = $this->dateHelper->convertDate($unAgent->date_naissance);
+
+		$html = "<div id='photo' style='float:left; margin-right:20px;' > <img  style='width:105px; height:105px;' src='/simens/public/img/photos_personnel/" . $photo . "'></div>";
+
+		$html .= "<table>";
+
+		$html .= "<tr>";
+		$html .= "<td><a style='text-decoration:underline; font-size:12px;'>Nom:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>" . $unAgent->nom . "</p></td>";
+		$html .= "</tr><tr>";
+		$html .= "<td><a style='text-decoration:underline; font-size:12px;'>Pr&eacute;nom:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>" . $unAgent->prenom . "</p></td>";
+		$html .= "</tr><tr>";
+		$html .= "<td><a style='text-decoration:underline; font-size:12px;'>Date de naissance:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>" . $date . "</p></td>";
+		$html .= "</tr>";
+
+		$html .= "<tr>";
+		$html .= "<td><a style='text-decoration:underline; font-size:12px;'>Adresse:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>" . $unAgent->adresse . "</p></td>";
+		$html .= "</tr><tr>";
+		$html .= "<td><a style='text-decoration:underline; font-size:12px;'>T&eacute;l&eacute;phone:</a><br><p style='width:280px; font-weight:bold; font-size:17px;'>" . $unAgent->telephone . "</p></td>";
+		$html .= "</tr>";
+
+		$html .= "</table>";
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function transfertAction(){
+
+	public function transfertAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
-		
+
 		$formTypePersonnel = new TypePersonnelForm();
 		$formTypePersonnel->get('type_personnel')->setvalueOptions($this->getTypePersonnelTable()->listeTypePersonnel());
-		
+
 		$formTransfertPersonnel = new TransfertPersonnelForm();
-		
+
 		$formTransfertPersonnel->get('service_accueil')->setValueOptions($this->getPatientTable()->listeServices());
 		$formTransfertPersonnel->get('hopital_accueil')->setValueOptions($this->getPatientTable()->listeHopitaux());
-		
-		
+
+
 		/****************************************************************
 		 * ======== ENREGISTREMENT DES DONNEES SUR LE TRANSFERT =========
 		 * **************************************************************
@@ -843,64 +890,65 @@ class PersonnelController extends AbstractActionController {
 			$formTransfertPersonnel->setInputFilter($transfert->getInputFilter());
 			$formTransfertPersonnel->setData($request->getPost());
 			$donneesPlus = array(
-					'id_service_origine' => $this->getServiceTable()->getServiceParNom($this->params()->fromPost('service_origine')),
-					'service_accueil_externe' => $this->params()->fromPost('service_accueil_externe'),
+				'id_service_origine' => $this->getServiceTable()->getServiceParNom($this->params()->fromPost('service_origine')),
+				'service_accueil_externe' => $this->params()->fromPost('service_accueil_externe'),
 			);
 			$formTransfertPersonnel->remove('service_accueil_externe');
 			$formTransfertPersonnel->remove('hopital_accueil');
 
 			if ($formTransfertPersonnel->isValid()) {
 				$transfert->exchangeArray($formTransfertPersonnel->getData());
-				
+
 				$this->getTransfertTable()->saveTransfert($transfert, $donneesPlus);
-				if($transfert->id_verif == 0){ 
+				if ($transfert->id_verif == 0) {
 					$this->getPersonnelTable()->updateEtatForTransfert($transfert->id_personne);
 				}
 				return $this->redirect()->toRoute('personnel', array('action' => 'liste-transfert'));
-			}else {
+			} else {
 				return $this->redirect()->toRoute('personnel', array('action' => 'transfert'));
 			}
 		}
-		
+
 		return array(
-				'formTypePersonnel' => $formTypePersonnel,
-				'formTransfertPersonnel' => $formTransfertPersonnel
+			'formTypePersonnel' => $formTypePersonnel,
+			'formTransfertPersonnel' => $formTransfertPersonnel
 		);
 	}
-	
-	public function modificationTransfert($id_personne, $id_service_origine){
+
+	public function modificationTransfert($id_personne, $id_service_origine)
+	{
 		$chemin = $this->getServiceLocator()->get('Request')->getBasePath();
-		
+
 		$formTransfertPersonnel = new TransfertPersonnelForm();
 		$formTransfertPersonnel->get('service_accueil')->setValueOptions($this->getServiceTable()->getServiceHopitalID(2));
 		$formTransfertPersonnel->get('hopital_accueil')->setValueOptions($this->getPatientTable()->listeHopitaux());
-		
+
 		$formRow = new FormRow();
 		$formText = new FormText();
 		$formTextara = new FormTextarea();
 		$formSelect = new FormSelect();
 		$formHidden = new FormHidden();
-		
+
 		$data = array(
-				'id_personne' => $id_personne,
-				'id_service_origine' => $id_service_origine
+			'id_personne' => $id_personne,
+			'id_service_origine' => $id_service_origine
 		);
 		$transfert = $this->getTransfertTable()->getTransfert($data);
-		
-		if($transfert->type_transfert == 'Externe'){
+
+		if ($transfert->type_transfert == 'Externe') {
 			$id_hopital = $this->getHopitalServiceTable()->getHopitalService($transfert->service_accueil_externe)->id_hopital;
 			$formTransfertPersonnel->populateValues(array('hopital_accueil' => $id_hopital));
-		    $formTransfertPersonnel->get('service_accueil_externe')->setValueOptions($this->getServiceTable()->getServiceHopitalID($id_hopital));
+			$formTransfertPersonnel->get('service_accueil_externe')->setValueOptions($this->getServiceTable()->getServiceHopitalID($id_hopital));
 		}
-		
+
 		$formTransfertPersonnel->bind($transfert);
-		
-		
-		$html ="<div id='barre_separateur'></div>";
-		$html .="<form  method='post' action='".$chemin."/personnel/transfert'>";
-		$html .="<table id='form_patient' style='float: left; margin-left: 30px;'>  
+
+
+		$html = "<div id='barre_separateur'></div>";
+		$html .= "<form  method='post' action='" . $chemin . "/personnel/transfert'>";
+		$html .= "<table id='form_patient' style='float: left; margin-left: 30px;'>  
                     <tr class='comment-form-patient'>
-                        <td style='width: 270px;'>".$formRow($formTransfertPersonnel->get('type_transfert')).$formSelect($formTransfertPersonnel->get('type_transfert'))."</td> 
+                        <td style='width: 270px;'>" . $formRow($formTransfertPersonnel->get('type_transfert')) . $formSelect($formTransfertPersonnel->get('type_transfert')) . "</td> 
                     </tr>
                  </table>		
                     <div class='vider_formulaire' id='vider_champ_interne'>
@@ -915,33 +963,33 @@ class PersonnelController extends AbstractActionController {
 		            </div>
 		            <!--*********************************************************************
 		             =========================== TRANSFERT INTERNE =========================-->";
-		$html  .=$formHidden($formTransfertPersonnel->get('id_personne'));
-		$html  .=$formHidden($formTransfertPersonnel->get('id_verif'));
-		$html  .="<table id='form_patient' class='transfert_interne' style='float:left; margin-top:10px; margin-left: 30px;'>
+		$html  .= $formHidden($formTransfertPersonnel->get('id_personne'));
+		$html  .= $formHidden($formTransfertPersonnel->get('id_verif'));
+		$html  .= "<table id='form_patient' class='transfert_interne' style='float:left; margin-top:10px; margin-left: 30px;'>
 		             
 		             <tr style='display: inline-block;  vertical-align: top;'>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('service_origine')).$formText($formTransfertPersonnel->get('service_origine'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('service_accueil')).$formSelect($formTransfertPersonnel->get('service_accueil'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('motif_transfert')).$formTextara($formTransfertPersonnel->get('motif_transfert'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('note')).$formTextara($formTransfertPersonnel->get('note'))."</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('service_origine')) . $formText($formTransfertPersonnel->get('service_origine')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('service_accueil')) . $formSelect($formTransfertPersonnel->get('service_accueil')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('motif_transfert')) . $formTextara($formTransfertPersonnel->get('motif_transfert')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('note')) . $formTextara($formTransfertPersonnel->get('note')) . "</td>
 		             </tr>
 		             
 	              </table>	
 		            <!--*********************************************************************
 		             =========================== TRANSFERT INTERNE =========================-->";
-		
-		$html  .="<table id='form_patient' class='transfert_externe' style='float:left; margin-top:10px; margin-left: 30px;'>
+
+		$html  .= "<table id='form_patient' class='transfert_externe' style='float:left; margin-top:10px; margin-left: 30px;'>
 		             
 		             <tr style='display: inline-block;  vertical-align: top;'>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('service_origine_externe')).$formText($formTransfertPersonnel->get('service_origine_externe'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('hopital_accueil')).$formSelect($formTransfertPersonnel->get('hopital_accueil'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('service_accueil_externe')).$formSelect($formTransfertPersonnel->get('service_accueil_externe'))."</td>
-		                 <td class='comment-form-patient'>". $formRow($formTransfertPersonnel->get('motif_transfert_externe')).$formTextara($formTransfertPersonnel->get('motif_transfert_externe'))."</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('service_origine_externe')) . $formText($formTransfertPersonnel->get('service_origine_externe')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('hopital_accueil')) . $formSelect($formTransfertPersonnel->get('hopital_accueil')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('service_accueil_externe')) . $formSelect($formTransfertPersonnel->get('service_accueil_externe')) . "</td>
+		                 <td class='comment-form-patient'>" . $formRow($formTransfertPersonnel->get('motif_transfert_externe')) . $formTextara($formTransfertPersonnel->get('motif_transfert_externe')) . "</td>
 		             </tr>
 		             
 	              </table>";
-		
-		$html  .="<div id='terminer_annuler' style='padding-top: 5px;'>
+
+		$html  .= "<div id='terminer_annuler' style='padding-top: 5px;'>
                     <div class='block' id='thoughtbot'>
                        <button type='submit' id='terminer_modif' style='height:35px;'>Terminer</button>
                     </div>
@@ -950,10 +998,10 @@ class PersonnelController extends AbstractActionController {
                        <button id='annuler_modif' style='height:35px;'>Annuler</button>
                     </div>
                 </div>";
-		
-		$html  .="</form>";
-		
-		$html  .="<script type='text/javascript'>
+
+		$html  .= "</form>";
+
+		$html  .= "<script type='text/javascript'>
 
 				  $('#id_verif').val(1);
 				
@@ -961,7 +1009,7 @@ class PersonnelController extends AbstractActionController {
                   $('.transfert_externe').toggle(false);
                   $('#vider_champ_externe').toggle(false);
 				  
-				  getChamps('".$transfert->type_transfert."');
+				  getChamps('" . $transfert->type_transfert . "');
 				  		
                   $('#vider_champ_interne').click(function(){
 	                $('#service_accueil').val('');
@@ -975,7 +1023,7 @@ class PersonnelController extends AbstractActionController {
     			    $('#motif_transfert_externe').val('');
     		      });
 				
-				  if('".$transfert->type_transfert."' == 'Interne'){
+				  if('" . $transfert->type_transfert . "' == 'Interne'){
 				     $('#hopital_accueil').val('');
     			     $('#service_accueil_externe').val('');
     			     $('#motif_transfert_externe').val('');
@@ -987,67 +1035,72 @@ class PersonnelController extends AbstractActionController {
 				  scriptModification();
 				
 				 </script>";
-		
-		return $html;		
+
+		return $html;
 	}
-	
-	public function listeTransfertAjaxAction() {
+
+	public function listeTransfertAjaxAction()
+	{
 		$personnel = $this->getPersonnelTable();
 		$output = $personnel->getListeTransfertPersonnel();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
+		return $this->getResponse()->setContent(Json::encode($output, array(
+			'enableJsonExprFinder' => true
+		)));
 	}
-	
-	public function listeTransfertAction(){
+
+	public function listeTransfertAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
-	
+
 		$formTypePersonnel = new TypePersonnelForm();
 		$formTypePersonnel->get('type_personnel')->setvalueOptions($this->getTypePersonnelTable()->listeTypePersonnel());
-	
+
 		return array(
-				'form' => $formTypePersonnel,
+			'form' => $formTypePersonnel,
 		);
 	}
-	
-	public function supprimerTransfertAction() {
-		
-		$id_personne = (int) $this->params() ->fromPost('id');
-	
-		if($id_personne){
+
+	public function supprimerTransfertAction()
+	{
+
+		$id_personne = (int) $this->params()->fromPost('id');
+
+		if ($id_personne) {
 			$this->getPersonnelTable()->updateEtatForDeleteTransfert($id_personne);
 			$this->getTransfertTable()->deleteTransfert($id_personne);
 		}
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode (  ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode());
 	}
-	
+
 	/************************************************************************************************************************
 	 * =========================================== PARTIE INTERVENTION ======================================================
 	 * **********************************************************************************************************************
 	 * **********************************************************************************************************************
 	 */
-	public function listePersonnelInterventionAjaxAction() {
+	public function listePersonnelInterventionAjaxAction()
+	{
 		$personnel = $this->getPersonnelTable();
 		$output = $personnel->getListeRechercheInterventionPersonnel();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
+		return $this->getResponse()->setContent(Json::encode($output, array(
+			'enableJsonExprFinder' => true
+		)));
 	}
-	
-	public function interventionAction(){
+
+	public function interventionAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
-		
+
 		$formTypePersonnel = new TypePersonnelForm();
 		$formTypePersonnel->get('type_personnel')->setvalueOptions($this->getTypePersonnelTable()->listeTypePersonnel());
-		
+
 		$formInterventionPersonnel = new InterventionPersonnelForm();
-		
+
 		$formInterventionPersonnel->get('id_service')->setValueOptions($this->getPatientTable()->listeServices());
 		$formInterventionPersonnel->get('hopital_accueil')->setValueOptions($this->getPatientTable()->listeHopitaux());
-		
-		
+
+
 		/****************************************************************
 		 * ======== ENREGISTREMENT DES DONNEES SUR L'INTERVENTION =========
 		 * **************************************************************
@@ -1057,104 +1110,107 @@ class PersonnelController extends AbstractActionController {
 			$intervention =  new Intervention1();
 			$formInterventionPersonnel->setInputFilter($intervention->getInputFilter());
 			$formInterventionPersonnel->setData($request->getPost());
- 			
- 			//A COMPRENDRE LE POURQUOI DE CA
+
+			//A COMPRENDRE LE POURQUOI DE CA
 			$formInterventionPersonnel->remove('id_service_externe');
 			$formInterventionPersonnel->remove('hopital_accueil');
 
 			if ($formInterventionPersonnel->isValid()) {
 				$intervention->exchangeArray($formInterventionPersonnel->getData());
-				
+
 				$this->getInterventionTable()->saveIntervention($intervention);
-				
+
 				return $this->redirect()->toRoute('personnel', array('action' => 'liste-intervention'));
-			}else {
-				
+			} else {
+
 				return $this->redirect()->toRoute('personnel', array('action' => 'intervention'));
 			}
 		}
-		
+
 		return array(
-				'formTypePersonnel' => $formTypePersonnel,
-				'formInterventionPersonnel' => $formInterventionPersonnel
+			'formTypePersonnel' => $formTypePersonnel,
+			'formInterventionPersonnel' => $formInterventionPersonnel
 		);
 	}
-	
-	public function listeInterventionAjaxAction() {
+
+	public function listeInterventionAjaxAction()
+	{
 		$personnel = $this->getPersonnelTable();
 		$output = $personnel->getListeInterventionPersonnel();
-		return $this->getResponse ()->setContent ( Json::encode ( $output, array (
-				'enableJsonExprFinder' => true
-		) ) );
+		return $this->getResponse()->setContent(Json::encode($output, array(
+			'enableJsonExprFinder' => true
+		)));
 	}
-	
-	public function listeInterventionAction(){
+
+	public function listeInterventionAction()
+	{
 		$this->layout()->setTemplate('layout/personnel');
-		
+
 		$formTypePersonnel = new TypePersonnelForm();
 		$formTypePersonnel->get('type_personnel')->setvalueOptions($this->getTypePersonnelTable()->listeTypePersonnel());
-		
+
 		return array(
-				'form' => $formTypePersonnel,
+			'form' => $formTypePersonnel,
 		);
 	}
-	
-	public function infoPersonnelInterventionAction(){
-		
-		$id_personne = (int) $this->params() ->fromPost('id');
+
+	public function infoPersonnelInterventionAction()
+	{
+
+		$id_personne = (int) $this->params()->fromPost('id');
 		$this->getDateHelper();
-		
+
 		$unAgent = $this->getPersonnelTable()->getPersonne($id_personne);
 		$photoAgent = $this->getPersonnelTable()->getPhoto($id_personne);
-		
+
 		/****************************************************************
 		 * ======= COMPLEMENTS DES INFORMATIONS SUR L'AGENT==============
-		* **************************************************************
-		* **************************************************************/
+		 * **************************************************************
+		 * **************************************************************/
 		$donneesComplement = "";
-		if($unAgent->type_personnel == 'Logistique'){
+		if ($unAgent->type_personnel == 'Logistique') {
 			$donneesComplement = $this->getLogistiqueTable()->getLogistique($id_personne);
-		}else
-		if($unAgent->type_personnel  == 'Médico-technique'){
+		} else
+		if ($unAgent->type_personnel  == 'Médico-technique') {
 			$donneesComplement = $this->getMedicoTechniqueTable()->getMedicoTechnique($id_personne);
-		}else
-		if($unAgent->type_personnel  == 'Médecin'){
+		} else
+		if ($unAgent->type_personnel  == 'Médecin') {
 			$donneesComplement = $this->getMedecinTable()->getMedecin($id_personne);
 		}
-		
+
 		/****************************************************************
 		 * = COMPLEMENTS DES INFORMATIONS SUR L'AFFECTATION DE L'AGENT ==
-		* **************************************************************
-		* **************************************************************/
+		 * **************************************************************
+		 * **************************************************************/
 		$donneesAffectation = $this->getAffectationTable()->getAffectation($id_personne);
-		if($donneesAffectation){
+		if ($donneesAffectation) {
 			$leService = $this->getServiceTable()->getServiceAffectation($donneesAffectation->service_accueil);
 		}
-		
+
 		/****************************************************************
 		 * ========= AFFICHAGE DES INFORMATION SUR LA VUE ===============
-		* **************************************************************
-		* **************************************************************/
-		$html ="<div style='width: 100%;'>
+		 * **************************************************************
+		 * **************************************************************/
+		$html = "<div style='width: 100%;'>
 		
-		       <img id='photo' src='".$this->baseUrl()."public/img/photos_personnel/" . $photoAgent . "'  style='float:left; margin-left:20px; margin-right:40px; width:105px; height:105px;'/>
+		       <img id='photo' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photoAgent . "'  style='float:left; margin-left:20px; margin-right:40px; width:105px; height:105px;'/>
 		
 		       <p style='color: white; opacity: 0.09;'>
-		         <img id='photo' src='".$this->baseUrl()."public/img/photos_personnel/" . $photoAgent . "'   style='float:right; margin-right:15px; width:95px; height:95px;'/>
+		         <img id='photo' src='" . $this->baseUrl() . "public/img/photos_personnel/" . $photoAgent . "'   style='float:right; margin-right:15px; width:95px; height:95px;'/>
 		       </p>
 		     
 		       <table>
                  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Pr&eacute;nom</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->prenom."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Pr&eacute;nom</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->prenom . "</p></div>
 			   	   </td>
 		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Date de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>".$this->dateHelper->convertDate($unAgent->date_naissance)."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Date de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>" . $this->dateHelper->convertDate($unAgent->date_naissance) . "</p></div>
 			   	   </td>
 		
 			       <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>T&eacute;l&eacute;phone</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->telephone."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>T&eacute;l&eacute;phone</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->telephone . "</p></div>
 			   	   </td>
 			   	
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
@@ -1164,34 +1220,34 @@ class PersonnelController extends AbstractActionController {
 			   	
 			   	  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Nom</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->nom."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Nom</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->nom . "</p></div>
 			   	   </td>
 		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Lieu de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->lieu_naissance."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Lieu de naissance</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->lieu_naissance . "</p></div>
 			   	   </td>
 		
 			       <td style='width:160px; font-family: police1;font-size: 12px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Nationalit&eacute;</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->nationalite."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Nationalit&eacute;</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->nationalite . "</p></div>
 			   	   </td>
 			   	
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; padding-left: 15px;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>@-Email</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->email."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>@-Email</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->email . "</p></div>
 			   	   </td>
 			   	
 			      </tr>
 			   	
 			   	  <tr>
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Sexe</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->sexe."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Sexe</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->sexe . "</p></div>
 			   	   </td>
 		
 			   	   <td style='width:160px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Profession</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->profession."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Profession</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->profession . "</p></div>
 			   	   </td>
 		
 			       <td style='width:180px; font-family: police1;font-size: 12px; vertical-align: top;'>
-			   		   <div id='aa'><a style='text-decoration: underline;'>Adresse</a><br><p style='font-weight: bold;font-size: 17px;'>".$unAgent->adresse."</p></div>
+			   		   <div id='aa'><a style='text-decoration: underline;'>Adresse</a><br><p style='font-weight: bold;font-size: 17px;'>" . $unAgent->adresse . "</p></div>
 			   	   </td>
 			   	
 			   	   <td style='width:160px; font-family: police1;font-size: 12px;'>
@@ -1201,51 +1257,51 @@ class PersonnelController extends AbstractActionController {
 			   	
 		        </table>
 		
-			    <div id='titre_info_deces'>Compl&eacute;ments informations (Personnel ".$unAgent->type_personnel.") </div>
+			    <div id='titre_info_deces'>Compl&eacute;ments informations (Personnel " . $unAgent->type_personnel . ") </div>
 			    <div id='barre'></div>";
-			
-		if($unAgent->type_personnel == 'Logistique' && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:185px;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule_logistique."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade_logistique."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->domaine_logistique."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'></a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'></div></td>";
-			$html .="</tr>";
-			$html .="</table>";
-		}else
-		if($unAgent->type_personnel == 'Médico-technique' && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:185px;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule_medico."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade_medico."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->domaine_medico."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->autres."</div></td>";
-			$html .="</tr>";
-			$html .="</table>";
-		}else
-		if($unAgent->type_personnel == 'Médecin' && $donneesComplement){
-			$html .="<table style='margin-top:10px; margin-left:185px;'>";
-			$html .="<tr>";
-			$html .="<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->matricule."</div></td>";
-			$html .="<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->grade."</div></td>";
-			$html .="<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Specialit&eacute;:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->specialite."</div></td>";
-			$html .="<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>".$donneesComplement->fonction."</div></td>";
-			$html .="</tr>";
-			$html .="</table>";
+
+		if ($unAgent->type_personnel == 'Logistique' && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:185px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule_logistique . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade_logistique . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->domaine_logistique . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'></a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'></div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
+		} else
+		if ($unAgent->type_personnel == 'Médico-technique' && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:185px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule_medico . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade_medico . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Domaine:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->domaine_medico . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->autres . "</div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
+		} else
+		if ($unAgent->type_personnel == 'Médecin' && $donneesComplement) {
+			$html .= "<table style='margin-top:10px; margin-left:185px;'>";
+			$html .= "<tr>";
+			$html .= "<td style='width:200px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Matricule:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->matricule . "</div></td>";
+			$html .= "<td style='width:190px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Grade:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->grade . "</div></td>";
+			$html .= "<td style='width:270px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Specialit&eacute;:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->specialite . "</div></td>";
+			$html .= "<td style='width:230px; vertical-align: top;'><a style='float:left; margin-right: 10px; text-decoration:underline; font-size:13px;'>Fonction:</a><div id='inform' style='float:left; font-weight:bold; font-size:16px;'>" . $donneesComplement->fonction . "</div></td>";
+			$html .= "</tr>";
+			$html .= "</table>";
 		}
-		
-		
-		$html  .="<div id='titre_info_deces'>Liste des interventions </div>
+
+
+		$html  .= "<div id='titre_info_deces'>Liste des interventions </div>
 		          <div id='barre'></div>";
-		
+
 		/***********************************************************************************/
 		/*========================= LA LISTE DES INTERVENTIONS ============================*/
 		/***********************************************************************************/
-		$html .="<div id='listeinterventionbis'>";
-		$html .="<table class='table table-bordered tab_list_mini'  style='margin-top:10px; margin-bottom:20px; margin-left:185px; width:80%;' id='listeintervention'>";
-		
-		$html .="<thead style='width: 100%;'>
+		$html .= "<div id='listeinterventionbis'>";
+		$html .= "<table class='table table-bordered tab_list_mini'  style='margin-top:10px; margin-bottom:20px; margin-left:185px; width:80%;' id='listeintervention'>";
+
+		$html .= "<thead style='width: 100%;'>
 				  <tr style='height:40px; width:100%; cursor:pointer;'>
 					<th style='width: 40%;'>Services</th>
 					<th style='width: 15%;'>Date debut</th>
@@ -1254,58 +1310,57 @@ class PersonnelController extends AbstractActionController {
 				    <th style='width: 12%;'>Options</th>
 				  </tr>
 			     </thead>";
-		
-		$html .="<tbody style='width: 100%;'>";
-		
+
+		$html .= "<tbody style='width: 100%;'>";
+
 		$listeIntervention = $this->getPersonnelTable()->getListeInterventions($id_personne);
-		
-		foreach ($listeIntervention as $Liste){
-		
-		$html .="<tr style='width: 100%;' id='".$Liste['numero_intervention']."'>";
-		$html .="<td style='width: 40%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->getServiceTable()->getServiceAffectation($Liste['id_service'])->nom."</div></td>";
-		$html .="<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->dateHelper->convertDate($Liste['date_debut'])."</div></td>";
-		$html .="<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->dateHelper->convertDate($Liste['date_fin'])."</div></td>";
-		$html .="<td style='width: 18%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$Liste['type_intervention']."</div></td>";
-		$html .="<td style='width: 12%;'> <a href='javascript:vueintervention(".$Liste['numero_intervention'].") '>
+
+		foreach ($listeIntervention as $Liste) {
+
+			$html .= "<tr style='width: 100%;' id='" . $Liste['numero_intervention'] . "'>";
+			$html .= "<td style='width: 40%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->getServiceTable()->getServiceAffectation($Liste['id_service'])->nom . "</div></td>";
+			$html .= "<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->dateHelper->convertDate($Liste['date_debut']) . "</div></td>";
+			$html .= "<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->dateHelper->convertDate($Liste['date_fin']) . "</div></td>";
+			$html .= "<td style='width: 18%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $Liste['type_intervention'] . "</div></td>";
+			$html .= "<td style='width: 12%;'> <a href='javascript:vueintervention(" . $Liste['numero_intervention'] . ") '>
 					       <img style='display: inline;' src='/simens/public/images_icons/vue.PNG' alt='Constantes' title='details' />
 					  </a>&nbsp;
 		
-				      <a href='javascript:modifierintervention(".$Liste['numero_intervention'].",".$id_personne.")'>
+				      <a href='javascript:modifierintervention(" . $Liste['numero_intervention'] . "," . $id_personne . ")'>
 					    	<img style='display: inline;' src='/simens/public/images_icons/suivant.PNG' alt='Constantes' title='modifier' />
 					  </a>&nbsp;
 		
-				      <a href='javascript:supprimeruneintervention(".$Liste['numero_intervention'].",".$id_personne.")' >
+				      <a href='javascript:supprimeruneintervention(" . $Liste['numero_intervention'] . "," . $id_personne . ")' >
 					    	<img  style='display: inline;' src='/simens/public/images_icons/sup.PNG' alt='Constantes' title='annuler' />
 					  </a>
 				     </td>";
-		$html .="</tr>";
-		
+			$html .= "</tr>";
 		}
-		$html .="</tbody>";
-		
-		$html .="</table>";
-		$html .="</div>";
+		$html .= "</tbody>";
+
+		$html .= "</table>";
+		$html .= "</div>";
 		/***********************************************************************************/
 		/*========================= FIN FIN LA LISTE DES INTERVENTIONS ====================*/
 		/***********************************************************************************/
-		
-		$html .="<div style='width: 100%; height: 100px;'>
+
+		$html .= "<div style='width: 100%; height: 100px;'>
 				
 				 <div style='margin-left: 185px;'> 
-				   <a href='javascript:rechercherintervention(".$id_personne.")'  style='float:left; font-weight:bold; font-size:15px; text-decoration:none; font-style: italic; font-family: Times  New Roman;'><img  src='/simens/public/images_icons/search_16.png' title='Recherche avanc&eacute;e' /> Rechercher</a>
+				   <a href='javascript:rechercherintervention(" . $id_personne . ")'  style='float:left; font-weight:bold; font-size:15px; text-decoration:none; font-style: italic; font-family: Times  New Roman;'><img  src='/simens/public/images_icons/search_16.png' title='Recherche avanc&eacute;e' /> Rechercher</a>
 				   <a href='' id='ajouternouvelleintervention' style='float:left; font-weight:bold; font-size:15px; text-decoration:none; font-style: italic; font-family: Times  New Roman;'><span style='margin-right:7px; margin-left:10px; color:green; font-size: 18px;'>|</span><img  src='/simens/public/images_icons/aj.gif' title='Ajouter intervention' /> Ajouter </a>
 				 </div>
 				
 	    		 <div style='color: white; opacity: 1; width:95px; height:40px; padding-right:15px; float:right;'>
-                    <img  src='".$this->baseUrl()."public/images_icons/fleur1.jpg' />
+                    <img  src='" . $this->baseUrl() . "public/images_icons/fleur1.jpg' />
                  </div>
 		
 			     <div class='block' id='thoughtbot' style='vertical-align: bottom; padding-left:60%; margin-bottom: 40px; padding-top: 35px; font-size: 18px; font-weight: bold;'><button type='submit' id='terminer'>Terminer</button></div>
                  </div>";
-		
-		$html .="</div>";
-		
-		$html .="<style>  
+
+		$html .= "</div>";
+
+		$html .= "<style>  
 				  #listeDataTable{
 	                margin-left: 175px;
                   }
@@ -1315,150 +1370,155 @@ class PersonnelController extends AbstractActionController {
 				    margin-right: 30px;
                   }
 				 </style>";
-		
-		$html .="<script>listepatient();
+
+		$html .= "<script>listepatient();
 				</script>";
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function vueInterventionAgentAction(){
+
+	public function vueInterventionAgentAction()
+	{
 
 		$this->getDateHelper();
-		
-		$numero_intervention = (int) $this->params() ->fromPost('idIntervention');
-		
+
+		$numero_intervention = (int) $this->params()->fromPost('idIntervention');
+
 		$intervention = $this->getInterventionTable()->getIntervention($numero_intervention);
-		
-		if($intervention->type_intervention == 'Interne') {
+
+		if ($intervention->type_intervention == 'Interne') {
 			$id_service = $intervention->id_service;
 			$date_debut = $this->dateHelper->convertDate($intervention->date_debut);
 			$date_fin = $this->dateHelper->convertDate($intervention->date_fin);
 			$motif_intervention = $intervention->motif_intervention;
 			$note = $intervention->note;
-		}else {
+		} else {
 			$id_service = $intervention->id_service_externe;
 			$date_debut = $this->dateHelper->convertDate($intervention->date_debut_externe);
 			$date_fin = $this->dateHelper->convertDate($intervention->date_fin_externe);
 			$motif_intervention = $intervention->motif_intervention_externe;
 			$note = $intervention->note_externe;
 		}
-	
-		$html  ="<table>";
-		$html .="<tr>";
-		$html .="<td style='width:240px;'><a style='text-decoration:underline; font-size:12px;'>Service d'accueil:</a><br><p style='font-weight:bold; font-size:17px;'>".$this->getServiceTable()->getServiceAffectation($id_service)->nom."</p></td>";
-		$html .="<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Date d&eacute;but:</a><br><p style='font-weight:bold; font-size:17px;'>".$date_debut."</p></td>";
-		$html .="<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Date fin:</a><br><p style='font-weight:bold; font-size:17px;'>".$date_fin."</p></td>";
-		$html .="<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Type:</a><br><p style='font-weight:bold; font-size:17px;'>".$intervention->type_intervention."</p></td>";
-		$html .="</tr>";
-		$html .="</table>";
-	
-		$html .="<table>";
-		$html .="<tr>";
-		$html .="<td style='width:210px; padding-top: 10px; padding-right:25px;'><a style='text-decoration:underline; font-size:13px;'>Motif:</a><br><p id='circonstance_deces' style='background:#f8faf8; font-weight:bold; font-size:17px;'>".$motif_intervention."</p></td>";
-		$html .="<td style='width:210px; padding-top: 10px;'><a style='text-decoration:underline; font-size:13px;'>Note:</a><br><p id='circonstance_deces' style='background:#f8faf8; font-weight:bold; font-size:17px;'>".$note."</p></td>";
+
+		$html  = "<table>";
+		$html .= "<tr>";
+		$html .= "<td style='width:240px;'><a style='text-decoration:underline; font-size:12px;'>Service d'accueil:</a><br><p style='font-weight:bold; font-size:17px;'>" . $this->getServiceTable()->getServiceAffectation($id_service)->nom . "</p></td>";
+		$html .= "<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Date d&eacute;but:</a><br><p style='font-weight:bold; font-size:17px;'>" . $date_debut . "</p></td>";
+		$html .= "<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Date fin:</a><br><p style='font-weight:bold; font-size:17px;'>" . $date_fin . "</p></td>";
+		$html .= "<td style='width:100px;'><a style='text-decoration:underline; font-size:12px;'>Type:</a><br><p style='font-weight:bold; font-size:17px;'>" . $intervention->type_intervention . "</p></td>";
 		$html .= "</tr>";
-		$html .="</table>";
-	
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+		$html .= "</table>";
+
+		$html .= "<table>";
+		$html .= "<tr>";
+		$html .= "<td style='width:210px; padding-top: 10px; padding-right:25px;'><a style='text-decoration:underline; font-size:13px;'>Motif:</a><br><p id='circonstance_deces' style='background:#f8faf8; font-weight:bold; font-size:17px;'>" . $motif_intervention . "</p></td>";
+		$html .= "<td style='width:210px; padding-top: 10px;'><a style='text-decoration:underline; font-size:13px;'>Note:</a><br><p id='circonstance_deces' style='background:#f8faf8; font-weight:bold; font-size:17px;'>" . $note . "</p></td>";
+		$html .= "</tr>";
+		$html .= "</table>";
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function modifierInterventionAgentAction(){
+
+	public function modifierInterventionAgentAction()
+	{
 		$this->getDateHelper();
-		$idIntervention = (int) $this->params() ->fromPost('idIntervention');
-		$id_personne = (int) $this->params() ->fromPost('idAgent');
-		
+		$idIntervention = (int) $this->params()->fromPost('idIntervention');
+		$id_personne = (int) $this->params()->fromPost('idAgent');
+
 		$affectation = $this->getAffectationTable()->getServiceAgentAffecter($id_personne);
 		$service = $this->getServiceTable()->getServiceAffectation($affectation);
-		if($service){ $nomService = $service->nom;} else {$nomService = null;}
-		
+		if ($service) {
+			$nomService = $service->nom;
+		} else {
+			$nomService = null;
+		}
+
 		$intervention = $this->getInterventionTable()->getIntervention($idIntervention);
-		
+
 		$form = new InterventionPersonnelForm();
-		
+
 		$form->get('id_service')->setValueOptions($this->getServiceTable()->fetchService());
 		$form->get('hopital_accueil')->setValueOptions($this->getPatientTable()->listeHopitaux());
-		
-		if($intervention){ 
+
+		if ($intervention) {
 			$form->bind($intervention);
-			
-			if($intervention->type_intervention == "Interne"){
+
+			if ($intervention->type_intervention == "Interne") {
 				$date = array(
-						'date_debut' => $this->dateHelper->convertDate($intervention->date_debut),
-						'date_fin' => $this->dateHelper->convertDate($intervention->date_fin),
+					'date_debut' => $this->dateHelper->convertDate($intervention->date_debut),
+					'date_fin' => $this->dateHelper->convertDate($intervention->date_fin),
 				);
 			} else {
 				$date = array(
-						'date_debut_externe' => $this->dateHelper->convertDate($intervention->date_debut_externe),
-						'date_fin_externe' => $this->dateHelper->convertDate($intervention->date_fin_externe),
+					'date_debut_externe' => $this->dateHelper->convertDate($intervention->date_debut_externe),
+					'date_fin_externe' => $this->dateHelper->convertDate($intervention->date_fin_externe),
 				);
-				
+
 				$id_hopital = $this->getHopitalServiceTable()->getHopitalService($intervention->id_service_externe)->id_hopital;
 				$form->populateValues(array('hopital_accueil' => $id_hopital));
 				$form->get('id_service_externe')->setValueOptions($this->getServiceTable()->getServiceHopitalID($id_hopital));
 			}
-		    
 		}
 		$form->populateValues($date);
 		$formRow = new FormRow();
 		$formText = new FormText();
 		$formSelect = new FormSelect();
 		$formTextArea = new FormTextarea();
-		
-		$html ="<table id='form_patient' style='float: left; margin-left: 30px; margin-bottom:10px;'>
+
+		$html = "<table id='form_patient' style='float: left; margin-left: 30px; margin-bottom:10px;'>
                     <tr class='comment-form-patient'>
-                        <td style='width: 270px;'>".$formRow($form->get('type_intervention')).$formSelect($form->get('type_intervention'))."</td>
+                        <td style='width: 270px;'>" . $formRow($form->get('type_intervention')) . $formSelect($form->get('type_intervention')) . "</td>
                     </tr>
                  </table>";
-		
-		$html .="<div style='float:right; margin-top: 40px;' class='vider_formulaire' id='vider_champ_interne'>
+
+		$html .= "<div style='float:right; margin-top: 40px;' class='vider_formulaire' id='vider_champ_interne'>
                      <input title='Vider tout' name='vider' id='vider'>
                  </div>
 		
                  <div style='float:right; margin-top: 40px;' class='vider_formulaire' id='vider_champ_externe'>
                      <input title='Vider tout' name='vider' id='vider'>
                  </div>";
-		
-		$html .="<div id='barre_separateur_modif'></div>";
-		
-		$html .="<table id='form_patient' class='transfert_interne' style='float:left; margin-top:10px; margin-left: 30px; width: 97%;'>
+
+		$html .= "<div id='barre_separateur_modif'></div>";
+
+		$html .= "<table id='form_patient' class='transfert_interne' style='float:left; margin-top:10px; margin-left: 30px; width: 97%;'>
 		      
 		             <tr style='display: inline-block;  vertical-align: top; width: 97%;'>
-		                 <td class='comment-form-patient' style='width: 25%;' >".$formRow($form->get('service_origine')).$formText($form->get('service_origine'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('id_service')).$formSelect($form->get('id_service'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('date_debut')).$formText($form->get('date_debut'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('date_fin')).$formText($form->get('date_fin'))."</td>
+		                 <td class='comment-form-patient' style='width: 25%;' >" . $formRow($form->get('service_origine')) . $formText($form->get('service_origine')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('id_service')) . $formSelect($form->get('id_service')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('date_debut')) . $formText($form->get('date_debut')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('date_fin')) . $formText($form->get('date_fin')) . "</td>
 		             </tr>
 		             <tr style='display: inline-block;  vertical-align: top;'>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('motif_intervention')).$formTextArea($form->get('motif_intervention'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('note')).$formTextArea($form->get('note'))."</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('motif_intervention')) . $formTextArea($form->get('motif_intervention')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('note')) . $formTextArea($form->get('note')) . "</td>
 		                 <td class='comment-form-patient' style='width: 25%;'> </td>
 		                 <td class='comment-form-patient' style='width: 25%;'> </td>
 		             </tr>
 		      
 	           </table>";
-		
-		$html .="<table id='form_patient' class='transfert_externe' style=' float:left; margin-top:10px; margin-left: 30px; width: 97%;'>
+
+		$html .= "<table id='form_patient' class='transfert_externe' style=' float:left; margin-top:10px; margin-left: 30px; width: 97%;'>
 		      
 		             <tr style='display: inline-block;  vertical-align: top; width: 97%;'>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('service_origine_externe')).$formText($form->get('service_origine_externe'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('hopital_accueil')).$formSelect($form->get('hopital_accueil'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('id_service_externe')).$formSelect($form->get('id_service_externe'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('date_debut_externe')).$formText($form->get('date_debut_externe'))."</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('service_origine_externe')) . $formText($form->get('service_origine_externe')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('hopital_accueil')) . $formSelect($form->get('hopital_accueil')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('id_service_externe')) . $formSelect($form->get('id_service_externe')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('date_debut_externe')) . $formText($form->get('date_debut_externe')) . "</td>
 		             </tr>
 		             <tr style='display: inline-block;  vertical-align: top;'>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('date_fin_externe')).$formText($form->get('date_fin_externe'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('motif_intervention_externe')).$formTextArea($form->get('motif_intervention_externe'))."</td>
-		                 <td class='comment-form-patient' style='width: 25%;'>".$formRow($form->get('note_externe')).$formTextArea($form->get('note_externe'))."</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('date_fin_externe')) . $formText($form->get('date_fin_externe')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('motif_intervention_externe')) . $formTextArea($form->get('motif_intervention_externe')) . "</td>
+		                 <td class='comment-form-patient' style='width: 25%;'>" . $formRow($form->get('note_externe')) . $formTextArea($form->get('note_externe')) . "</td>
 		                 <td class='comment-form-patient' style='width: 25%;'> </td>
 		             </tr>
 		      
 	           </table>	";
-		
-		if($intervention->type_intervention == 'Interne'){
-			$html .="<script>
+
+		if ($intervention->type_intervention == 'Interne') {
+			$html .= "<script>
 				      $('.transfert_externe').toggle(false);
 				      $('#vider_champ_externe').toggle(false);
 		
@@ -1470,8 +1530,8 @@ class PersonnelController extends AbstractActionController {
 	                 $('#note_externe').val('');
 		
      				 </script>";
-		}else {
-			$html .="<script>
+		} else {
+			$html .= "<script>
 				      $('.transfert_interne').toggle(false);
 				      $('#vider_champ_interne').toggle(false);
 				 
@@ -1483,10 +1543,10 @@ class PersonnelController extends AbstractActionController {
 				
 					 </script>";
 		}
-		
-		$html .="<script>
+
+		$html .= "<script>
 				  //TRANSFERT INTERNE
-				    $('#service_origine').val('".$nomService."');
+				    $('#service_origine').val('" . $nomService . "');
 				    $('#service_origine').css({'background':'#eee','border-bottom-width':'0px','border-top-width':'0px','border-left-width':'0px','border-right-width':'0px','font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'17px'});
 					$('#service_origine').attr('readonly',true);
 		
@@ -1495,7 +1555,7 @@ class PersonnelController extends AbstractActionController {
 				    $('#note, #note_externe').css({'font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'15px'});
 		
 				  //TRANSFERT EXTERNE
-				    $('#service_origine_externe').val('".$nomService."');
+				    $('#service_origine_externe').val('" . $nomService . "');
 				    $('#service_origine_externe').css({'background':'#eee','border-bottom-width':'0px','border-top-width':'0px','border-left-width':'0px','border-right-width':'0px','font-weight':'bold','color':'#065d10','font-family': 'Times  New Roman','font-size':'17px'});
 					$('#service_origine_externe').attr('readonly',true);
 		
@@ -1539,18 +1599,19 @@ class PersonnelController extends AbstractActionController {
         	          return false;
         	         }
 				  </script>";
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function raffraichirListeIntervention($id_personne){
+
+	public function raffraichirListeIntervention($id_personne)
+	{
 		$html = "";
 		$this->getDateHelper();
-		 
-		$html .="<table class='table table-bordered tab_list_mini'  style='margin-top:10px; margin-bottom:20px; margin-left:185px; width:80%;' id='listeintervention'>";
-		 
-		$html .="<thead style='width: 100%;'>
+
+		$html .= "<table class='table table-bordered tab_list_mini'  style='margin-top:10px; margin-bottom:20px; margin-left:185px; width:80%;' id='listeintervention'>";
+
+		$html .= "<thead style='width: 100%;'>
 				  <tr style='height:40px; width:100%; cursor:pointer;'>
 					<th style='width: 40%;'>Services</th>
 					<th style='width: 15%;'>Date debut</th>
@@ -1559,110 +1620,110 @@ class PersonnelController extends AbstractActionController {
 				    <th style='width: 12%;'>Options</th>
 				  </tr>
 			     </thead>";
-		 
-		$html .="<tbody style='width: 100%;'>";
-		 
+
+		$html .= "<tbody style='width: 100%;'>";
+
 		$listeIntervention = $this->getPersonnelTable()->getListeInterventions($id_personne);
-		 
-		foreach ($listeIntervention as $Liste){
-			 
-			$html .="<tr style='width: 100%;' id='".$Liste['numero_intervention']."'>";
-			$html .="<td style='width: 40%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->getServiceTable()->getServiceAffectation($Liste['id_service'])->nom."</div></td>";
-			$html .="<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->dateHelper->convertDate($Liste['date_debut'])."</div></td>";
-			$html .="<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$this->dateHelper->convertDate($Liste['date_fin'])."</div></td>";
-			$html .="<td style='width: 18%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>".$Liste['type_intervention']."</div></td>";
-			$html .="<td style='width: 12%;'> <a href='javascript:vueintervention(".$Liste['numero_intervention'].") '>
+
+		foreach ($listeIntervention as $Liste) {
+
+			$html .= "<tr style='width: 100%;' id='" . $Liste['numero_intervention'] . "'>";
+			$html .= "<td style='width: 40%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->getServiceTable()->getServiceAffectation($Liste['id_service'])->nom . "</div></td>";
+			$html .= "<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->dateHelper->convertDate($Liste['date_debut']) . "</div></td>";
+			$html .= "<td style='width: 15%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $this->dateHelper->convertDate($Liste['date_fin']) . "</div></td>";
+			$html .= "<td style='width: 18%;'><div id='inform' style='float:left; font-weight:bold; font-size:17px;'>" . $Liste['type_intervention'] . "</div></td>";
+			$html .= "<td style='width: 12%;'> <a href='javascript:vueintervention(" . $Liste['numero_intervention'] . ") '>
 					       <img style='display: inline;' src='/simens/public/images_icons/vue.PNG' alt='Constantes' title='details' />
 					  </a>&nbsp;
 			 
-				      <a href='javascript:modifierintervention(".$Liste['numero_intervention'].",".$id_personne.")'>
+				      <a href='javascript:modifierintervention(" . $Liste['numero_intervention'] . "," . $id_personne . ")'>
 					    	<img style='display: inline;' src='/simens/public/images_icons/suivant.PNG' alt='Constantes' title='modifier' />
 					  </a>&nbsp;
 			 
-				      <a href='javascript:supprimeruneintervention(".$Liste['numero_intervention'].",".$id_personne.")' >
+				      <a href='javascript:supprimeruneintervention(" . $Liste['numero_intervention'] . "," . $id_personne . ")' >
 					    	<img  style='display: inline;' src='/simens/public/images_icons/sup.PNG' alt='Constantes' title='annuler' />
 					  </a>
 				     </td>";
-			$html .="</tr>";
-			 
+			$html .= "</tr>";
 		}
-		$html .="</tbody>";
-		 
-		$html .="</table>";
-		 
-		$html .="<script> listepatient (); </script>";
-		
+		$html .= "</tbody>";
+
+		$html .= "</table>";
+
+		$html .= "<script> listepatient (); </script>";
+
 		return $html;
 	}
-	
-	public function saveInterventionAction() {
+
+	public function saveInterventionAction()
+	{
 
 		$formInterventionPersonnel = new InterventionPersonnelForm();
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			
+
 			$intervention =  new Intervention1();
 			$formInterventionPersonnel->setInputFilter($intervention->getInputFilter());
 			$formInterventionPersonnel->setData($request->getPost());
-		
+
 			//A COMPRENDRE LE POURQUOI DE CA
 			$formInterventionPersonnel->remove('id_service');
 			$formInterventionPersonnel->remove('id_service_externe');
 			$formInterventionPersonnel->remove('hopital_accueil');
-		
+
 			if ($formInterventionPersonnel->isValid()) {
-				
+
 				$intervention->exchangeArray($formInterventionPersonnel->getData());
 
-			    $this->getInterventionTable()->saveIntervention($intervention);
-			    
-			    $id_personne = $intervention->id_personne;
-			    
-			    $html = $this->raffraichirListeIntervention($id_personne);
-			    
+				$this->getInterventionTable()->saveIntervention($intervention);
+
+				$id_personne = $intervention->id_personne;
+
+				$html = $this->raffraichirListeIntervention($id_personne);
 			}
 		}
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
-	public function supprimerInterventionAction(){
-		$id_personne = (int) $this->params()-> fromPost('id_personne' , 0);
-		
+
+	public function supprimerInterventionAction()
+	{
+		$id_personne = (int) $this->params()->fromPost('id_personne', 0);
+
 		$this->getInterventionTable()->deleteIntervention($id_personne);
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode () );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode());
 	}
-	
-	public function supprimerUneInterventionAction(){
-		$numero_intervention = (int) $this->params()-> fromPost('numero_intervention' , 0);
-		$id_personne = (int) $this->params()-> fromPost('id_personne' , 0);
-	
+
+	public function supprimerUneInterventionAction()
+	{
+		$numero_intervention = (int) $this->params()->fromPost('numero_intervention', 0);
+		$id_personne = (int) $this->params()->fromPost('id_personne', 0);
+
 		$this->getInterventionTable()->deleteUneIntervention($numero_intervention);
-	
+
 		$html = $this->raffraichirListeIntervention($id_personne);
-		
-		$this->getResponse ()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html; charset=utf-8' );
-		return $this->getResponse ()->setContent ( Json::encode ( $html ) );
+
+		$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html; charset=utf-8');
+		return $this->getResponse()->setContent(Json::encode($html));
 	}
-	
+
 	//******* Recuperer les services correspondants en cliquant sur un hopital
 	public function servicesAction()
 	{
-		$id=(int)$this->params()->fromPost ('id');
-	
-		if ($this->getRequest()->isPost()){
+		$id = (int)$this->params()->fromPost('id');
+
+		if ($this->getRequest()->isPost()) {
 			$liste_select = "";
-			$services= $this->getServiceTable();
-			foreach($services->getServiceHopital($id) as $listeServices){
-				$liste_select.= "<option value=".$listeServices['Id_service'].">".$listeServices['Nom_service']."</option>";
+			$services = $this->getServiceTable();
+			foreach ($services->getServiceHopital($id) as $listeServices) {
+				$liste_select .= "<option value=" . $listeServices['Id_service'] . ">" . $listeServices['Nom_service'] . "</option>";
 			}
-				
-			$this->getResponse()->getHeaders ()->addHeaderLine ( 'Content-Type', 'application/html' );
-			return $this->getResponse ()->setContent(Json::encode ( $liste_select));
+
+			$this->getResponse()->getHeaders()->addHeaderLine('Content-Type', 'application/html');
+			return $this->getResponse()->setContent(Json::encode($liste_select));
 		}
-	
 	}
 }

@@ -1,13 +1,13 @@
 <!-- MES STYLES -->
-<?php echo $this->headLink()->appendStylesheet($this->basePath().'/css/facturation/styleAdmissionBloc.css');?>
+<?php echo $this->headLink()->appendStylesheet($this->basePath() . '/css/facturation/styleAdmissionBloc.css'); ?>
 
 <!-- MES JS -->
-<?php echo $this->headScript()->appendFile($this->basePath().'/js/facturation/jsAdmissionBloc.js');
-echo $this->headScript()->appendFile($this->basePath().'/js/mesjs/bloquerDateOperation.js');
+<?php echo $this->headScript()->appendFile($this->basePath() . '/js/facturation/jsAdmissionBloc.js');
+echo $this->headScript()->appendFile($this->basePath() . '/js/mesjs/bloquerDateOperation.js');
 ?>
 
 
-<?php $Control=new \Facturation\View\Helper\DateHelper();?>
+<?php $Control = new \Facturation\View\Helper\DateHelper(); ?>
 
 
 <!--************************************************************************************************************-->
@@ -15,83 +15,143 @@ echo $this->headScript()->appendFile($this->basePath().'/js/mesjs/bloquerDateOpe
 <!--===================================== BLOCAGE DES JOURS NON CONSULTABLE ====================================-->
 <!--************************************************************************************************************-->
 <?php
-  
-  $today = new \DateTime();
-  $AnneeActuelle =  $today->format('Y');
 
-  /*****Mois 1 *****/
-  $leMois1 = $today->format('m'); //C'est le mois actuel � l'heure du calendrier
-  $Dimanche1 = $Control->lePremierDimancheDuMois();
-  /*****Mois 2 *****(Sauf pour le douzieme mois)*/
-  $leMois2 = $leMois1 +1;
-  if($leMois2 == 13){ $leMois2 = 1; $AnneeActuelle2 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle2 = $AnneeActuelle;}
-  $Dimanche2 = $Control->lePremierDimancheDuMoisByDate($leMois2, $AnneeActuelle2);
-  /*****Mois 3 *****/
-  $leMois3 = $leMois2 +1;
-  if($leMois3 == 13){ $leMois3 = 1; $AnneeActuelle3 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle3 = $AnneeActuelle;}
-  $Dimanche3 = $Control->lePremierDimancheDuMoisByDate($leMois3, $AnneeActuelle3);
-  /*****Mois 4 *****/
-  $leMois4 = $leMois3 +1;
-  if($leMois4 == 13){ $leMois4 = 1; $AnneeActuelle4 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle4 = $AnneeActuelle;}
-  $Dimanche4 = $Control->lePremierDimancheDuMoisByDate($leMois4, $AnneeActuelle4);
-  /*****Mois 5 *****/
-  $leMois5 = $leMois4 +1;
-  if($leMois5 == 13){ $leMois5 = 1; $AnneeActuelle5 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle5 = $AnneeActuelle;}
-  $Dimanche5 = $Control->lePremierDimancheDuMoisByDate($leMois5, $AnneeActuelle5);
-  /*****Mois 6 *****/
-  $leMois6 = $leMois5 +1;
-  if($leMois6 == 13){ $leMois6 = 1; $AnneeActuelle6 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle6 = $AnneeActuelle;}
-  $Dimanche6 = $Control->lePremierDimancheDuMoisByDate($leMois6, $AnneeActuelle6);
-  /*****Mois 7 *****/
-  $leMois7 = $leMois6 +1;
-  if($leMois7 == 13){ $leMois7 = 1; $AnneeActuelle7 = $AnneeActuelle + 1; $AnneeActuelle++; }else { $AnneeActuelle7 = $AnneeActuelle;}
-  $Dimanche7 = $Control->lePremierDimancheDuMoisByDate($leMois7, $AnneeActuelle7);
+$today = new \DateTime();
+$AnneeActuelle =  $today->format('Y');
+
+/*****Mois 1 *****/
+$leMois1 = $today->format('m'); //C'est le mois actuel � l'heure du calendrier
+$Dimanche1 = $Control->lePremierDimancheDuMois();
+/*****Mois 2 *****(Sauf pour le douzieme mois)*/
+$leMois2 = $leMois1 + 1;
+if ($leMois2 == 13) {
+  $leMois2 = 1;
+  $AnneeActuelle2 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle2 = $AnneeActuelle;
+}
+$Dimanche2 = $Control->lePremierDimancheDuMoisByDate($leMois2, $AnneeActuelle2);
+/*****Mois 3 *****/
+$leMois3 = $leMois2 + 1;
+if ($leMois3 == 13) {
+  $leMois3 = 1;
+  $AnneeActuelle3 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle3 = $AnneeActuelle;
+}
+$Dimanche3 = $Control->lePremierDimancheDuMoisByDate($leMois3, $AnneeActuelle3);
+/*****Mois 4 *****/
+$leMois4 = $leMois3 + 1;
+if ($leMois4 == 13) {
+  $leMois4 = 1;
+  $AnneeActuelle4 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle4 = $AnneeActuelle;
+}
+$Dimanche4 = $Control->lePremierDimancheDuMoisByDate($leMois4, $AnneeActuelle4);
+/*****Mois 5 *****/
+$leMois5 = $leMois4 + 1;
+if ($leMois5 == 13) {
+  $leMois5 = 1;
+  $AnneeActuelle5 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle5 = $AnneeActuelle;
+}
+$Dimanche5 = $Control->lePremierDimancheDuMoisByDate($leMois5, $AnneeActuelle5);
+/*****Mois 6 *****/
+$leMois6 = $leMois5 + 1;
+if ($leMois6 == 13) {
+  $leMois6 = 1;
+  $AnneeActuelle6 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle6 = $AnneeActuelle;
+}
+$Dimanche6 = $Control->lePremierDimancheDuMoisByDate($leMois6, $AnneeActuelle6);
+/*****Mois 7 *****/
+$leMois7 = $leMois6 + 1;
+if ($leMois7 == 13) {
+  $leMois7 = 1;
+  $AnneeActuelle7 = $AnneeActuelle + 1;
+  $AnneeActuelle++;
+} else {
+  $AnneeActuelle7 = $AnneeActuelle;
+}
+$Dimanche7 = $Control->lePremierDimancheDuMoisByDate($leMois7, $AnneeActuelle7);
 ?>
 
 
 <script>
   //Bloquer les 90 jours non consultable a patir du jour, du mois actuel
   /*****Mois 1*****/
-  mois1 = '<?php echo $leMois1?>';
-  dimanche1 = <?php echo $Dimanche1?>;
-  annee1 ='<?php echo $today->format('Y'); ?>';
-  
-  
+  mois1 = '<?php echo $leMois1 ?>';
+  dimanche1 = <?php echo $Dimanche1 ?>;
+  annee1 = '<?php echo $today->format('Y'); ?>';
+
+
   /*****Mois 2 *****/
-  if(<?php echo $leMois2?> > 9){mois2 = <?php echo $leMois2?>;}else{mois2 = '0'+'<?php echo $leMois2?>';}
-  dimanche2 = <?php echo $Dimanche2?>;
-  annee2 ='<?php echo $AnneeActuelle2?>';
+  if (<?php echo $leMois2 ?> > 9) {
+    mois2 = <?php echo $leMois2 ?>;
+  } else {
+    mois2 = '0' + '<?php echo $leMois2 ?>';
+  }
+  dimanche2 = <?php echo $Dimanche2 ?>;
+  annee2 = '<?php echo $AnneeActuelle2 ?>';
 
-  
+
   /*****Mois 3 *****/
-  if(<?php echo $leMois3?> > 9){mois3 = <?php echo $leMois3?>;}else{mois3 = '0'+'<?php echo $leMois3?>';}
-  dimanche3 = <?php echo $Dimanche3?>;
-  annee3 ='<?php echo $AnneeActuelle3?>';
+  if (<?php echo $leMois3 ?> > 9) {
+    mois3 = <?php echo $leMois3 ?>;
+  } else {
+    mois3 = '0' + '<?php echo $leMois3 ?>';
+  }
+  dimanche3 = <?php echo $Dimanche3 ?>;
+  annee3 = '<?php echo $AnneeActuelle3 ?>';
 
-  
+
   /*****Mois 4 *****/
-  if(<?php echo $leMois4?> > 9){mois4 = <?php echo $leMois4?>;}else{mois4 = '0'+'<?php echo $leMois4?>';}
-  dimanche4 = <?php echo $Dimanche4?>;
-  annee4 ='<?php echo $AnneeActuelle4?>';
-  
+  if (<?php echo $leMois4 ?> > 9) {
+    mois4 = <?php echo $leMois4 ?>;
+  } else {
+    mois4 = '0' + '<?php echo $leMois4 ?>';
+  }
+  dimanche4 = <?php echo $Dimanche4 ?>;
+  annee4 = '<?php echo $AnneeActuelle4 ?>';
+
   /*****Mois 5 *****/
-  if(<?php echo $leMois5?> > 9){mois5 = <?php echo $leMois5?>;}else{mois5 = '0'+'<?php echo $leMois5?>';}
-  dimanche5 = <?php echo $Dimanche5?>;
-  annee5 ='<?php echo $AnneeActuelle5?>';
+  if (<?php echo $leMois5 ?> > 9) {
+    mois5 = <?php echo $leMois5 ?>;
+  } else {
+    mois5 = '0' + '<?php echo $leMois5 ?>';
+  }
+  dimanche5 = <?php echo $Dimanche5 ?>;
+  annee5 = '<?php echo $AnneeActuelle5 ?>';
 
   /*****Mois 6 *****/
-  if(<?php echo $leMois6?> > 9){mois6 = <?php echo $leMois6?>;}else{mois6 = '0'+'<?php echo $leMois6?>';}
-  dimanche6 = <?php echo $Dimanche6?>;
-  annee6 ='<?php echo $AnneeActuelle6?>';
+  if (<?php echo $leMois6 ?> > 9) {
+    mois6 = <?php echo $leMois6 ?>;
+  } else {
+    mois6 = '0' + '<?php echo $leMois6 ?>';
+  }
+  dimanche6 = <?php echo $Dimanche6 ?>;
+  annee6 = '<?php echo $AnneeActuelle6 ?>';
 
   /*****Mois 7 *****/
- if(<?php echo $leMois7?> > 9){mois7 = <?php echo $leMois7?>;}else{mois7 = '0'+'<?php echo $leMois7?>';}
-  dimanche7 = <?php echo $Dimanche7?>;
-  annee7 ='<?php echo $AnneeActuelle7?>';
+  if (<?php echo $leMois7 ?> > 9) {
+    mois7 = <?php echo $leMois7 ?>;
+  } else {
+    mois7 = '0' + '<?php echo $leMois7 ?>';
+  }
+  dimanche7 = <?php echo $Dimanche7 ?>;
+  annee7 = '<?php echo $AnneeActuelle7 ?>';
   /****************************
-  *===========================
+   *===========================
    **************************/
-          bloquerDateOperation();
+  bloquerDateOperation();
   /**************************
    * ========================
    **************************/
@@ -100,181 +160,195 @@ echo $this->headScript()->appendFile($this->basePath().'/js/mesjs/bloquerDateOpe
     <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
     <!--===================================== FIN BLOCAGE DES JOURS NON CONSULTABLE ================================-->
     <!--************************************************************************************************************--*/
-
 </script>
 
 
-<?php use  Facturation\View\Helper\DateHelper;
-$Control = new DateHelper();?>
+<?php
+
+use  Facturation\View\Helper\DateHelper;
+
+$Control = new DateHelper(); ?>
 
 <script type="text/javascript">
-var base_url = window.location.toString();
-var tabUrl = base_url.split("public");
+  $(window).load(function() {
+    $('#wait').toggle(false);
+    $('#contenuDesInterfaces, #titre').fadeIn().css({
+      'visibility': 'visible'
+    });
 
-$('#plus_admissionbloc').toggle(true);
-$("#admissionbloc").replaceWith("<li id='admissionbloc' style='background:#4a5765;'><a href=''><span style='margin-left:0px; color: #ffffff; font-weight:bold; font-size:20px; font-family:Times New Roman;'> <img style='display: inline;' src='"+tabUrl[0]+"public/images_icons/moin-green2.png' alt='Liste' /> Admission au bloc </span></a></li>");
-dep_admissionbloc1();
-$('#admissionbloc_style').css({'font-weight':'bold','color':'white','font-size':'22px'});
+    $('.accordion-menu, .profil-major-menu').toggle(true);
+    $('#profil-major-menu-rubrique-bloc  .submenuItems #admission-bloc-select, #profil-major-menu-rubrique-bloc  .submenuItems #admission-bloc-select > i').css({
+      'font-weight': 'bold',
+      'color': 'black'
+    });
 
+    $('#profil-major-menu-rubrique-bloc div').trigger('dblclick');
 
-$(window).load(function () {
-	$('#wait').toggle(false);
-	$('#contenuDesInterfaces').fadeIn().css({'visibility':'visible'});
-});
+  });
 </script>
 
 <style>
-#contenuDesInterfaces{ visibility: hidden; };
+  #contenuDesInterfaces {
+    visibility: hidden;
+  }
+
+  ;
 </style>
 
 
-<div id="titre" style='font-family: police2; text-decoration:none; color: green; font-size: 18px; font-weight: bold; padding-left: 35px;'><iS style='font-size: 25px;'>&curren;</iS> DEMANDES D'ADMISSION</div>
-     
-<div id="wait" style="color: gray; font-size: 20px; text-align: center; margin-top: 80px;" > <span> Chargement ... </span> </div>
-     
-<div id="contenuDesInterfaces" >
-     <div id="contenu" >
-		<table style='width:95%; margin-left: 10px; align:center' class="table table-bordered tab_list_mini" id="patient">
-			<thead >
-			    <tr >
-				    <th id="idpatient_" style='width: 15%;'><input type="text" name="search_browser" value=" Numero_Dossier" class="search_init" /></th>
-					<th id="nom_" style='width: 15%;'><input type="text" name="search_browser" value=" Nom" class="search_init" /></th>
-					<th id="prenom_" style='width: 17%;'><input type="text" name="search_browser" value=" Pr&eacute;nom" class="search_init" /></th>
-					<th id="date_" style='width: 13%;'><input type="text" name="search_browser" value=" Age" class="search_init" /></th>
-					<th id="sexe_" style='width: 10%;'><input type="text" name="search_browser" value=" Sexe" class="search_init" /></th>
-					<th id="adresse_" style='width: 25%;'><input type="text" name="search_browser" value=" Adresse" class="search_init" /></th>
-					<th id="effectuer_" style='width: 5%;'><input type="hidden" value="" class="" />Options</th>
-
-				</tr>
-
-			</thead>
-
-			<tbody id="donnees" class="liste_patient">
-
-	            <?php /* AFFICHAGE DE LA LISTE DES PATIENTS */?>
-
-			</tbody>
-
-		</table>
-
-<script type="text/javascript">
-initialisation();
-</script>
+<div id="titre" style='font-family: police2; text-decoration:none; color: green; font-size: 18px; font-weight: bold; padding-left: 35px;'>
+  <iS style='font-size: 25px;'>&curren;</iS> DEMANDES D'ADMISSION
 </div>
 
-<!-- POP UP pour Confirmation Suppression -->
-                            <div id="confirmation" title="Informations" style="display:none;">
-                              <div id="info" style="font-size: 16px;">
+<div id="wait" style="color: gray; font-size: 20px; text-align: center; margin-top: 80px;"> <span> Chargement ... </span> </div>
 
-                              </div>
-                            </div>
+<div id="contenuDesInterfaces">
+  <div id="contenu">
+    <table style='width:95%; margin-left: 10px; align:center' class="table table-bordered tab_list_mini" id="patient">
+      <thead>
+        <tr>
+          <th id="idpatient_" style='width: 15%;'><input type="text" name="search_browser" value=" Numero_Dossier" class="search_init" /></th>
+          <th id="nom_" style='width: 15%;'><input type="text" name="search_browser" value=" Nom" class="search_init" /></th>
+          <th id="prenom_" style='width: 17%;'><input type="text" name="search_browser" value=" Pr&eacute;nom" class="search_init" /></th>
+          <th id="date_" style='width: 13%;'><input type="text" name="search_browser" value=" Age" class="search_init" /></th>
+          <th id="sexe_" style='width: 10%;'><input type="text" name="search_browser" value=" Sexe" class="search_init" /></th>
+          <th id="adresse_" style='width: 22%;'><input type="text" name="search_browser" value=" Adresse" class="search_init" /></th>
+          <th id="effectuer_" style='width: 8%;'><input type="hidden" value="" class="" />Options</th>
 
+        </tr>
 
-<!-- LES BOUTONS "TERMINER" ou "VALIDER" -->
+      </thead>
 
+      <tbody id="donnees" class="liste_patient">
 
+        <?php /* AFFICHAGE DE LA LISTE DES PATIENTS */ ?>
 
-<!-- PARTIE ENREGISTREMENT DU DECES -->
+      </tbody>
 
-    <div id="declarer_deces">
-          <a href="" id="precedent" style="text-decoration: none; font-family: police2; width:50px; margin-left:30px;">
-	        <img style=" display: inline; " src='<?php echo $this->basePath().'/images_icons/transfert_gauche.PNG'?>' title="Rechercher" />
-		    Pr&eacute;c&eacute;dent
-		  </a>
+    </table>
 
-		  <div id="info_patient">
-		  </div>
+    <script type="text/javascript">
+      initialisation();
+    </script>
+  </div>
 
-		  <?php $today = new \DateTime('now');
-		  $date = $today->format ( 'd/m/Y H:i' );?>
-		  <div id="titre_info_deces">Programme op&eacute;ratoire<div style='float:right; margin-right:15px; font-size:14px;'> <input name='semainedatedebut' type='hidden' ><input name='semainedatefin' type='hidden'>  <span id='semaineDebutFin' style='cursor:pointer; padding-right: 20px; text-decoration: none;'> ---- </span> | <span style='padding-left: 20px;'> Saint-Louis le, <?php echo $date;?> </span> </div></div>
-		  <div id="barre_separateur">
-		  </div>
+  <!-- POP UP pour Confirmation Suppression -->
+  <div id="confirmation" title="Informations" style="display:none;">
+    <div id="info" style="font-size: 16px;">
 
-		  <?php $form = $this->form ;
-		        $form->setAttribute ( 'action', $this->url ( 'facturation', array ('action' => 'enregistrer-admission-bloc') ) );
-		        $form->setAttribute ( 'id' , 'formulairePrincipal');
-		        $form->prepare();
-		        echo $this->form()->openTag($form);
-		       ?>
-		  <?php echo $this->formhidden($form->get('id_patient')); ?>    
-		  <div id="info_bebe" style='width: 100%; margin-top:10px; height:185px;'>
-               <div style="float:left; width:18%; height:5%;">
-		       </div>
-		       
-		       <div style='width: 77%; float:left;'>
-		       	<input type="hidden" id="idDemandeOperation" name="idDemandeOperation">
-		         <table id="form_patient" style="width:100%;">
-		             <tr id="form_patient_radio" style='width: 100%;'>
-		                 <td style='width: 33%;' class="comment-form-patient"><?php echo $this->formRow($form->get('diagnostic'));?></td>
-		                 <td style='width: 33%;' class="comment-form-patient"><?php echo $this->formRow($form->get('intervention_prevue'));?></td>
-		                 <td style='width: 20%;' class="comment-form-patient"><?php echo $this->formRow($form->get('date_Vpa'));?></td>
-		                 <td style='width: 13%;' class="comment-form-patient"><?php echo $this->formRow($form->get('vpa'));?></td>
-		                 
-		             </tr>
-		         
-		             <tr style='width: 100%;'>
-		                 <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('salle'));?></td>
-		                 <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('operateur'));?></td>
-		                 <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('service'));?></td>
-		             </tr>
-		         </table>
-		       </div>
-		       <div style="float:left; width:5%;">
-		       </div>
-		  </div>
-
-		  <div style='width: 90%; height: 60px;'>
-		       <div style='width: 40%;'></div>
-		       <div style='width: 20%;'>
-                  <div id="terminer_annuler">
-                    <div class="block" id="thoughtbot">
-                       <button name="annuler" id="annuler" style=" height:35px; ">Annuler</button>
-                    </div>
-                    
-                    <div class="block termineradmission" id="thoughtbot">
-                       <button id="termineradmission" style=" height:35px; ">Terminer</button>
-                    </div>
-                  </div>
-                </div>
-                <div style='width: 40%;'></div>
-          </div>
-          <?php echo $this->form()->closeTag(); ?>
-		  
     </div>
-    
+  </div>
+
+
+  <!-- LES BOUTONS "TERMINER" ou "VALIDER" -->
+
+
+
+  <!-- PARTIE ENREGISTREMENT DU DECES -->
+
+  <div id="declarer_deces">
+    <a href="" id="precedent" style="text-decoration: none; font-family: police2; width:50px; margin-left:30px;">
+      <img style=" display: inline; " src='<?php echo $this->basePath() . '/images_icons/transfert_gauche.PNG' ?>' title="Rechercher" />
+      Pr&eacute;c&eacute;dent
+    </a>
+
+    <div id="info_patient">
+    </div>
+
+    <?php $today = new \DateTime('now');
+    $date = $today->format('d/m/Y H:i'); ?>
+    <div id="titre_info_deces">Programme op&eacute;ratoire<div style='float:right; margin-right:15px; font-size:14px;'> <input name='semainedatedebut' type='hidden'><input name='semainedatefin' type='hidden'> <span id='semaineDebutFin' style='cursor:pointer; padding-right: 20px; text-decoration: none;'> ---- </span> | <span style='padding-left: 20px;'> Saint-Louis le, <?php echo $date; ?> </span> </div>
+    </div>
+    <div id="barre_separateur">
+    </div>
+
+    <?php $form = $this->form;
+    $form->setAttribute('action', $this->url('facturation', array('action' => 'enregistrer-admission-bloc')));
+    $form->setAttribute('id', 'formulairePrincipal');
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <?php echo $this->formhidden($form->get('id_patient')); ?>
+    <div id="info_bebe" style='width: 100%; margin-top:10px; height:185px;'>
+      <div style="float:left; width:18%; height:5%;">
+      </div>
+
+      <div style='width: 77%; float:left;'>
+        <input type="hidden" id="idDemandeOperation" name="idDemandeOperation">
+        <table id="form_patient" style="width:100%;">
+          <tr id="form_patient_radio" style='width: 100%;'>
+            <td style='width: 33%;' class="comment-form-patient"><?php echo $this->formRow($form->get('diagnostic')); ?></td>
+            <td style='width: 33%;' class="comment-form-patient"><?php echo $this->formRow($form->get('intervention_prevue')); ?></td>
+            <td style='width: 20%;' class="comment-form-patient"><?php echo $this->formRow($form->get('date_Vpa')); ?></td>
+            <td style='width: 13%;' class="comment-form-patient"><?php echo $this->formRow($form->get('vpa')); ?></td>
+
+          </tr>
+
+          <tr style='width: 100%;'>
+            <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('salle')); ?></td>
+            <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('operateur')); ?></td>
+            <td class="comment-form-patient" style='width: 33%;'><?php echo $this->formRow($form->get('service')); ?></td>
+          </tr>
+        </table>
+      </div>
+      <div style="float:left; width:5%;">
+      </div>
+    </div>
+
+    <div style='width: 90%; height: 60px;'>
+      <div style='width: 40%;'></div>
+      <div style='width: 20%;'>
+        <div id="terminer_annuler">
+          <div class="block" id="thoughtbot">
+            <button name="annuler" id="annuler" style=" height:35px; ">Annuler</button>
+          </div>
+
+          <div class="block termineradmission" id="thoughtbot">
+            <button id="termineradmission" style=" height:35px; ">Terminer</button>
+          </div>
+        </div>
+      </div>
+      <div style='width: 40%;'></div>
+    </div>
+    <?php echo $this->form()->closeTag(); ?>
+
+  </div>
+
 </div>
 
-    <form id="FormulaireImprimerFacture" style="display: none;">
-      <button id="ImprimerFacture"></button>
-    </form>
+<form id="FormulaireImprimerFacture" style="display: none;">
+  <button id="ImprimerFacture"></button>
+</form>
 
 <div id="context-menu">
-    <ul class="dropdown-menu" >
-         <li><a style="cursor: pointer;" ><img id="visualiserCTX" style='margin-right: 10px; width: 19px; height: 16px;' src='../images_icons/voir2.png'>Visualiser</a></li>
-         <li class="divider2"></li>
-         <li><a style="cursor: pointer;"><img  id="suivantCTX" style='margin-right: 10px; width: 19px; height: 16px;' src='../images_icons/transfert_droite.png'>Suivant</a></li>
-         <li class="divider"></li>
-         <li><a id="quitterCTX"  style="cursor: pointer;">Quitter</a></li>
-    </ul>
+  <ul class="dropdown-menu">
+    <li><a style="cursor: pointer;"><img id="visualiserCTX" style='margin-right: 10px; width: 19px; height: 16px;' src='../images_icons/voir2.png'>Visualiser</a></li>
+    <li class="divider2"></li>
+    <li><a style="cursor: pointer;"><img id="suivantCTX" style='margin-right: 10px; width: 19px; height: 16px;' src='../images_icons/transfert_droite.png'>Suivant</a></li>
+    <li class="divider"></li>
+    <li><a id="quitterCTX" style="cursor: pointer;">Quitter</a></li>
+  </ul>
 </div>
-		
-		
+
+
 <script>
-animation();
-$('#service').val("").attr({'disabled':'true'}).css({'background':'#f3f3f3'});
-$('#operateur').val("");
-function ajouterPatient(){
-	vart=tabUrl[0]+'public/facturation/ajouter';
-    $(location).attr("href",vart);
+  animation();
+  $('#service').val("").attr({
+    'disabled': 'true'
+  }).css({
+    'background': '#f3f3f3'
+  });
+  $('#operateur').val("");
+
+  function ajouterPatient() {
+    vart = tabUrl[0] + 'public/facturation/ajouter';
+    $(location).attr("href", vart);
     return false;
-}
-$('#semaineDebutFin').click(function(){
-	alert(1);
+  }
+  $('#semaineDebutFin').click(function() {
+    alert(1);
 
-	stopPropagation();
-});
-//scriptFactMajor();
+    stopPropagation();
+  });
+  //scriptFactMajor();
 </script>
-
-

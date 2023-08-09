@@ -38,6 +38,7 @@ class HormonesTyroidiennesOrlTable {
 				'date_enregistrement' => $date_enregistrement,
 				'id_employe_e' => $id_employe_e,
 		);
+		var_dump($donnees); exit();
 		$this->tableGateway->insert( $donnees );
 	}
 	public function deleteHormonesTyroidiennes($id){

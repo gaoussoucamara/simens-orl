@@ -35,12 +35,13 @@ class GroupesGanglionnairesTable {
 				'groupeVI' => $data->groupeVI,
 				'groupeV' => $data->groupeV,
 				'groupeIV' => $data->groupeIV,
-				'libre' => $data->libre,
+				'libre' => $data->libre?$data->libre:0,
 				'atteinte' => $data->atteinte,
 				
 				'date_enregistrement' => $date_enregistrement,
 				'id_employe_e' => $id_employe_e,
 		);
+		//var_dump($donnees); exit();
 		$this->tableGateway->insert( $donnees );	
 	}
 	public function deleteGroupesGanglionnaires($id){

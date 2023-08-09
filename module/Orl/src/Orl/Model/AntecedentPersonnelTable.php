@@ -68,6 +68,7 @@ class AntecedentPersonnelTable {
 			}
 			
 			//HABITUDE DE VIE
+			
 			if($rows->id_antecedent == 4){
 				$donnees['AlcooliqueHV'] = 1;
 				$donnees['DateDebutAlcooliqueHV'] = $Control->convertDate($rows->date_debut);
@@ -128,7 +129,7 @@ class AntecedentPersonnelTable {
 	}
 	
 	/**
-	 * Ajouter et mettre à jour les antécédents personnels des patients
+	 * Ajouter et mettre ï¿½ jour les antï¿½cï¿½dents personnels des patients
 	 */
 	public function addAntecedentsPersonnels($donneesDesAntecedents, $id_personne, $id_medecin){
 		$this->tableGateway->getAdapter()->getDriver()->getConnection()->beginTransaction();
@@ -142,19 +143,22 @@ class AntecedentPersonnelTable {
 				$donneesAntecedents = array(
 						'ID_PERSONNE' => $id_personne,
 						'ID_ANTECEDENT' => 4,
-						'DATE_DEBUT' => $Control->convertDateInAnglais($donneesDesAntecedents['DateDebutAlcooliqueHV']), 
-						'DATE_ARRET' => $Control->convertDateInAnglais($donneesDesAntecedents['DateFinAlcooliqueHV']),
+						'DATE_DEBUT' => $donneesDesAntecedents['DateDebutAlcooliqueHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateDebutAlcooliqueHV']):null, 
+						'DATE_ARRET' => $donneesDesAntecedents['DateFinAlcooliqueHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateFinAlcooliqueHV']):null,
 						'ID_EMPLOYE' => $id_medecin,
 				);
 				
+
+				//var_dump($donneesAntecedents); exit();
+
 				$this->tableGateway->insert($donneesAntecedents);
 			}
 			if($donneesDesAntecedents['FumeurHV'] == 1){
 				$donneesAntecedents = array(
 						'ID_PERSONNE' => $id_personne,
 						'ID_ANTECEDENT' => 5,
-						'DATE_DEBUT' => $Control->convertDateInAnglais($donneesDesAntecedents['DateDebutFumeurHV']),
-						'DATE_ARRET' => $Control->convertDateInAnglais($donneesDesAntecedents['DateFinFumeurHV']),
+						'DATE_DEBUT' => $donneesDesAntecedents['DateDebutFumeurHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateDebutFumeurHV']):null,
+						'DATE_ARRET' => $donneesDesAntecedents['DateFinFumeurHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateFinFumeurHV']):null,
 						'NOMBRE_PAQUET_JOUR' => $donneesDesAntecedents['nbPaquetFumeurHV'],
 						'ID_EMPLOYE' => $id_medecin,
 				);
@@ -165,8 +169,8 @@ class AntecedentPersonnelTable {
 				$donneesAntecedents = array(
 						'ID_PERSONNE' => $id_personne,
 						'ID_ANTECEDENT' => 6,
-						'DATE_DEBUT' => $Control->convertDateInAnglais($donneesDesAntecedents['DateDebutDroguerHV']),
-						'DATE_ARRET' => $Control->convertDateInAnglais($donneesDesAntecedents['DateFinDroguerHV']),
+						'DATE_DEBUT' => $donneesDesAntecedents['DateDebutDroguerHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateDebutDroguerHV']):null,
+						'DATE_ARRET' => $donneesDesAntecedents['DateFinDroguerHV']?$Control->convertDateInAnglais($donneesDesAntecedents['DateFinDroguerHV']):null,
 						'ID_EMPLOYE' => $id_medecin,
 				);
 					
@@ -223,48 +227,48 @@ class AntecedentPersonnelTable {
 			
 			//GYNECO-OBSTETRIQUE
 			//GYNECO-OBSTETRIQUE
-			if($donneesDesAntecedents['MenarcheGO'] == 1){
-				$donneesAntecedents = array(
-						'ID_PERSONNE' => $id_personne,
-						'ID_ANTECEDENT' => 9,
-						'NOTE' => $donneesDesAntecedents['NoteMenarcheGO'],
-						'ID_EMPLOYE' => $id_medecin,
-				);
+			// if($donneesDesAntecedents['MenarcheGO'] == 1){
+			// 	$donneesAntecedents = array(
+			// 			'ID_PERSONNE' => $id_personne,
+			// 			'ID_ANTECEDENT' => 9,
+			// 			'NOTE' => $donneesDesAntecedents['NoteMenarcheGO'],
+			// 			'ID_EMPLOYE' => $id_medecin,
+			// 	);
 					
-				$this->tableGateway->insert($donneesAntecedents);
-			}
-			if($donneesDesAntecedents['GestiteGO'] == 1){
-				$donneesAntecedents = array(
-						'ID_PERSONNE' => $id_personne,
-						'ID_ANTECEDENT' => 10,
-						'NOTE' => $donneesDesAntecedents['NoteGestiteGO'],
-						'ID_EMPLOYE' => $id_medecin,
-				);
+			// 	$this->tableGateway->insert($donneesAntecedents);
+			// }
+			// if($donneesDesAntecedents['GestiteGO'] == 1){
+			// 	$donneesAntecedents = array(
+			// 			'ID_PERSONNE' => $id_personne,
+			// 			'ID_ANTECEDENT' => 10,
+			// 			'NOTE' => $donneesDesAntecedents['NoteGestiteGO'],
+			// 			'ID_EMPLOYE' => $id_medecin,
+			// 	);
 					
-				$this->tableGateway->insert($donneesAntecedents);
-			}
-			if($donneesDesAntecedents['PariteGO'] == 1){
-				$donneesAntecedents = array(
-						'ID_PERSONNE' => $id_personne,
-						'ID_ANTECEDENT' => 11,
-						'NOTE' => $donneesDesAntecedents['NotePariteGO'],
-						'ID_EMPLOYE' => $id_medecin,
-				);
+			// 	$this->tableGateway->insert($donneesAntecedents);
+			// }
+			// if($donneesDesAntecedents['PariteGO'] == 1){
+			// 	$donneesAntecedents = array(
+			// 			'ID_PERSONNE' => $id_personne,
+			// 			'ID_ANTECEDENT' => 11,
+			// 			'NOTE' => $donneesDesAntecedents['NotePariteGO'],
+			// 			'ID_EMPLOYE' => $id_medecin,
+			// 	);
 					
-				$this->tableGateway->insert($donneesAntecedents);
-			}
-			if($donneesDesAntecedents['CycleGO'] == 1){
-				$donneesAntecedents = array(
-						'ID_PERSONNE' => $id_personne,
-						'ID_ANTECEDENT' => 12,
-						'DUREE' => $donneesDesAntecedents['DureeCycleGO'],
-						'REGULARITE' => $donneesDesAntecedents['RegulariteCycleGO'],
-						'DYSMENORRHEE' => $donneesDesAntecedents['DysmenorrheeCycleGO'],
-						'ID_EMPLOYE' => $id_medecin,
-				);
+			// 	$this->tableGateway->insert($donneesAntecedents);
+			// }
+			// if($donneesDesAntecedents['CycleGO'] == 1){
+			// 	$donneesAntecedents = array(
+			// 			'ID_PERSONNE' => $id_personne,
+			// 			'ID_ANTECEDENT' => 12,
+			// 			'DUREE' => $donneesDesAntecedents['DureeCycleGO'],
+			// 			'REGULARITE' => $donneesDesAntecedents['RegulariteCycleGO'],
+			// 			'DYSMENORRHEE' => $donneesDesAntecedents['DysmenorrheeCycleGO'],
+			// 			'ID_EMPLOYE' => $id_medecin,
+			// 	);
 					
-				$this->tableGateway->insert($donneesAntecedents);
-			}
+			// 	$this->tableGateway->insert($donneesAntecedents);
+			// }
 			
 	
 			$this->tableGateway->getAdapter()->getDriver()->getConnection()->commit();

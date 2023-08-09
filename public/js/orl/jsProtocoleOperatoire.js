@@ -250,7 +250,7 @@
     	var type_anesthesie = $('#type_anesthesie').val();
     	var protocole_operatoire = $('#protocole_operatoire').val();
     	var soins_post_operatoire = $('#soins_post_operatoire').val();
-    	var vart =  tabUrl[0]+'public/consultation/imprimer-protocole-operatoire';
+    	var vart =  tabUrl[0]+'public/orl/imprimer-protocole-operatoire';
 		var FormulaireImprimerProtocoleOperatoire = document.getElementById("FormulaireImprimerProtocoleOperatoire");
 		FormulaireImprimerProtocoleOperatoire.setAttribute("action", vart);
 		FormulaireImprimerProtocoleOperatoire.setAttribute("method", "POST");

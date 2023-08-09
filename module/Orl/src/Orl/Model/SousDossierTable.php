@@ -55,7 +55,7 @@ class SousDossierTable{
 		return $options;
 	}
 	
-	public function addSousDossier($data, $id_cons, $id_employe_e){
+	public function addSousDossier($data=null, $id_cons, $id_employe_e=null){
 		$today = new \DateTime ();
 		$date_enregistrement = $today->format ( 'Y-m-d H:i:s' );
 		$donnees = array(

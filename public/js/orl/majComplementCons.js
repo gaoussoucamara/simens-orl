@@ -792,6 +792,7 @@ $(function(){
 			$('.imageIRM').toggle(false);
 			$('.imageScanner').toggle(false); 
 			$('.imageFibroscopie').toggle(false);
+			$('.imageFibroscopie').toggle(false);
 			$('.bouton_valider_examen_morpho').toggle(false);
 			ind++;
 		}
@@ -813,6 +814,10 @@ $(function(){
 			$('.bouton_valider_examen_morpho').toggle(true);
 		} 
 		if(element == 12){ 
+			$('.imageFibroscopie').toggle(true); 
+			$('.bouton_valider_examen_morpho').toggle(true);
+		}
+		if(element == 19){ 
 			$('.imageFibroscopie').toggle(true); 
 			$('.bouton_valider_examen_morpho').toggle(true);
 		}
